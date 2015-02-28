@@ -48,7 +48,7 @@ There are no external dependencies for the core library.
 ### Philosophy
 There are many linear algebra libraries available that are built using C++. Many of the popular ones make extensive use of template metaprogramming to increase efficiency. This library takes a different approach. Not many developers really understand C++ templates well and so complex template code is hard to debug and maintain. 
 
-This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids un-neccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand and still quite fast. Although our library is a completely new code base, the primary reference source for many of the algorithms was the GNU scientific library and so the chosen routines are generally expected to be of good quality and have so far performed well in testing.
+This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids un-neccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand and still quite fast. Although our library is a completely new code base, the primary reference source for creating many of the algorithms was the GNU scientific library and so the chosen routines are generally expected to be of good quality and have so far performed well in testing.
 
 ### Examples
     #include "imp_core.h"
@@ -62,7 +62,7 @@ This library aims towards simplicity of code design. It does this without giving
     im::MatrixDecompSVD<double> svd(mA);
 
     // Compute the reconstruction error
-    double maxerror = (svd.matrixU() * svd.vectorS().diag_matrix() * svd.matrixV().t() - m2).max_abs();
+    double maxerror = (svd.matrixU() * svd.vectorS().diag_matrix() * svd.matrixV().t() - mA).max_abs();
 
     // Fill upper left 4x4 region of A with zero
     mA.block(0,0,4,4) = 0.0;
