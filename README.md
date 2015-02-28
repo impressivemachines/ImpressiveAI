@@ -8,8 +8,8 @@ Core provides many common tools for linear algebra and is built on very flexible
 
 * Light-weight matrix and vector views which provide a unified, powerful, and simple way to refer to one and two dimensional memory in a multitude of configurations.
 * A full suite of conforming BLAS operations supporting BLAS 1, 2 and 3 linear algebra manipulations. These make use of matrix and vector views for their arguments.
-* Optimized low-level matrix block functions which work on vector and matrix types to implement common operations, such as math operations, data sorting, conversion, statistics and reduce operations.
-* Matrix and vector types which manage shared memory and can be used to express quite elaborate mathematical operations neatly and efficiently.
+* Optimized low-level matrix block functions which work on vector and matrix types to implement common operations, such as math, data sorting, conversion, statistics and reduce operations.
+* Matrix and vector memory objects which manage shared memory and can be used to express a multitude of elaborate mathematical operations neatly and efficiently.
 * Real and complex types are supported for many math operations.
 * Typical matrix decompositions:
     * LU decomposition.
@@ -18,19 +18,25 @@ Core provides many common tools for linear algebra and is built on very flexible
     * Tridiagonal decomposition.
     * Eigenvalue decomposition for symmetric matrices.
     * Jacobi SVD with QR preconditioning.
-    * Special case 2x2 eigen and SVD decompositions.
-* Efficient convolution for 1D and 2D signals.
-* Matrices and vectors can be saved and printed in a variety of formats, including matlab text format.
+    * Special case 2x2 Eigen and SVD decompositions.
+* Fast convolution for 1D and 2D signals.
+* Matrices and vectors can be saved and printed in a variety of formats, including Matlab text format.
 * Convenient interfaces for random number generation.
 * Solution to quadratic and cubic polynomials.
 * Principal components analysis.
 * Estimation of covariances.
-* Generation of multidimensioanl Gaussian noise with specified covariance.
+* Generation of multidimensional Gaussian noise with specified covariance.
 * Computation of multivariate Gaussians and Mahalanobis distance.
-* Arbitrary radix FFT in 1D and 2D (TBD).
-* Minimization of functions (TBD).
-* Regression (TBD).
-* Tensors (TBD).
+
+Some features that are under development:
+
+* Arbitrary radix FFT in 1D and 2D.
+* Minimization of function.
+* Least squares and robust 2D line fitting.
+* Multi-dimensional regression.
+* Tensors.
+* Geometric transformations, such as 2D and 3D affine, homographies, or rotations.
+* Quaternions.
 
 The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order. 
 
