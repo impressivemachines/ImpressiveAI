@@ -39,11 +39,15 @@ There are no external dependencies for the core library.
 There are many linear algebra libraries available that are built using C++. Many of the popular ones make extensive use of template metaprogramming to increase efficiency. This library takes a different approach. Not many developers really understand C++ templates well and so complex template code is hard to debug and maintain. This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids un-neccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand and still quite fast. The primary source for many of the algorithms was the GNU scientific library and so the routines are generally expected to be of good quality and have performed well in testing so far.
 
 ### Examples
-    // Make a random matrix and compute the SVD and then compute the reconstruction error
+    // Make a random matrix
     im::Mtx<double> mA(20,5);
     im::Rand rnd;
     mA.random_gaussian(rnd);
+
+    // Compute the SVD
     im::MatrixDecompSVD<double> svd(mA);
+
+    // Compute the reconstruction error
     double maxerror = (svd.matrixU() * svd.vectorS().diag_matrix() * svd.matrixV().t() - m2).max_abs();
 
     // Fill upper left 4x4 region of A with zero
@@ -52,9 +56,10 @@ There are many linear algebra libraries available that are built using C++. Many
     // Compute the dot product of two columns of A
     double dotprod = mA.col(2).dot_product(mA.col(3));
     
-    // copy the first 5 elements of the first column vector in U over to the diagonal of a sub block of A.
-    // Its important to understand that these operations manipulate pointers to views of memory and the
-    // copy_from() function is the only one that actually does any data copying.
+    // Copy the first 5 elements of the first column vector in U over to the diagonal of a sub
+    // block of A.
+    // Its important to understand that these operations manipulate pointers to views of memory
+    // and the copy_from() function is the only one that actually does any data copying.
     mA.block(10,0,5,5).diag().copy_from(svd.matrixU.col(0).head(5));
 
 
