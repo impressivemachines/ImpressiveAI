@@ -1,7 +1,7 @@
 # ImpressiveAI
 Impressive Machines's C++ Library for Machine Learning and Computer Vision
 
-The aim of this library is to create a self-contained set of tools for many applications in machine learning and computer vision. It is broken into a number of sections which are useful in isolation. The main part of the library is "core" which is a library for linear algebra and numberical computation. This part currently has a lot of functionality. Other parts are under development and will be added in the future.
+The eventual aim of this library is to create a self-contained set of tools for many applications in machine learning and computer vision. It is broken into a number of sections which are useful in isolation. The main part of the library is "core" which is a library for linear algebra and numerical computation. This part currently has a lot of functionality. Other parts are under development and will be added in the future.
 
 ## Core
 Core provides many common tools for linear algebra and is built on very flexible matrix and vector objects. The features include:
