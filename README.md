@@ -77,5 +77,5 @@ This library aims towards simplicity of code design. It does this without giving
     mA.block(10,0,5,5).diag().copy_from(svd.matrixU.col(0).head(5));
 
 ### Build Instructions
-This code was developed on the Mac. We will be adding some make files eventually, but the code itself is not very demanding to build. To compile against it, merely include the imp_core.h file. All the functions and objects are within the im namespace.
+This code was developed on the Mac. We will be adding some make files eventually, but the code itself is not very demanding to build. To compile against it, merely include the imp_core.h file. All the functions and objects are within the 'im' namespace.
 
