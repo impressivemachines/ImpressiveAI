@@ -27,7 +27,7 @@ namespace im
     // The b coefficient is always -1 for this routine. The line equation is therefor y = ax + c.
     // The routine will return false if there is no solution, e.g if all points are the same.
     // It uses LDL decomposition and back substitution with the normal equations.
-    template <typename TT> bool core_least_squares_2d(VecView<TT> vcoefs, MtxView<TT> const &mcoords);
+    //template <typename TT> bool core_least_squares_2d(VecView<TT> vcoefs, MtxView<TT> const &mcoords);
     
     // Solves the least squares system A x = b where the matrix A has more rows than columns.
     // This is done using LDL decomposition of A^T A and back substitution with A^T b to solve the normal equations.
@@ -37,10 +37,10 @@ namespace im
     // The model is given by y(x) = sum_k { a_k X_k(x) }, and a_k are the coefficients to be determined (vx).
     // Returns false if the system is rank deficient.
     // If vb has multiple columns then the vx must also have the same number of columns and multiple systems are solved.
-    template <typename TT> bool core_least_squares_normal(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb);
+    //template <typename TT> bool core_least_squares_normal(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb);
     
     // Solves the least squares system using SVD
-    template <typename TT> bool core_least_squares_svd(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb);
+    //template <typename TT> bool core_least_squares_svd(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb);
     
     
     // This class estimates the mean vector and full covariance matrix of multidimensional data

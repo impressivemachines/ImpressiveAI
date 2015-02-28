@@ -32,7 +32,7 @@ void im::core_histogram(std::vector<int> &hist_rtn, MVf const &mavsrc, float min
         }
 }
 
-template <typename TT>
+/*template <typename TT>
 bool im::core_least_squares_2d(VecView<TT> vcoefs, MtxView<TT> const &mcoords)
 {
     return true;
@@ -49,6 +49,7 @@ bool im::core_least_squares_svd(VecView<TT> vx, const MtxView<TT> &mA, const Vec
 {
     return true;
 }
+*/
 
 void im::CovarianceEstimator::add(MVf const &m)
 {
