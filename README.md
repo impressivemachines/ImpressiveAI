@@ -6,9 +6,9 @@ The aim of this library is to create a self-contained set of tools for many appl
 ## Core
 Core provides many common tools for linear algebra and is built on very flexible matrix and vector objects. The features include:
 
-* Light-weight matrix and vector views which provide a powerful way to refer to one and two dimensional memory. They have arbitrary row and columns strides and so can operate on many data formats and with any data type. They do not need to use classical row or column major memory organization. They can refer to memory which is reversed or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order.
-* Optimized low-level matrix block functions which work on vector and matrix types to implement common operations, such as math operations, data sorting, conversion, statistics and reduce operations.
+* Light-weight matrix and vector views which provide a unified, powerful, and simple way to refer to one and two dimensional memory in a multitude of configurations.
 * A full suite of conforming BLAS operations supporting BLAS 1, 2 and 3 linear algebra manipulations. These make use of matrix and vector views for their arguments.
+* Optimized low-level matrix block functions which work on vector and matrix types to implement common operations, such as math operations, data sorting, conversion, statistics and reduce operations.
 * Matrix and vector types which manage shared memory and can be used to express quite elaborate mathematical operations neatly and efficiently.
 * Real and complex types are supported for many math operations.
 * Typical matrix decompositions:
@@ -32,11 +32,17 @@ Core provides many common tools for linear algebra and is built on very flexible
 * Regression (TBD).
 * Tensors (TBD).
 
+ The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order. 
+
+Decimating, reversing, or extracting rows, columns, blocks, or diagonals of matrices is therefore a constant time operation. Most operations in the library involve passing only the small view structures as arguments to functions (often by reference) and unncessary data copying is avoided. Matrix and vector classes exist to dynamically create memory blocks where needed and these make use of standard shared pointers. Alternatively, memory can be statically allocated by the user and trivially wrapped into matrix view objects for use with any library functions.
+
 ### Dependencies
 There are no external dependencies for the core library.
 
 ### Philosophy
-There are many linear algebra libraries available that are built using C++. Many of the popular ones make extensive use of template metaprogramming to increase efficiency. This library takes a different approach. Not many developers really understand C++ templates well and so complex template code is hard to debug and maintain. This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids un-neccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand and still quite fast. The primary source for many of the algorithms was the GNU scientific library and so the routines are generally expected to be of good quality and have so far performed well in testing.
+There are many linear algebra libraries available that are built using C++. Many of the popular ones make extensive use of template metaprogramming to increase efficiency. This library takes a different approach. Not many developers really understand C++ templates well and so complex template code is hard to debug and maintain. 
+
+This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids un-neccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand and still quite fast. Although our library is a completely new code base, the primary reference source for many of the algorithms was the GNU scientific library and so the chosen routines are generally expected to be of good quality and have so far performed well in testing.
 
 ### Examples
     #include "imp_core.h"
