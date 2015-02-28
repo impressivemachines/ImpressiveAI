@@ -6,7 +6,7 @@ The aim of this library is to create a self-contained set of tools for many appl
 ## Core
 Core provides many common tools for linear algebra and is built on very flexible matrix and vector objects. The features include:
 
-* Flexible and light-weight matrix and vector views which provide a way to refer to one and two dimensional memory. They have arbitrary row and columns strides and so can operate on many data formats and with any data type.
+* Light-weight matrix and vector views which provide a powerful way to refer to one and two dimensional memory. They have arbitrary row and columns strides and so can operate on many data formats and with any data type. They do not need to use classical row or column major memory organization. They can refer to memory which is reversed or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order.
 * Optimized low-level matrix block functions which work on vector and matrix types to implement common operations, such as math operations, data sorting, conversion, statistics and reduce operations.
 * A full suite of conforming BLAS operations supporting BLAS 1, 2 and 3 linear algebra manipulations. These make use of matrix and vector views for their arguments.
 * Matrix and vector types which manage shared memory and can be used to express quite elaborate mathematical operations neatly and efficiently.
