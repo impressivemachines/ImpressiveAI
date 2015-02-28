@@ -32,7 +32,7 @@ Core provides many common tools for linear algebra and is built on very flexible
 * Regression (TBD).
 * Tensors (TBD).
 
- The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order. 
+The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order. 
 
 Decimating, reversing, or extracting rows, columns, blocks, or diagonals of matrices is therefore a constant time operation. Most operations in the library involve passing only the small view structures as arguments to functions (often by reference) and unncessary data copying is avoided. Matrix and vector classes exist to dynamically create memory blocks where needed and these make use of standard shared pointers. Alternatively, memory can be statically allocated by the user and trivially wrapped into matrix view objects for use with any library functions.
 
