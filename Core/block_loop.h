@@ -19,7 +19,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, pout += 4*strideout)
         {
@@ -38,7 +38,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, pout += 4*strideout, pin += 4*stridein)
         {
@@ -57,7 +57,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, p1 += 4*stride1, p2 += 4*stride2)
         {
@@ -76,7 +76,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, p1 += 4*stride1, p2 += 4*stride2)
         {
@@ -95,7 +95,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, p1 += 4*stride1, p2 += 4*stride2)
         {
@@ -114,7 +114,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, p1 += 4*stride1, p2 += 4*stride2)
         {
@@ -133,7 +133,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, p1 += 4*stride1, p2 += 4*stride2)
         {
@@ -152,7 +152,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, pout += 4*strideout, pin += 4*stridein)
         {
@@ -171,7 +171,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, pout += 4*strideout, pin += 4*stridein)
         {
@@ -190,7 +190,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, pout += 4*strideout, pin += 4*stridein)
         {
@@ -209,7 +209,7 @@ namespace im
         if(count<1)
             return;
         
-        int block4 = 4*(count/4);
+        int const block4 = 4*(count/4);
         int i=0;
         for(; i<block4; i+=4, pout += 4*strideout, pin += 4*stridein)
         {
