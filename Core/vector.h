@@ -50,6 +50,18 @@ namespace im
             m_view.wrap(rows, rowstride, pdata);
         }
         
+        TT const *wrap(int nrows, int rowstride, TT const *pdata)
+        {
+            m_mem.reset();
+            return m_view.wrap(nrows, rowstride, pdata);
+        }
+        
+        void wrap(const std::vector<TT> &v)
+        {
+            m_mem.reset();
+            m_view.wrap(v);
+        }
+        
         // Resizes the matrix and loses any data
         void resize(int nrows);
         

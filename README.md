@@ -27,10 +27,9 @@ Core provides many common tools for linear algebra and is built on very flexible
 * Estimation of covariances.
 * Generation of multidimensional Gaussian noise with specified covariance.
 * Computation of multivariate Gaussians and Mahalanobis distance.
+* Arbitrary radix FFT in 1D and 2D.
 
 Some features that are under development:
-
-* Arbitrary radix FFT in 1D and 2D.
 * Minimization of function.
 * Least squares and robust 2D line fitting.
 * Multi-dimensional regression.
