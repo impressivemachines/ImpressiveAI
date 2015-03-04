@@ -4,7 +4,7 @@ Impressive Machines's C++ Library for Machine Learning and Computer Vision
 The eventual aim of this library is to create a self-contained set of tools for many applications in machine learning and computer vision. It is broken into a number of sections which are useful in isolation. The main part of the library is "core" which is a library for linear algebra and numerical computation. This part currently has a lot of functionality. Other parts are under development and will be added in the future.
 
 ## Core
-Core provides many common tools for linear algebra and is built on very flexible matrix and vector objects. The features include:
+Core provides many common tools for linear algebra and statistics and is built on very flexible matrix and vector objects. The features include:
 
 * Light-weight matrix and vector views which provide a unified, powerful, and simple way to refer to one and two dimensional memory in a multitude of configurations.
 * A full suite of conforming BLAS operations supporting BLAS 1, 2 and 3 linear algebra manipulations. These make use of matrix and vector views for their arguments.
@@ -30,11 +30,12 @@ Core provides many common tools for linear algebra and is built on very flexible
 * Arbitrary radix FFT in 1D and 2D.
 * Least squares and robust 2D line fitting.
 * Multi-dimensional regression.
+* Geometric 2D and 3D rotations and transforms.
 
 Some features that are under development:
-* Minimization of function.
+* Line minimization / root finding.
+* Optimization of functions.
 * Tensors.
-* Geometric transformations, such as 2D and 3D affine, homographies, or rotations.
 * Quaternions.
 
 The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order. 
