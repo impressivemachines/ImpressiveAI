@@ -52,6 +52,10 @@ This library aims towards simplicity of code design. It does this without giving
 
 ### Examples
     #include "imp_core.h"
+    
+    // Fill matrix matlab style
+    im::Mtx<float> mX = "[ 8 6 2; 7 4 9; 4 8 2]";
+    mX.inverse().print();
 
     // Make a random matrix
     im::Mtx<double> mA(20,5);
