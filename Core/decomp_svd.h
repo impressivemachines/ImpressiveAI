@@ -27,10 +27,12 @@ namespace im
         
         void compute(MtxView<TT> const &mA, bool qr_precondition = true);
         
-        Mtx<TT> solve(MtxView<TT> const &mavy) const;
-        Vec<TT> solve(VecView<TT> const &vvy) const;
+        // When a singular value sv is <= sv_thresh then 1/sv is set to zero when forming the solution
+        // This deals with near singularity of A
+        Mtx<TT> solve(MtxView<TT> const &mavy, TT sv_thresh = (TT)0) const;
+        Vec<TT> solve(VecView<TT> const &vvy, TT sv_thresh = (TT)0) const;
         
-        Mtx<TT> pseudo_inverse() const;
+        Mtx<TT> pseudo_inverse(TT sv_thresh = (TT)0) const;
         
         Vec<TT> const vectorS() const { return m_vS; }
         Mtx<TT> const matrixU() const { return m_mU; }

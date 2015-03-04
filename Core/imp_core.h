@@ -290,5 +290,8 @@ namespace im
 #include "solve.h"
 #include "stats.h"
 #include "fft.h"
+#include "quaternion.h"
+#include "geometry.h"
+#include "optimize.h"
 
 #endif

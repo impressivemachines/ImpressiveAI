@@ -946,7 +946,8 @@ template <typename TT> void im::core_block_blas_trmm(MtxView<TT> mB, MtxView<TT>
                         if (diag==DiagMode_N)
                             temp *= mAA(i,i);
                         
-                        core_madd_loop(temp, mAA.ptr(i,i+1), mAA.col_stride(), mB.ptr(i+1,j), mB.row_stride(), rows - (i+1));
+                        if(rows-(i+1)>0)
+                            core_madd_loop(temp, mAA.ptr(i,i+1), mAA.col_stride(), mB.ptr(i+1,j), mB.row_stride(), rows - (i+1));
                         
                         //for (int k = i + 1; k<rows; k++)
                         //    temp += mAA(i,k) * mB(k,j);
@@ -964,7 +965,8 @@ template <typename TT> void im::core_block_blas_trmm(MtxView<TT> mB, MtxView<TT>
                         if (diag==DiagMode_N)
                             temp *= core_conj(mAA(i,i));
                         
-                        core_maddconj_loop(temp, mAA.ptr(i,i+1), mAA.col_stride(), mB.ptr(i+1,j), mB.row_stride(), rows - (i+1));
+                        if(rows-(i+1)>0)
+                            core_maddconj_loop(temp, mAA.ptr(i,i+1), mAA.col_stride(), mB.ptr(i+1,j), mB.row_stride(), rows - (i+1));
                         
                         //for (int k = i + 1; k<rows; k++)
                         //    temp += core_conj(mAA(i,k)) * mB(k,j);
@@ -1072,7 +1074,8 @@ template <typename TT> void im::core_block_blas_trmm(MtxView<TT> mB, MtxView<TT>
                         if (diag==DiagMode_N)
                             temp *= mAA(j,j);
                         
-                        core_madd_loop(temp, mAA.ptr(j+1,j), mAA.row_stride(), mB.ptr(i,j+1), mB.col_stride(), cols - (j+1));
+                        if(cols-(j+1)>0)
+                            core_madd_loop(temp, mAA.ptr(j+1,j), mAA.row_stride(), mB.ptr(i,j+1), mB.col_stride(), cols - (j+1));
                         
                         //for (int k = j+1; k<cols; k++)
                         //    temp += mAA(k,j) * mB(i,k);
@@ -1090,7 +1093,8 @@ template <typename TT> void im::core_block_blas_trmm(MtxView<TT> mB, MtxView<TT>
                         if (diag==DiagMode_N)
                             temp *= core_conj(mAA(j,j));
                         
-                        core_maddconj_loop(temp, mAA.ptr(j+1,j), mAA.row_stride(), mB.ptr(i,j+1), mB.col_stride(), cols - (j+1));
+                        if(cols-(j+1)>0)
+                            core_maddconj_loop(temp, mAA.ptr(j+1,j), mAA.row_stride(), mB.ptr(i,j+1), mB.col_stride(), cols - (j+1));
                         
                         //for (int k = j+1; k<cols; k++)
                         //    temp += core_conj(mAA(k,j)) * mB(i,k);
@@ -1256,7 +1260,8 @@ template <typename TT> void im::core_block_blas_trsm(MtxView<TT> mB, MtxView<TT>
                         
                         TT Bij = mB(i,j);
                         
-                        core_ssub_loop(mB.ptr(i,j+1), mB.col_stride(), mAA.ptr(j,j+1), mAA.col_stride(), Bij, cols - (j+1));
+                        if(cols-(j+1)>0)
+                            core_ssub_loop(mB.ptr(i,j+1), mB.col_stride(), mAA.ptr(j,j+1), mAA.col_stride(), Bij, cols - (j+1));
                         
                         //for(int k=j+1; k<cols; k++)
                         //    mB(i,k) -= mAA(j,k) * Bij;
@@ -1272,7 +1277,8 @@ template <typename TT> void im::core_block_blas_trsm(MtxView<TT> mB, MtxView<TT>
                         
                         TT Bij = mB(i,j);
                         
-                        core_ssubconj_loop(mB.ptr(i,j+1), mB.col_stride(), mAA.ptr(j,j+1), mAA.col_stride(), Bij, cols - (j+1));
+                        if(cols-(j+1)>0)
+                            core_ssubconj_loop(mB.ptr(i,j+1), mB.col_stride(), mAA.ptr(j,j+1), mAA.col_stride(), Bij, cols - (j+1));
                         
                         //for(int k=j+1; k<cols; k++)
                         //    mB(i,k) -= core_conj(mAA(j,k)) * Bij;

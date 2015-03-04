@@ -32,24 +32,272 @@ void im::core_histogram(std::vector<int> &hist_rtn, MVf const &mavsrc, float min
         }
 }
 
-/*template <typename TT>
-bool im::core_least_squares_2d(VecView<TT> vcoefs, MtxView<TT> const &mcoords)
+template <typename TT>
+void im::core_line_fit_2d(VecView<TT> vcoefs, MtxView<TT> const &mcoords)
 {
-    return true;
+    IM_CHECK_VALID(vcoefs);
+    IM_CHECK_VALID(mcoords);
+    IM_CHECK_VECTOR_SIZE(vcoefs, 3);
+    IM_CHECK_ARGS(mcoords.rows()==2 || mcoords.rows()==3);
+    
+    if(mcoords.cols()==1)
+    {
+        vcoefs(0) = 0;
+        vcoefs(1) = -1;
+        vcoefs(2) = mcoords(1,0);
+        return;
+    }
+    else if(mcoords.cols()==2)
+    {
+        core_line_through_points(vcoefs, mcoords(0,0), mcoords(1,0), mcoords(0,1), mcoords(1,1));
+        return;
+    }
+    
+    int N = mcoords.cols();
+    
+    if(mcoords.rows()==2)
+    {
+        // No standard deviations
+        TT sumx = (TT)0;
+        TT sumy = (TT)0;
+        
+        for(int i=0; i<N; i++)
+        {
+            sumx += mcoords(0,i);
+            sumy += mcoords(1,i);
+        }
+        
+        TT meanx = sumx / N;
+        TT sumsq = (TT)0;
+        TT m = (TT)0;
+        
+        for(int i=0; i<N; i++)
+        {
+            TT t = mcoords(0,i) - meanx;
+            sumsq += t*t;
+            m += t * mcoords(1,i);
+        }
+        
+        m /= sumsq;
+        
+        vcoefs(0) = m;
+        vcoefs(1) = -1;
+        vcoefs(2) = (sumy - sumx * m)/N;
+    }
+    else
+    {
+        // Include standard deviations
+        TT sumx = (TT)0;
+        TT sumy = (TT)0;
+        TT sumrv = (TT)0;
+        
+        for(int i=0; i<N; i++)
+        {
+            TT rv = (TT)1/(mcoords(2,i)*mcoords(2,i));
+            sumx += mcoords(0,i) * rv;
+            sumy += mcoords(1,i) * rv;
+            sumrv += rv;
+        }
+        
+        TT meanx = sumx / sumrv;
+        TT sumsq = (TT)0;
+        TT m = (TT)0;
+        
+        for(int i=0; i<N; i++)
+        {
+            TT t = (mcoords(0,i) - meanx) / mcoords(2,i);
+            sumsq += t*t;
+            m += t * mcoords(1,i) / mcoords(2,i);
+        }
+        
+        m /= sumsq;
+        
+        vcoefs(0) = m;
+        vcoefs(1) = -1;
+        vcoefs(2) = (sumy - sumx * m)/sumrv;
+    }
 }
 
+#define INST(TT) template void im::core_line_fit_2d(VecView<TT> vcoefs, MtxView<TT> const &mcoords)
+INST(float); INST(double);
+#undef INST
+
+// Orthogonal least squares
 template <typename TT>
-bool im::core_least_squares_normal(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb)
+void im::core_line_fit_orthog(VecView<TT> vorigin, VecView<TT> vunit, MtxView<TT> const &mcoords)
 {
-    return true;
+    IM_CHECK_VALID(vorigin);
+    IM_CHECK_VALID(vunit);
+    IM_CHECK_VALID(mcoords);
+    IM_CHECK_ARGS(vorigin.rows()==mcoords.rows());
+    IM_CHECK_ARGS(vunit.rows()==mcoords.rows());
+    IM_CHECK_ARGS(mcoords.rows()>1);
+    IM_CHECK_ARGS(mcoords.cols()>=mcoords.rows());
+    
+    int d = mcoords.rows();
+    int n = mcoords.cols();
+    
+    core_block_reduce_rows_mean(vorigin, mcoords);
+    
+    Mtx<TT> mA(d, n);
+    for(int i=0; i<n; i++)
+        core_block_sub_elements(mA.view().col(i), mcoords.col(i), vorigin);
+    
+    MatrixDecompSVD<TT> svd(mA.view().t());
+
+    vunit.copy_from(svd.matrixV().view().col(0));
 }
 
+#define INST(TT) template void im::core_line_fit_orthog(VecView<TT> vorigin, VecView<TT> vunit, MtxView<TT> const &mcoords)
+INST(float); INST(double);
+#undef INST
+
+// Robust orthogonal least squares with median based outlier rejection using RANSAC.
 template <typename TT>
-bool im::core_least_squares_svd(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb)
+void im::core_line_fit_2d_orthog_robust(VecView<TT> vcoefs, MtxView<TT> const &mcoords, Rand &rnd)
 {
-    return true;
+    IM_CHECK_VALID(vcoefs);
+    IM_CHECK_VALID(mcoords);
+    IM_CHECK_VECTOR_SIZE(vcoefs, 3);
+    IM_CHECK_ARGS(mcoords.rows()==2);
+    
+    if(mcoords.cols()==1)
+    {
+        vcoefs(0) = 0;
+        vcoefs(1) = -1;
+        vcoefs(2) = mcoords(1,0);
+        return;
+    }
+    else if(mcoords.cols()==2)
+    {
+        core_line_through_points(vcoefs, mcoords(0,0), mcoords(1,0), mcoords(0,1), mcoords(1,1));
+        return;
+    }
+    
+    int N = mcoords.cols();
+    
+    Vec<TT> vbest(3);
+    TT bestmedian = -1;
+    
+    Vec<TT> verrors(N);
+    
+    for(int i=0; i<25; i++) // 25 is chosen to get < 0.001 error rate with 50% outliers
+    {
+        int k1, k2;
+        do {
+            k1 = rnd.uniform_int(0, N-1);
+            k2 = rnd.uniform_int(0, N-1);
+        } while(k1==k2);
+        
+        core_line_through_points(vcoefs, mcoords(0,k1), mcoords(1,k1), mcoords(0,k2), mcoords(1,k2));
+        
+        // compute squared residuals for all points
+        for(int j=0; j<N; j++)
+        {
+            TT e = vcoefs(0) * mcoords(0,j) + vcoefs(1) * mcoords(1,j) + vcoefs(2);
+            verrors(j) = e * e;
+        }
+        
+        // minimize median residual
+        TT median = core_block_reduce_median(verrors.view());
+
+        if(bestmedian<0 || median < bestmedian)
+        {
+            bestmedian = median;
+            vbest.view().copy_from(vcoefs);
+        }
+    }
+    
+    // recompute residuals for best line
+    for(int j=0; j<N; j++)
+    {
+        TT e = vbest(0) * mcoords(0,j) + vbest(1) * mcoords(1,j) + vbest(2);
+        verrors(j) = e * e;
+    }
+    
+    // sort residuals
+    std::vector<int> vindex;
+    core_block_sort(vindex, verrors.view(), SortDirectionAscending);
+    
+    // fit a least squares line through the best half of the data set
+    int nbest = std::max(N/2,3);
+    Mtx<TT> mdata(2, nbest);
+    for(int i=0; i<nbest; i++)
+    {
+        mdata(0,i) = mcoords(0,vindex[i]);
+        mdata(1,i) = mcoords(1,vindex[i]);
+    }
+    
+    Vec<TT> vorg(2), vunit(2);
+    core_line_fit_orthog(vorg.view(), vunit.view(), mdata.view());
+    
+    vcoefs(0) = vunit(1);
+    vcoefs(1) = -vunit(0);
+    vcoefs(2) = vorg(1)*vunit(0) - vorg(0)*vunit(1);
 }
-*/
+
+#define INST(TT) template void im::core_line_fit_2d_orthog_robust(VecView<TT> vcoefs, MtxView<TT> const &mcoords, Rand &rnd)
+INST(float); INST(double);
+#undef INST
+
+
+template <typename TT> void im::core_least_squares_normal(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb)
+{
+    IM_CHECK_VALID(vx);
+    IM_CHECK_VALID(mA);
+    IM_CHECK_VALID(vb);
+    IM_CHECK_ARGS(mA.rows() >= mA.cols());
+    IM_CHECK_ARGS(mA.cols() == vx.rows());
+    IM_CHECK_ARGS(mA.rows() == vb.rows());
+    
+    int d = mA.cols();
+    int n = mA.rows();
+    
+    Mtx<TT> mATA(d,d);
+    
+    core_block_clear_lower_tri(mATA.view(), true);
+    
+    vx = (TT)0;
+    
+    // make ATA and ATb
+    for(int k=0; k<n; k++)
+    {
+        for(int c=0; c<d; c++)
+        {
+            TT kcol = mA(k,c);
+            for(int r = c; r<d; r++)
+                mATA(r,c) += kcol * mA(k,r);
+            vx(c) += kcol * vb(k);
+        }
+    }
+    
+    MatrixDecompLDLT<TT> ldlt(mATA.view());
+
+    vx.copy_from(ldlt.solve(vx).view());
+}
+
+#define INST(TT) template void im::core_least_squares_normal(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb)
+INST(float); INST(double);
+#undef INST
+
+template <typename TT> void im::core_least_squares_svd(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb)
+{
+    IM_CHECK_VALID(vx);
+    IM_CHECK_VALID(mA);
+    IM_CHECK_VALID(vb);
+    IM_CHECK_ARGS(mA.rows() >= mA.cols());
+    IM_CHECK_ARGS(mA.cols() == vx.rows());
+    IM_CHECK_ARGS(mA.rows() == vb.rows());
+    
+    MatrixDecompSVD<TT> svd(mA);
+    
+    vx.copy_from(svd.solve(vb).view());
+}
+
+#define INST(TT) template void im::core_least_squares_svd(VecView<TT> vx, const MtxView<TT> &mA, const VecView<TT> &vb)
+INST(float); INST(double);
+#undef INST
+
 
 void im::CovarianceEstimator::add(MVf const &m)
 {
@@ -140,6 +388,7 @@ im::Vf im::CovarianceEstimator::mean() const
     return vmean;
 }
 
+// This could be improved by using SVD so long as the data size is not exorbitant
 void im::core_stats_pca(MVf mV, VVf vL, const MVf &mData)
 {
     IM_CHECK_VALID(mV);

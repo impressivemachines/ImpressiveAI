@@ -8,9 +8,6 @@
 
 #include "imp_core.h"
 
-//#define FFT_RE(p,stride,x) (p)[(x)*(stride)]
-//#define FFT_IM(p,stride,x) (p)[(x)*(stride)+1]
-
 #define SPECIALCASE_POWEROF2    1
 
 template <typename TT> void im::FFTComplex<TT>::init(int n)

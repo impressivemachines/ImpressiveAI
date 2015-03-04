@@ -148,7 +148,7 @@ im::Mtx<TT> im::MatrixDecompLDLT<TT>::inverse() const
 }
 
 template <typename TT>
-void im::MatrixDecompLLT<TT>::compute(MtxView<TT> const &mavA, bool use_upper)
+void im::MatrixDecompLLT<TT>::compute(MtxView<TT> const &mavA)
 {
     int size = mavA.rows();
     
@@ -158,10 +158,7 @@ void im::MatrixDecompLLT<TT>::compute(MtxView<TT> const &mavA, bool use_upper)
     
     m_matLLT.resize(size,size);
     
-    if(use_upper)
-        core_block_copy_lower_tri(m_matLLT.view(), mavA.t(), true);
-    else
-        core_block_copy_lower_tri(m_matLLT.view(), mavA, true);
+    core_block_copy_lower_tri(m_matLLT.view(), mavA, true);
     
     TT A00 = m_matLLT(0,0);
     if(A00<0)

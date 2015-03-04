@@ -219,10 +219,13 @@ void im::MatrixDecompSVD<TT>::compute(MtxView<TT> const &mvA, bool qr_preconditi
 }
 
 template <typename TT>
-im::Mtx<TT> im::MatrixDecompSVD<TT>::solve(MtxView<TT> const &mavy) const
+im::Mtx<TT> im::MatrixDecompSVD<TT>::solve(MtxView<TT> const &mavy, TT sv_thresh) const
 {
     IM_CHECK_VALID(mavy);
     IM_CHECK_ARGS(mavy.rows()==m_mU.rows());
+    
+    if(sv_thresh <= (TT)0)
+        sv_thresh = TypeProperties<TT>::epsilon() * m_vS(0);
     
     int N = m_mU.cols();
     
@@ -236,7 +239,7 @@ im::Mtx<TT> im::MatrixDecompSVD<TT>::solve(MtxView<TT> const &mavy) const
         for(int i=0; i<N; i++)
         {
             TT alpha = m_vS(i);
-            if(alpha!=(TT)0)
+            if(alpha > sv_thresh)
                 alpha = (TT)1/alpha;
             vtmp(i) *= alpha;
         }
@@ -248,10 +251,13 @@ im::Mtx<TT> im::MatrixDecompSVD<TT>::solve(MtxView<TT> const &mavy) const
 }
 
 template <typename TT>
-im::Vec<TT> im::MatrixDecompSVD<TT>::solve(VecView<TT> const &vvy) const
+im::Vec<TT> im::MatrixDecompSVD<TT>::solve(VecView<TT> const &vvy, TT sv_thresh) const
 {
     IM_CHECK_VALID(vvy);
     IM_CHECK_ARGS(vvy.rows()==m_mU.rows());
+    
+    if(sv_thresh <= (TT)0)
+        sv_thresh = TypeProperties<TT>::epsilon() * m_vS(0);
     
     int N = m_mU.cols();
     
@@ -263,7 +269,7 @@ im::Vec<TT> im::MatrixDecompSVD<TT>::solve(VecView<TT> const &vvy) const
     for(int i=0; i<N; i++)
     {
         TT alpha = m_vS(i);
-        if(alpha!=(TT)0)
+        if(alpha > sv_thresh)
             alpha = (TT)1/alpha;
         vtmp(i) *= alpha;
     }
@@ -274,10 +280,13 @@ im::Vec<TT> im::MatrixDecompSVD<TT>::solve(VecView<TT> const &vvy) const
 }
 
 template <typename TT>
-im::Mtx<TT> im::MatrixDecompSVD<TT>::pseudo_inverse() const
+im::Mtx<TT> im::MatrixDecompSVD<TT>::pseudo_inverse(TT sv_thresh) const
 {
     int M = m_mU.rows();
     int N = m_mU.cols();
+    
+    if(sv_thresh <= (TT)0)
+        sv_thresh = TypeProperties<TT>::epsilon() * m_vS(0);
     
     Mtx<TT> mrtn(N, M);
     Vec<TT> vtmp(N);
@@ -289,7 +298,7 @@ im::Mtx<TT> im::MatrixDecompSVD<TT>::pseudo_inverse() const
         for(int i=0; i<N; i++)
         {
             TT alpha = m_vS(i);
-            if(alpha!=(TT)0)
+            if(alpha > sv_thresh)
                 alpha = (TT)1/alpha;
             vtmp(i) *= alpha;
         }

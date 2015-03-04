@@ -66,7 +66,8 @@ template <typename TT> void im::core_block_blas_gbmv(VecView<TT> vy, MtxView<TT>
             int j_min = std::max(i-L, 0);
             int j_max = std::min(i+U+1, lenX);
             
-            core_madd_loop(temp, vx.ptr(j_min), vx.row_stride(), mA.ptr(i,L-i+j_min), mA.col_stride(), j_max - j_min);
+            if(j_max > j_min)
+                core_madd_loop(temp, vx.ptr(j_min), vx.row_stride(), mA.ptr(i,L-i+j_min), mA.col_stride(), j_max - j_min);
 
             //for(int j=j_min; j<j_max; j++)
             //    temp += vx(j) * mA(i,L-i+j);
@@ -86,7 +87,8 @@ template <typename TT> void im::core_block_blas_gbmv(VecView<TT> vy, MtxView<TT>
                 int i_min = std::max(j-U, 0);
                 int i_max = std::min(j+L+1, lenY);
 
-                core_sadd_loop(vy.ptr(i_min), vy.row_stride(), mA.ptr(j,U+i_min-j), mA.col_stride(), temp, i_max - i_min);
+                if(i_max > i_min)
+                    core_sadd_loop(vy.ptr(i_min), vy.row_stride(), mA.ptr(j,U+i_min-j), mA.col_stride(), temp, i_max - i_min);
                 
                 //for(int i=i_min; i<i_max; i++)
                 //    vy(i) += temp * mA(j,U+i-j);
@@ -104,7 +106,8 @@ template <typename TT> void im::core_block_blas_gbmv(VecView<TT> vy, MtxView<TT>
                 int i_min = std::max(j-U, 0);
                 int i_max = std::min(j+L+1, lenY);
                 
-                core_saddconj_loop(vy.ptr(i_min), vy.row_stride(), mA.ptr(j,U+i_min-j), mA.col_stride(), temp, i_max - i_min);
+                if(i_max > i_min)
+                    core_saddconj_loop(vy.ptr(i_min), vy.row_stride(), mA.ptr(j,U+i_min-j), mA.col_stride(), temp, i_max - i_min);
 
                 //for(int i=i_min; i<i_max; i++)
                 //    vy(i) += temp * core_conj(mA(j,U+i-j));
@@ -434,7 +437,8 @@ template <typename TT> void im::core_block_blas_her(MtxView<TT> mA, VecView<TT> 
             mA(i,i) += temp * core_conj(vx(i));
             mA(i,i).imag(0); // ensure zero
             
-            core_saddconj_loop(mA.ptr(i,i+1), mA.col_stride(), vx.ptr(i+1), vx.row_stride(), temp, N - (i+1));
+            if(N-(i+1)>0)
+                core_saddconj_loop(mA.ptr(i,i+1), mA.col_stride(), vx.ptr(i+1), vx.row_stride(), temp, N - (i+1));
             
             //for(int j=i+1; j<N; j++)
             //    mA(i,j) += temp * core_conj(vx(j));
@@ -1125,7 +1129,8 @@ template <typename TT> void im::core_block_blas_tbmv(VecView<TT> vx, MtxView<TT>
                 int j_min = i+1;
                 int j_max = std::min(N,i+k+1);
                 
-                core_madd_loop(temp, vx.ptr(j_min), vx.row_stride(), mA.ptr(i,j_min-i), mA.col_stride(), j_max - j_min);
+                if(j_max > j_min)
+                    core_madd_loop(temp, vx.ptr(j_min), vx.row_stride(), mA.ptr(i,j_min-i), mA.col_stride(), j_max - j_min);
                 
                 //for(int j=j_min; j<j_max; j++)
                 //    temp += vx(j) * mA(i,j-i);
@@ -1141,7 +1146,8 @@ template <typename TT> void im::core_block_blas_tbmv(VecView<TT> vx, MtxView<TT>
                 int j_min = std::max(i-k,0);
                 int j_max = i;
                 
-                core_madd_loop(temp, vx.ptr(j_min), vx.row_stride(), mA.ptr(i,k-i+j_min), mA.col_stride(), j_max - j_min);
+                if(j_max > j_min)
+                    core_madd_loop(temp, vx.ptr(j_min), vx.row_stride(), mA.ptr(i,k-i+j_min), mA.col_stride(), j_max - j_min);
                 
                 //for(int j=j_min; j<j_max; j++)
                 //    temp += vx(j) * mA(i,k-i+j);
@@ -1256,7 +1262,8 @@ template <typename TT> void im::core_block_blas_tbsv(VecView<TT> vx, MtxView<TT>
                 int j_min = i+1;
                 int j_max = std::min(N, i+k+1);
                 
-                core_msub_loop(tmp, mA.ptr(i,j_min-i), mA.col_stride(), vx.ptr(j_min), vx.row_stride(), j_max - j_min);
+                if(j_max > j_min)
+                    core_msub_loop(tmp, mA.ptr(i,j_min-i), mA.col_stride(), vx.ptr(j_min), vx.row_stride(), j_max - j_min);
 
                 //for(int j=j_min; j<j_max; j++)
                 //    tmp -= mA(i,j-i) * vx(j);
@@ -1275,7 +1282,8 @@ template <typename TT> void im::core_block_blas_tbsv(VecView<TT> vx, MtxView<TT>
                 int j_min = std::max(i-k,0);
                 int j_max = i;
                 
-                core_msub_loop(tmp, mA.ptr(i,k+j_min-i), mA.col_stride(), vx.ptr(j_min), vx.row_stride(), j_max - j_min);
+                if(j_max > j_min)
+                    core_msub_loop(tmp, mA.ptr(i,k+j_min-i), mA.col_stride(), vx.ptr(j_min), vx.row_stride(), j_max - j_min);
                 
                 //for(int j=j_min; j<j_max; j++)
                 //    tmp -= mA(i,k+j-i) * vx(j);
@@ -1621,7 +1629,8 @@ template <typename TT> void im::core_block_blas_trmv(VecView<TT> vx, MtxView<TT>
             {
                 TT temp = (TT)0;
                 
-                core_madd_loop(temp, vx.ptr(i+1), vx.row_stride(), mA.ptr(i,i+1), mA.col_stride(), N - (i+1));
+                if(N-(i+1)>0)
+                    core_madd_loop(temp, vx.ptr(i+1), vx.row_stride(), mA.ptr(i,i+1), mA.col_stride(), N - (i+1));
                 
                 //for(int j=i+1; j<N; j++)
                 //    temp += vx(j) * mA(i,j);
@@ -1675,7 +1684,8 @@ template <typename TT> void im::core_block_blas_trmv(VecView<TT> vx, MtxView<TT>
             {
                 TT temp = (TT)0;
                 
-                core_madd_loop(temp, vx.ptr(i+1), vx.row_stride(), mA.ptr(i+1,i), mA.row_stride(), N - (i+1));
+                if(N-(i+1)>0)
+                    core_madd_loop(temp, vx.ptr(i+1), vx.row_stride(), mA.ptr(i+1,i), mA.row_stride(), N - (i+1));
                 
                 //for(int j=i+1; j<N; j++)
                 //    temp += vx(j) * mA(j,i);
@@ -1712,7 +1722,8 @@ template <typename TT> void im::core_block_blas_trmv(VecView<TT> vx, MtxView<TT>
             {
                 TT temp = (TT)0;
                 
-                core_maddconj_loop(temp, mA.ptr(i+1,i), mA.row_stride(), vx.ptr(i+1), vx.row_stride(), N-(i+1));
+                if(N-(i+1)>0)
+                    core_maddconj_loop(temp, mA.ptr(i+1,i), mA.row_stride(), vx.ptr(i+1), vx.row_stride(), N-(i+1));
                 
                 //for(int j=i+1; j<N; j++)
                 //    temp += vx(j) * core_conj(mA(j,i));
@@ -1754,7 +1765,8 @@ template <typename TT> void im::core_block_blas_trsv(VecView<TT> vx, MtxView<TT>
             {
                 TT tmp = vx(i);
                 
-                core_msub_loop(tmp, mA.ptr(i,i+1), mA.col_stride(), vx.ptr(i+1), vx.row_stride(), N - (i+1));
+                if(N-(i+1)>0)
+                    core_msub_loop(tmp, mA.ptr(i,i+1), mA.col_stride(), vx.ptr(i+1), vx.row_stride(), N-(i+1));
                 
                 //for(int j=i+1; j<N; j++)
                 //    tmp -= mA(i,j) * vx(j);
@@ -1808,7 +1820,8 @@ template <typename TT> void im::core_block_blas_trsv(VecView<TT> vx, MtxView<TT>
             {
                 TT tmp = vx(i);
                 
-                core_msub_loop(tmp, mA.ptr(i+1,i), mA.row_stride(), vx.ptr(i+1), vx.row_stride(), N - (i+1));
+                if(N-(i+1)>0)
+                    core_msub_loop(tmp, mA.ptr(i+1,i), mA.row_stride(), vx.ptr(i+1), vx.row_stride(), N - (i+1));
 
                 //for(int j=i+1; j<N; j++)
                 //    tmp -= mA(j,i) * vx(j);
@@ -1845,7 +1858,8 @@ template <typename TT> void im::core_block_blas_trsv(VecView<TT> vx, MtxView<TT>
             {
                 TT tmp = vx(i);
                 
-                core_msubconj_loop(tmp, mA.ptr(i+1,i), mA.row_stride(), vx.ptr(i+1), vx.row_stride(), N-(i+1));
+                if(N-(i+1)>0)
+                    core_msubconj_loop(tmp, mA.ptr(i+1,i), mA.row_stride(), vx.ptr(i+1), vx.row_stride(), N-(i+1));
                 
                 //for(int j=i+1; j<N; j++)
                 //    tmp -= core_conj(mA(j,i)) * vx(j);

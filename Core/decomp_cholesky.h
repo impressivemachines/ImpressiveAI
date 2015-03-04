@@ -67,8 +67,8 @@ namespace im
         MatrixDecompLLT() {}
         MatrixDecompLLT(MtxView<TT> const &mavA) { compute(mavA); } // A must be positive definite symmtric
         
-        // only the lower/upper triangular section is referenced depending on use_upper
-        void compute(MtxView<TT> const &mavA, bool use_upper = false);
+        // only the lower triangular section is referenced
+        void compute(MtxView<TT> const &mavA);
         
         // Solve A X = Y
         // X and Y can have multiple columns to solve for multiple vectors
