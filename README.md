@@ -52,18 +52,19 @@ This library aims towards simplicity of code design. It does this without giving
 
 ### Examples
     #include "imp_core.h"
+    using namespace im;
     
     // Fill matrix matlab style
-    im::Mtx<float> mX = "[ 8 6 2; 7 4 9; 4 8 2]";
+    Mtx<float> mX = "[ 8 6 2; 7 4 9; 4 8 2 ]";
     mX.inverse().print();
 
     // Make a random matrix
-    im::Mtx<double> mA(20,5);
-    im::Rand rnd;
+    Mtx<double> mA(20,5);
+    Rand rnd;
     mA.random_gaussian(rnd);
 
     // Compute the SVD
-    im::MatrixDecompSVD<double> svd(mA);
+    MatrixDecompSVD<double> svd(mA);
 
     // Compute the reconstruction error
     double maxerror = (svd.matrixU() * svd.vectorS().diag_matrix() * svd.matrixV().t() - mA).max_abs();
