@@ -48,10 +48,10 @@ There are no external dependencies for the core library.
 ### Philosophy
 There are many linear algebra libraries available that are built using C++. Many of the popular ones make extensive use of template meta-programming to increase efficiency. This library takes a different approach. Not many developers really understand C++ templates well and so complex template code is hard to debug and maintain. 
 
-This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids unneccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand and still quite fast. Although our library is a completely new code base, the primary reference source for creating many of the algorithms was the GNU scientific library and so the chosen routines are generally expected to be of good quality and have so far performed well in testing.
+This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids unneccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand and still quite fast. Our library is a completely new code base. Various texts and open source libraries were examined to understand the best algorithms to use. The chosen routines are generally expected to be of good quality and have so far performed well in testing.
 
 ### Examples
-    #include "imp_core.h"
+    #include "meta_core.h"
     using namespace im;
     
     // Fill matrix matlab style
@@ -82,5 +82,5 @@ This library aims towards simplicity of code design. It does this without giving
     mA.block(10,0,5,5).diag().copy_from(svd.matrixU.col(0).head(5));
 
 ### Build Instructions
-This code was developed on the Mac. We will be adding some make files eventually, but the code itself is not very demanding to build. To compile against it, merely include the imp_core.h file. All the functions and objects are within the 'im' namespace.
+This code was developed on the Mac. We will be adding some make files eventually, but the code itself is not very demanding to build. To compile against it, merely include the meta_core.h file. All the functions and objects are within the 'im' namespace.
 

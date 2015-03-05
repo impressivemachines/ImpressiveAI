@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 template <typename TT> void im::core_block_blas_gbmv(VecView<TT> vy, MtxView<TT> const &mA, VecView<TT> const &vx, int rowsA, int colsA, TT const &alpha, TT const &beta, int kl, int ku, TransMode trans)
 {

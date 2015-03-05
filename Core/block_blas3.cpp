@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 
 template <typename TT> void im::core_block_blas_gemm(MtxView<TT> mC, MtxView<TT> const &mA, MtxView<TT> const &mB, TT const &alpha, TT const &beta, TransMode ta, TransMode tb)

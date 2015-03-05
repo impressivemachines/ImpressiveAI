@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 void im::core_histogram(std::vector<int> &hist_rtn, MVf const &mavsrc, float minval, float maxval, int bins)
 {

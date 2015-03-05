@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 template <typename TT> void im::core_block_clear_upper_tri(im::MtxView<TT> mdst, bool include_diagonal)
 {

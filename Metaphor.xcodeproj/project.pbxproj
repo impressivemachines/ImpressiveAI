@@ -75,7 +75,18 @@
 		C7D9A3F71AA914180046ADBB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3F61AA914180046ADBB /* README.md */; };
 		C7D9A4051AA915780046ADBB /* debughacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A4041AA915780046ADBB /* debughacks.cpp */; };
 		C7D9A4071AA917700046ADBB /* meta_core.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A4061AA917700046ADBB /* meta_core.h */; };
+		C7D9A4081AA91CAC0046ADBB /* libMetaphor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D9A3681AA913560046ADBB /* libMetaphor.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C7D9A4091AA91CB20046ADBB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C7D9A3601AA913560046ADBB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C7D9A3671AA913560046ADBB;
+			remoteInfo = Metaphor;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C7D9A3FB1AA9155A0046ADBB /* CopyFiles */ = {
@@ -175,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7D9A4081AA91CAC0046ADBB /* libMetaphor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +379,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C7D9A40A1AA91CB20046ADBB /* PBXTargetDependency */,
 			);
 			name = DebugHacks;
 			productName = DebugHacks;
@@ -456,6 +469,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C7D9A40A1AA91CB20046ADBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C7D9A3671AA913560046ADBB /* Metaphor */;
+			targetProxy = C7D9A4091AA91CB20046ADBB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C7D9A36A1AA913560046ADBB /* Debug */ = {

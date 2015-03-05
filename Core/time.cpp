@@ -28,7 +28,7 @@
 #endif
 
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 /**
  * Returns the real time, in seconds, or -1.0 if an error occurred.

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 bool im::MtxRect::is_intersecting(MtxRect const &other) const
 {

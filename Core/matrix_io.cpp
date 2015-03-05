@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 // Read the file header only
 void im::core_read_imp_file_header(FILE *fp, ImpInfo *pinfo, std::vector<uint32_t> &vsizertn)

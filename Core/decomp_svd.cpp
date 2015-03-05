@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 template <typename TT>
 void im::MatrixDecompSVD<TT>::in_place_jacobi(MtxView<TT> mvA, MtxView<TT> mvQ, VecView<TT> vvS) const

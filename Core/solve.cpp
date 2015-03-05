@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 // Compute the roots of the equation a x^2 + b x + c = 0.
 // Return vale is the number of roots which are valid.

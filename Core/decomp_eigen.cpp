@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 template <typename TT>
 static void core_priv_make_givens(TT const &a, TT const &b, TT &c, TT &s)

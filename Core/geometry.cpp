@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 template <typename TT>
 void im::core_line_through_points(VecView<TT> vcoefs, TT x1, TT y1, TT x2, TT y2)

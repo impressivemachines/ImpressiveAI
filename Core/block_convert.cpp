@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#include "imp_core.h"
+#include "meta_core.h"
 
 template <typename TSRC, typename TDST> void im::core_block_convert(im::VecView<TDST> vdst, im::VecView<TSRC> const &vsrc)
 {
