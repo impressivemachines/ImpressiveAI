@@ -417,9 +417,6 @@ void test8()
     v(1) = -1;
     v.print();
     
-    return;
-    
-    
     im::MtxView<float> mu = m.block(0,0,2,10).view();
     
     im::Vec<float> lfo(2), lfu(2);
@@ -511,6 +508,32 @@ void test9()
 {
     im::Mtx<float> mX = "[ 8 6 2; 7 4 9; 4 8 2]";
     mX.inverse().print();
+    
+    im::Mtx<float> m(3,3), m4(4,4);
+    im::Vec<float> v(3);
+    v(0)=1;
+    v(1) = 0;
+    v(2) = 0;
+    
+    core_make_3x3_skew_symmetric(m.view(), 0.01f, 0.0f, 0.0f);
+    m.print();
+    core_make_3x3_rotation_about_x(m.view(), 0.01f);
+    m.print();
+    core_make_3x3_skew_symmetric(m.view(), 0.0f, 0.1f, 0.0f);
+    m.print();
+    core_make_3x3_rotation_about_y(m.view(), 0.01f);
+    m.print();
+    core_make_3x3_skew_symmetric(m.view(), 0.0f, 0.0f, 0.1f);
+    m.print();
+    core_make_3x3_rotation_about_z(m.view(), 0.01f);
+    m.print();
+    core_make_3x3_rotation_euler(m.view(), 0.01f, 0.0f, 0.0f);
+    m.print();
+    core_make_3x3_rotation_axis_angle(m.view(), v.view(), 0.01f);
+    m.print();
+    core_make_4x4_rotation_about_x(m4.view(), 0.01f);
+    m4.print();
+    
 }
 
 int main()
@@ -519,26 +542,3 @@ int main()
     return 0;
 }
 
-/*#define BOOST_TEST_MAIN
- #include <boost/test/unit_test.hpp>
- 
- BOOST_AUTO_TEST_CASE( test1 )
- {
- float data[12] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
- 
- im::MtxView<float> mv1(3, 4, 4, 1, data);
- mv1.Print();
- 
- BOOST_CHECK( 2 == 1 );
- }
- */
-
-/*BOOST_AUTO_TEST_CASE( test2 )
- {
- int i = 0;
- 
- // reports 'error in "test2": check i == 2 failed [0 != 2]'
- BOOST_CHECK_EQUAL( i, 2 );
- 
- BOOST_CHECK_EQUAL( i, 0 );
- }*/

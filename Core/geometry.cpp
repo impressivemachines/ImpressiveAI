@@ -45,6 +45,11 @@ void im::core_make_3x3_similarity(MtxView<TT> m, TT scale, TT angle, TT tx, TT t
     IM_CHECK_MATRIX_SIZE(m, 3, 3);
 }
 
+#define INST(TT) template void im::core_make_3x3_similarity(MtxView<TT> m, TT scale, TT angle, TT tx, TT ty)
+INST(float); INST(double);
+#undef INST
+
+
 // Make 3x3 skew-symmetric matrix
 template <typename TT>
 void im::core_make_3x3_skew_symmetric(MtxView<TT> m, TT dx, TT dy, TT dz)
@@ -56,6 +61,10 @@ void im::core_make_3x3_skew_symmetric(MtxView<TT> m, TT dx, TT dy, TT dz)
     m(1,0) = dz;    m(1,1) = (TT)0; m(1,2) = -dx;
     m(2,0) = -dy;   m(2,1) = dx;    m(2,2) = (TT)0;
 }
+
+#define INST(TT) template void im::core_make_3x3_skew_symmetric(MtxView<TT> m, TT dx, TT dy, TT dz)
+INST(float); INST(double);
+#undef INST
 
 // Make 3x3 rotation matrices for 3D transforms
 template <typename TT>
@@ -76,6 +85,10 @@ void im::core_make_3x3_rotation_about_x(MtxView<TT> m, TT angle)
     m(2,2) = c;
 }
 
+#define INST(TT) template void im::core_make_3x3_rotation_about_x(MtxView<TT> m, TT angle)
+INST(float); INST(double);
+#undef INST
+
 template <typename TT>
 void im::core_make_3x3_rotation_about_y(MtxView<TT> m, TT angle)
 {
@@ -94,6 +107,10 @@ void im::core_make_3x3_rotation_about_y(MtxView<TT> m, TT angle)
     m(2,2) = c;
 }
 
+#define INST(TT) template void im::core_make_3x3_rotation_about_y(MtxView<TT> m, TT angle)
+INST(float); INST(double);
+#undef INST
+
 template <typename TT>
 void im::core_make_3x3_rotation_about_z(MtxView<TT> m, TT angle)
 {
@@ -111,6 +128,10 @@ void im::core_make_3x3_rotation_about_z(MtxView<TT> m, TT angle)
     m(1,0) = s;
     m(1,1) = c;
 }
+
+#define INST(TT) template void im::core_make_3x3_rotation_about_z(MtxView<TT> m, TT angle)
+INST(float); INST(double);
+#undef INST
 
 template <typename TT>
 void im::core_make_3x3_rotation_axis_angle(MtxView<TT> m, VecView<TT> const &vaxis, TT angle)
@@ -158,6 +179,10 @@ void im::core_make_3x3_rotation_axis_angle(MtxView<TT> m, VecView<TT> const &vax
     m(2,2) = c + v[2] * v[2] * mc;
 }
 
+#define INST(TT) template void im::core_make_3x3_rotation_axis_angle(MtxView<TT> m, VecView<TT> const &vaxis, TT angle)
+INST(float); INST(double);
+#undef INST
+
 template <typename TT>
 void im::core_make_3x3_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
 {
@@ -184,6 +209,10 @@ void im::core_make_3x3_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
     m(2,2) = cb * cc;
 }
 
+#define INST(TT) template void im::core_make_3x3_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
+INST(float); INST(double);
+#undef INST
+
 template <typename TT>
 void im::core_make_3x3_scale(MtxView<TT> m, TT sx, TT sy, TT sz)
 {
@@ -203,6 +232,10 @@ void im::core_make_3x3_scale(MtxView<TT> m, TT sx, TT sy, TT sz)
     m(2,2) = sz;
 }
 
+#define INST(TT) template void im::core_make_3x3_scale(MtxView<TT> m, TT sx, TT sy, TT sz)
+INST(float); INST(double);
+#undef INST
+
 // Make 4x4 matrices for homogeneous 3D transforms
 template <typename TT>
 void im::core_make_4x4_rotation_about_x(MtxView<TT> m, TT angle)
@@ -215,6 +248,10 @@ void im::core_make_4x4_rotation_about_x(MtxView<TT> m, TT angle)
     m(3,3) = (TT)1;
 }
 
+#define INST(TT) template void im::core_make_4x4_rotation_about_x(MtxView<TT> m, TT angle)
+INST(float); INST(double);
+#undef INST
+
 template <typename TT>
 void im::core_make_4x4_rotation_about_y(MtxView<TT> m, TT angle)
 {
@@ -226,6 +263,10 @@ void im::core_make_4x4_rotation_about_y(MtxView<TT> m, TT angle)
     m(3,3) = (TT)1;
 }
 
+#define INST(TT) template void im::core_make_4x4_rotation_about_y(MtxView<TT> m, TT angle)
+INST(float); INST(double);
+#undef INST
+
 template <typename TT>
 void im::core_make_4x4_rotation_about_z(MtxView<TT> m, TT angle)
 {
@@ -236,6 +277,10 @@ void im::core_make_4x4_rotation_about_z(MtxView<TT> m, TT angle)
     m.block(0,3,3,1) = (TT)0;
     m(3,3) = (TT)1;
 }
+
+#define INST(TT) template void im::core_make_4x4_rotation_about_z(MtxView<TT> m, TT angle)
+INST(float); INST(double);
+#undef INST
 
 template <typename TT>
 void im::core_make_4x4_rotation_axis_angle(MtxView<TT> m, VecView<TT> const &vaxis, TT angle)
@@ -249,6 +294,10 @@ void im::core_make_4x4_rotation_axis_angle(MtxView<TT> m, VecView<TT> const &vax
     m(3,3) = (TT)1;
 }
 
+#define INST(TT) template void im::core_make_4x4_rotation_axis_angle(MtxView<TT> m, VecView<TT> const &vaxis, TT angle)
+INST(float); INST(double);
+#undef INST
+
 template <typename TT>
 void im::core_make_4x4_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
 {
@@ -260,6 +309,10 @@ void im::core_make_4x4_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
     m.block(0,3,3,1) = (TT)0;
     m(3,3) = (TT)1;
 }
+
+#define INST(TT) template void im::core_make_4x4_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
+INST(float); INST(double);
+#undef INST
 
 template <typename TT>
 void im::core_make_4x4_scale(MtxView<TT> m, TT sx, TT sy, TT sz)
@@ -273,6 +326,10 @@ void im::core_make_4x4_scale(MtxView<TT> m, TT sx, TT sy, TT sz)
     m(3,3) = (TT)1;
 }
 
+#define INST(TT) template void im::core_make_4x4_scale(MtxView<TT> m, TT sx, TT sy, TT sz)
+INST(float); INST(double);
+#undef INST
+
 template <typename TT>
 void im::core_make_4x4_translate(MtxView<TT> m, TT tx, TT ty, TT tz)
 {
@@ -285,3 +342,8 @@ void im::core_make_4x4_translate(MtxView<TT> m, TT tx, TT ty, TT tz)
     m(1,3) = ty;
     m(2,3) = tz;
 }
+
+#define INST(TT) template void im::core_make_4x4_translate(MtxView<TT> m, TT tx, TT ty, TT tz)
+INST(float); INST(double);
+#undef INST
+
