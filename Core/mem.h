@@ -1,13 +1,13 @@
 //
 //  mem.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 2/4/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_mem_h
-#define ImpressiveAI_mem_h
+#ifndef Metaphor_mem_h
+#define Metaphor_mem_h
 
 namespace im
 {

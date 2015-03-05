@@ -1,13 +1,13 @@
 //
 //  convolve.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 2/3/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_convolve_h
-#define ImpressiveAI_convolve_h
+#ifndef Metaphor_convolve_h
+#define Metaphor_convolve_h
 
 namespace im
 {

@@ -1,6 +1,6 @@
 //
 //  decomp_tridiag.cpp
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 2/1/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.

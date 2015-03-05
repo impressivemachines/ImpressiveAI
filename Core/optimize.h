@@ -1,13 +1,13 @@
 //
 //  optimize.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 3/1/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_optimize_h
-#define ImpressiveAI_optimize_h
+#ifndef Metaphor_optimize_h
+#define Metaphor_optimize_h
 
 // line min (powell)
 // steepest descent

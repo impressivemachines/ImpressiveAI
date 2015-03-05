@@ -1,6 +1,6 @@
 //
 //  block_reduce.cpp
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 1/24/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.

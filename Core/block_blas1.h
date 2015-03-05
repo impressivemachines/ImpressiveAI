@@ -1,13 +1,13 @@
 //
 //  block_blas1.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 2/8/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_block_blas1_h
-#define ImpressiveAI_block_blas1_h
+#ifndef Metaphor_block_blas1_h
+#define Metaphor_block_blas1_h
 
 namespace im
 {

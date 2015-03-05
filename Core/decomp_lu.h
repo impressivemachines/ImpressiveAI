@@ -1,13 +1,13 @@
 //
 //  decomp_lu.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 1/31/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_decomp_lu_h
-#define ImpressiveAI_decomp_lu_h
+#ifndef Metaphor_decomp_lu_h
+#define Metaphor_decomp_lu_h
 
 namespace im
 {

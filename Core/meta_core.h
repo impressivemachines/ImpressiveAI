@@ -1,5 +1,5 @@
 //
-//  imp_core.h
+//  meta_core.h
 //  Metaphor Library
 //
 //  Created by SIMON WINDER on 1/24/15.
@@ -186,7 +186,7 @@ namespace im
         MtxSize size;
     };
     
-
+    
     
     
     // For printing, typically in matlab format

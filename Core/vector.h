@@ -1,13 +1,13 @@
 //
 //  vector.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 2/19/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_vector_h
-#define ImpressiveAI_vector_h
+#ifndef Metaphor_vector_h
+#define Metaphor_vector_h
 
 namespace im
 {

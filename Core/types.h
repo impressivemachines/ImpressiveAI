@@ -1,13 +1,13 @@
 //
 //  types.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 1/29/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_types_h
-#define ImpressiveAI_types_h
+#ifndef Metaphor_types_h
+#define Metaphor_types_h
 
 namespace im
 {

@@ -1,6 +1,6 @@
 //
 //  matrix_view.h
-//  ImpAILibrary
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 6/17/14.
 //  Copyright (c) 2014 Impressive Machines LLC. All rights reserved.

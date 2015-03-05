@@ -1,6 +1,6 @@
 //
 //  decomp_eigen.cpp
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 1/31/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.

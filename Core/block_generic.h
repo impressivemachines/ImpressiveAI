@@ -1,13 +1,13 @@
 //
 //  block_generic.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 1/24/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_block_generic_h
-#define ImpressiveAI_block_generic_h
+#ifndef Metaphor_block_generic_h
+#define Metaphor_block_generic_h
 
 
 namespace im

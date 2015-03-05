@@ -1,13 +1,13 @@
 //
 //  permute.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 1/31/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_permute_h
-#define ImpressiveAI_permute_h
+#ifndef Metaphor_permute_h
+#define Metaphor_permute_h
 
 namespace im
 {

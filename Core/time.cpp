@@ -1,6 +1,6 @@
 //
 //  time.cpp
-//  ImpressiveAI
+//  Metaphor Library
 //
 
 /*

@@ -1,13 +1,13 @@
 //
 //  fft.h
-//  ImpressiveAI
+//  Metaphor Library
 //
 //  Created by SIMON WINDER on 2/26/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef ImpressiveAI_fft_h
-#define ImpressiveAI_fft_h
+#ifndef Metaphor_fft_h
+#define Metaphor_fft_h
 
 namespace im
 {
