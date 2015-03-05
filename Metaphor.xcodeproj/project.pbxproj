@@ -73,7 +73,6 @@
 		C7D9A3F31AA913BF0046ADBB /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3B11AA913BF0046ADBB /* vector.cpp */; };
 		C7D9A3F41AA913BF0046ADBB /* vector.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3B21AA913BF0046ADBB /* vector.h */; };
 		C7D9A3F71AA914180046ADBB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3F61AA914180046ADBB /* README.md */; };
-		C7D9A4001AA9155A0046ADBB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3FF1AA9155A0046ADBB /* main.cpp */; };
 		C7D9A4051AA915780046ADBB /* debughacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A4041AA915780046ADBB /* debughacks.cpp */; };
 		C7D9A4071AA917700046ADBB /* meta_core.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A4061AA917700046ADBB /* meta_core.h */; };
 /* End PBXBuildFile section */
@@ -160,7 +159,6 @@
 		C7D9A3F51AA914180046ADBB /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C7D9A3F61AA914180046ADBB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C7D9A3FD1AA9155A0046ADBB /* DebugHacks */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DebugHacks; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7D9A3FF1AA9155A0046ADBB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C7D9A4041AA915780046ADBB /* debughacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = debughacks.cpp; path = UnitTests/debughacks.cpp; sourceTree = "<group>"; };
 		C7D9A4061AA917700046ADBB /* meta_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meta_core.h; path = Core/meta_core.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				C7D9A36F1AA913890046ADBB /* Source */,
-				C7D9A3FE1AA9155A0046ADBB /* DebugHacks */,
 				C7D9A3691AA913560046ADBB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -291,14 +288,6 @@
 				C7D9A4041AA915780046ADBB /* debughacks.cpp */,
 			);
 			name = UnitTests;
-			sourceTree = "<group>";
-		};
-		C7D9A3FE1AA9155A0046ADBB /* DebugHacks */ = {
-			isa = PBXGroup;
-			children = (
-				C7D9A3FF1AA9155A0046ADBB /* main.cpp */,
-			);
-			path = DebugHacks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -463,7 +452,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7D9A4051AA915780046ADBB /* debughacks.cpp in Sources */,
-				C7D9A4001AA9155A0046ADBB /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
