@@ -47,20 +47,20 @@ namespace im
     template <typename TSRC, typename TDST> void core_block_convert(MtxView<TDST> mdst, MtxView<TSRC> const &msrc);
     
     // extract the real part
-    template <typename TT> void core_block_complex_get_real(VecView<TT> vdst, VecView<std::complex<TT>> const &vsrc);
-    template <typename TT> void core_block_complex_get_real(MtxView<TT> mdst, MtxView<std::complex<TT>> const &msrc);
+    template <typename TT> void core_block_complex_get_real(VecView<TT> vdst, VecView< std::complex<TT> > const &vsrc);
+    template <typename TT> void core_block_complex_get_real(MtxView<TT> mdst, MtxView< std::complex<TT> > const &msrc);
     
     // extract the imag part
-    template <typename TT> void core_block_complex_get_imag(VecView<TT> vdst, VecView<std::complex<TT>> const &vsrc);
-    template <typename TT> void core_block_complex_get_imag(MtxView<TT> mdst, MtxView<std::complex<TT>> const &msrc);
+    template <typename TT> void core_block_complex_get_imag(VecView<TT> vdst, VecView< std::complex<TT> > const &vsrc);
+    template <typename TT> void core_block_complex_get_imag(MtxView<TT> mdst, MtxView< std::complex<TT> > const &msrc);
     
     // set the real part
-    template <typename TT> void core_block_complex_set_real(VecView<std::complex<TT>> vdst, VecView<TT> const &vsrc);
-    template <typename TT> void core_block_complex_set_real(MtxView<std::complex<TT>> mdst, MtxView<TT> const &msrc);
+    template <typename TT> void core_block_complex_set_real(VecView< std::complex<TT> > vdst, VecView<TT> const &vsrc);
+    template <typename TT> void core_block_complex_set_real(MtxView< std::complex<TT> > mdst, MtxView<TT> const &msrc);
     
     // set the imag part
-    template <typename TT> void core_block_complex_set_imag(VecView<std::complex<TT>> vdst, VecView<TT> const &vsrc);
-    template <typename TT> void core_block_complex_set_imag(MtxView<std::complex<TT>> mdst, MtxView<TT> const &msrc);
+    template <typename TT> void core_block_complex_set_imag(VecView< std::complex<TT> > vdst, VecView<TT> const &vsrc);
+    template <typename TT> void core_block_complex_set_imag(MtxView< std::complex<TT> > mdst, MtxView<TT> const &msrc);
 }
 
 #endif

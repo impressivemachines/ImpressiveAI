@@ -84,7 +84,7 @@ template <typename TT> void im::FFTComplex<TT>::factor_reduce(int &n, int factor
     }
 }
 
-template <typename TT> void im::FFTComplex<TT>::transform_radix_2(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> vsrc, int product, int twiddlebase)
+template <typename TT> void im::FFTComplex<TT>::transform_radix_2(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > vsrc, int product, int twiddlebase)
 {
     int const factor = 2;
     int const trigcount = m_n / product;
@@ -142,7 +142,7 @@ template <typename TT> void im::FFTComplex<TT>::transform_radix_2(VecView<std::c
     }
 }
 
-template <typename TT> void im::FFTComplex<TT>::transform_radix_3(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> vsrc, int product, int twiddlebase)
+template <typename TT> void im::FFTComplex<TT>::transform_radix_3(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > vsrc, int product, int twiddlebase)
 {
     int const factor = 3;
     int const trigcount = m_n / product;
@@ -223,7 +223,7 @@ template <typename TT> void im::FFTComplex<TT>::transform_radix_3(VecView<std::c
     }
 }
 
-template <typename TT> void im::FFTComplex<TT>::transform_radix_4(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> vsrc, int product, int twiddlebase)
+template <typename TT> void im::FFTComplex<TT>::transform_radix_4(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > vsrc, int product, int twiddlebase)
 {
     int const factor = 4;
     int const trigcount = m_n / product;
@@ -317,7 +317,7 @@ template <typename TT> void im::FFTComplex<TT>::transform_radix_4(VecView<std::c
     }
 }
 
-template <typename TT> void im::FFTComplex<TT>::transform_radix_5(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> vsrc, int product, int twiddlebase)
+template <typename TT> void im::FFTComplex<TT>::transform_radix_5(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > vsrc, int product, int twiddlebase)
 {
     int const factor = 5;
     int const trigcount = m_n / product;
@@ -442,7 +442,7 @@ template <typename TT> void im::FFTComplex<TT>::transform_radix_5(VecView<std::c
     }
 }
 
-template <typename TT> void im::FFTComplex<TT>::transform_radix_N(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> vsrc, int product, int twiddlebase, int factor)
+template <typename TT> void im::FFTComplex<TT>::transform_radix_N(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > vsrc, int product, int twiddlebase, int factor)
 {
     int const trigcount = m_n / product;
     int const offset_i = m_n / factor;
@@ -595,7 +595,7 @@ template <typename TT> void im::FFTComplex<TT>::transform_radix_N(VecView<std::c
     }
 }
 
-template <typename TT> void im::FFTComplex<TT>::transform_power_of_2(VecView<std::complex<TT>> vv)
+template <typename TT> void im::FFTComplex<TT>::transform_power_of_2(VecView< std::complex<TT> > vv)
 {
     // Special case for power of 2 data
     // Process in place
@@ -668,7 +668,7 @@ template <typename TT> void im::FFTComplex<TT>::transform_power_of_2(VecView<std
     }
 }
 
-template <typename TT> void im::FFTComplex<TT>::transform(VecView<std::complex<TT>> vv, FFTDirection direction)
+template <typename TT> void im::FFTComplex<TT>::transform(VecView< std::complex<TT> > vv, FFTDirection direction)
 {
     IM_CHECK_VALID(vv);
     
@@ -693,7 +693,7 @@ template <typename TT> void im::FFTComplex<TT>::transform(VecView<std::complex<T
         int factor = m_factors[i];
         product *= factor;
         
-        VecView<std::complex<TT>> vsrc, vdst;
+        VecView< std::complex<TT> > vsrc, vdst;
         
         if(data_in_user_buffer)
         {
@@ -723,7 +723,7 @@ template <typename TT> void im::FFTComplex<TT>::transform(VecView<std::complex<T
     if(!data_in_user_buffer)
     {
         // Copy back
-        VecView<std::complex<TT>> vbuf(m_buffer);
+        VecView< std::complex<TT> > vbuf(m_buffer);
         vv.copy_from(vbuf);
     }
 }
@@ -732,30 +732,30 @@ template class im::FFTComplex<float>;
 template class im::FFTComplex<double>;
 
 template <typename TT>
-void im::core_fft_forward(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> const &vsrc)
+void im::core_fft_forward(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > const &vsrc)
 {
     vdst.copy_from(vsrc);
     core_fft_in_place_forward(vdst);
 }
 
-#define INST(TT) template void im::core_fft_forward(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> const &vsrc)
+#define INST(TT) template void im::core_fft_forward(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > const &vsrc)
 INST(float); INST(double);
 #undef INST
 
 
 template <typename TT>
-void im::core_fft_inverse(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> const &vsrc)
+void im::core_fft_inverse(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > const &vsrc)
 {
     vdst.copy_from(vsrc);
     core_fft_in_place_inverse(vdst);
 }
 
-#define INST(TT) template void im::core_fft_inverse(VecView<std::complex<TT>> vdst, VecView<std::complex<TT>> const &vsrc)
+#define INST(TT) template void im::core_fft_inverse(VecView< std::complex<TT> > vdst, VecView< std::complex<TT> > const &vsrc)
 INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_fft_in_place_forward(VecView<std::complex<TT>> v)
+void im::core_fft_in_place_forward(VecView< std::complex<TT> > v)
 {
     IM_CHECK_VALID(v);
     
@@ -764,12 +764,12 @@ void im::core_fft_in_place_forward(VecView<std::complex<TT>> v)
     fft.forward(v);
 }
 
-#define INST(TT) template void im::core_fft_in_place_forward(VecView<std::complex<TT>> v)
+#define INST(TT) template void im::core_fft_in_place_forward(VecView< std::complex<TT> > v)
 INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_fft_in_place_inverse(VecView<std::complex<TT>> v)
+void im::core_fft_in_place_inverse(VecView< std::complex<TT> > v)
 {
     IM_CHECK_VALID(v);
     
@@ -779,12 +779,12 @@ void im::core_fft_in_place_inverse(VecView<std::complex<TT>> v)
     core_block_scale(v, v, std::complex<TT>(1.0/v.rows()));
 }
 
-#define INST(TT) template void im::core_fft_in_place_inverse(VecView<std::complex<TT>> v)
+#define INST(TT) template void im::core_fft_in_place_inverse(VecView< std::complex<TT> > v)
 INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_fft_forward_real(VecView<std::complex<TT>> vdst, VecView<TT> const &vsrc)
+void im::core_fft_forward_real(VecView< std::complex<TT> > vdst, VecView<TT> const &vsrc)
 {
     IM_CHECK_VALID(vsrc);
     IM_CHECK_VALID(vdst);
@@ -835,12 +835,12 @@ void im::core_fft_forward_real(VecView<std::complex<TT>> vdst, VecView<TT> const
     vdst(0) = std::complex<TT>(vdst(0).real() + vdst(0).imag(), vdst(0).real() - vdst(0).imag());
 }
 
-#define INST(TT) template void im::core_fft_forward_real(VecView<std::complex<TT>> vdst, VecView<TT> const &vsrc)
+#define INST(TT) template void im::core_fft_forward_real(VecView< std::complex<TT> > vdst, VecView<TT> const &vsrc)
 INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_fft_inverse_real(VecView<TT> vdst, VecView<std::complex<TT>> const &vsrc)
+void im::core_fft_inverse_real(VecView<TT> vdst, VecView< std::complex<TT> > const &vsrc)
 {
     IM_CHECK_VALID(vsrc);
     IM_CHECK_VALID(vdst);
@@ -851,7 +851,7 @@ void im::core_fft_inverse_real(VecView<TT> vdst, VecView<std::complex<TT>> const
 
     int size = vsrc.rows();
     
-    im::Vec<std::complex<TT>> vbuf;
+    im::Vec< std::complex<TT> > vbuf;
     
     if(vdst.row_stride()==1)
     {
@@ -920,34 +920,34 @@ void im::core_fft_inverse_real(VecView<TT> vdst, VecView<std::complex<TT>> const
     }
 }
 
-#define INST(TT) template void im::core_fft_inverse_real(VecView<TT> vdst, VecView<std::complex<TT>> const &vsrc)
+#define INST(TT) template void im::core_fft_inverse_real(VecView<TT> vdst, VecView< std::complex<TT> > const &vsrc)
 INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_fft_forward(MtxView<std::complex<TT>> mdst, MtxView<std::complex<TT>> const &msrc)
+void im::core_fft_forward(MtxView< std::complex<TT> > mdst, MtxView< std::complex<TT> > const &msrc)
 {
     mdst.copy_from(msrc);
     core_fft_in_place_forward(mdst);
 }
 
-#define INST(TT) template void im::core_fft_forward(MtxView<std::complex<TT>> mdst, MtxView<std::complex<TT>> const &msrc)
+#define INST(TT) template void im::core_fft_forward(MtxView< std::complex<TT> > mdst, MtxView< std::complex<TT> > const &msrc)
 INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_fft_inverse(MtxView<std::complex<TT>> mdst, MtxView<std::complex<TT>> const &msrc)
+void im::core_fft_inverse(MtxView< std::complex<TT> > mdst, MtxView< std::complex<TT> > const &msrc)
 {
     mdst.copy_from(msrc);
     core_fft_in_place_inverse(mdst);
 }
 
-#define INST(TT) template void im::core_fft_inverse(MtxView<std::complex<TT>> mdst, MtxView<std::complex<TT>> const &msrc)
+#define INST(TT) template void im::core_fft_inverse(MtxView< std::complex<TT> > mdst, MtxView< std::complex<TT> > const &msrc)
 INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_fft_in_place_forward(MtxView<std::complex<TT>> m)
+void im::core_fft_in_place_forward(MtxView< std::complex<TT> > m)
 {
     IM_CHECK_VALID(m);
     
@@ -964,12 +964,12 @@ void im::core_fft_in_place_forward(MtxView<std::complex<TT>> m)
         fft.forward(m.col(i));
 }
 
-#define INST(TT) template void im::core_fft_in_place_forward(MtxView<std::complex<TT>> m)
+#define INST(TT) template void im::core_fft_in_place_forward(MtxView< std::complex<TT> > m)
 INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_fft_in_place_inverse(MtxView<std::complex<TT>> m)
+void im::core_fft_in_place_inverse(MtxView< std::complex<TT> > m)
 {
     IM_CHECK_VALID(m);
     
@@ -988,7 +988,7 @@ void im::core_fft_in_place_inverse(MtxView<std::complex<TT>> m)
     core_block_scale(m, m, std::complex<TT>(1.0/(m.rows() * m.cols())));
 }
 
-#define INST(TT) template void im::core_fft_in_place_inverse(MtxView<std::complex<TT>> m)
+#define INST(TT) template void im::core_fft_in_place_inverse(MtxView< std::complex<TT> > m)
 INST(float); INST(double);
 #undef INST
 

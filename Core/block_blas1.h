@@ -38,9 +38,9 @@ namespace im
     // Compute L2 norm
     // F, D, CF, CD
     template <typename TT> TT core_block_blas_nrm2(VecView<TT> const &vx);
-    template <typename TT> std::complex<TT> core_block_blas_nrm2(VecView<std::complex<TT>> const &vx);
+    template <typename TT> std::complex<TT> core_block_blas_nrm2(VecView< std::complex<TT> > const &vx);
     template <typename TT> TT core_block_blas_nrm2(MtxView<TT> const &vx);
-    template <typename TT> std::complex<TT> core_block_blas_nrm2(MtxView<std::complex<TT>> const &vx);
+    template <typename TT> std::complex<TT> core_block_blas_nrm2(MtxView< std::complex<TT> > const &vx);
     
     // Performs rotation of points in the plane
     // xi = c*xi + s*yi
@@ -71,12 +71,12 @@ namespace im
     // Finds the index of the element with maximum absolute value (complex abs is the sum of the abs of the re,im parts)
     // F, D, CF, CD
     template <typename TT> int core_block_blas_iamax(VecView<TT> const &vx);
-    template <typename TT> int core_block_blas_iamax(VecView<std::complex<TT>> const &vx);
+    template <typename TT> int core_block_blas_iamax(VecView< std::complex<TT> > const &vx);
     
     // Finds the index of the element with minumum absolute value (complex abs is the sum of the abs of the re,im parts)
     // F, D, CF, CD
     template <typename TT> int core_block_blas_iamin(VecView<TT> const &vx);
-    template <typename TT> int core_block_blas_iamin(VecView<std::complex<TT>> const &vx);
+    template <typename TT> int core_block_blas_iamin(VecView< std::complex<TT> > const &vx);
     
     // Computes absolute value of complex number |re| + |im| or a scalar |v|
     // F, D, CF, CD

@@ -126,7 +126,7 @@ template <typename TT> void im::core_block_blend(VecView<TT> vdst, VecView<TT> c
     BlendParam<TT> bp;
     bp.ax = (TT)alpha;
     bp.max = (TT)(1-alpha);
-    core_priv_block_binary_op<TT, BinaryBlend<TT, BlendParam<TT>>, BlendParam<TT>>(vdst, vsrc1, vsrc2, bp);
+    core_priv_block_binary_op<TT, BinaryBlend<TT, BlendParam<TT> >, BlendParam<TT> >(vdst, vsrc1, vsrc2, bp);
 }
 
 #define INST(TT) template void im::core_block_blend(VecView<TT> vdst, VecView<TT> const &vsrc1, VecView<TT> const &vsrc2, float alpha)
@@ -253,7 +253,7 @@ template <typename TT> void im::core_block_blend(MtxView<TT> mdst, MtxView<TT> c
     BlendParam<TT> bp;
     bp.ax = (TT)alpha;
     bp.max = (TT)(1-alpha);
-    core_priv_block_binary_op<TT, BinaryBlend<TT, BlendParam<TT>>, BlendParam<TT>>(mdst, msrc1, msrc2, bp);
+    core_priv_block_binary_op<TT, BinaryBlend<TT, BlendParam<TT> >, BlendParam<TT> >(mdst, msrc1, msrc2, bp);
 }
 
 #define INST(TT) template void im::core_block_blend(MtxView<TT> mdst, MtxView<TT> const &msrc1, MtxView<TT> const &msrc2, float alpha)

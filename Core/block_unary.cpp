@@ -175,7 +175,7 @@ template <typename TT> void im::core_block_scale_offset(VecView<TT> vdst, VecVie
     so.scale = scale;
     so.offset = offset;
     
-    core_priv_block_unary_op<TT, UnaryScaleOffset<TT, ScaleOffsetParam<TT>>, ScaleOffsetParam<TT>>(vdst, vsrc, so);
+    core_priv_block_unary_op<TT, UnaryScaleOffset<TT, ScaleOffsetParam<TT> >, ScaleOffsetParam<TT> >(vdst, vsrc, so);
 }
 
 #define INST(TT) template void im::core_block_scale_offset(VecView<TT> vdst, VecView<TT> const &vsrc, TT const &scale, TT const &offset)
@@ -349,7 +349,7 @@ template <typename TT> void im::core_block_scale_offset(MtxView<TT> mdst, MtxVie
     so.scale = scale;
     so.offset = offset;
     
-    core_priv_block_unary_op<TT, UnaryScaleOffset<TT, ScaleOffsetParam<TT>>, ScaleOffsetParam<TT>>(mdst, msrc, so);
+    core_priv_block_unary_op<TT, UnaryScaleOffset<TT, ScaleOffsetParam<TT> >, ScaleOffsetParam<TT> >(mdst, msrc, so);
 }
 
 #define INST(TT) template void im::core_block_scale_offset(MtxView<TT> mdst, MtxView<TT> const &msrc, TT const &scale, TT const &offset)

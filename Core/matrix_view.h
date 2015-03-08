@@ -412,11 +412,13 @@ namespace im
                 core_block_copy(col(c), src.col(index_list[c]));
         }
         
-        void print_size(FILE *fp = stdout) const
+        void print_size(bool cr = true, FILE *fp = stdout) const
         {
             IM_CHECK_NULL(fp);
             
-            fprintf(fp, "(%d x %d)\n", m_rows, m_cols);
+            fprintf(fp, "(%d x %d)", m_rows, m_cols);
+            if(cr)
+                fputc('\n', fp);
         }
         
         // Print in Matlab format if known type

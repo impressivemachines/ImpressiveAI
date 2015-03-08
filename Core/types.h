@@ -97,7 +97,7 @@ namespace im
     };
     
     // CoreTypeComplexFloat
-    template<> struct TypeProperties<std::complex<float>> : TypePropertiesBase<std::complex<float>>
+    template<> struct TypeProperties< std::complex<float> > : TypePropertiesBase< std::complex<float> >
     {
         enum {
             core_type_id = CoreTypeComplexFloat,
@@ -115,7 +115,7 @@ namespace im
     };
     
     // CoreTypeComplexDouble
-    template<> struct TypeProperties<std::complex<double>> : TypePropertiesBase<std::complex<double>>
+    template<> struct TypeProperties< std::complex<double> > : TypePropertiesBase< std::complex<double> >
     {
         enum {
             core_type_id = CoreTypeComplexDouble,

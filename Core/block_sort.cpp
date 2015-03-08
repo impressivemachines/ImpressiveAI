@@ -259,7 +259,7 @@ template <typename TT> void core_priv_block_sort(std::vector<int> &index_list, i
     
     index_list.resize(count);
     
-    std::vector<QsortIndexTuple<TT>> tuple_list;
+    std::vector<QsortIndexTuple<TT> > tuple_list;
     tuple_list.resize(count);
     
     for(int row = 0; row<vsrc.rows(); row++)
@@ -310,7 +310,7 @@ template <typename TT> void core_priv_block_sort(std::vector<im::MtxLoc> &index_
     
     index_list.resize(count);
     
-    std::vector<QsortIndexTuple<TT>> tuple_list;
+    std::vector<QsortIndexTuple<TT> > tuple_list;
     tuple_list.resize(count);
     
     int cols = msrc.cols();

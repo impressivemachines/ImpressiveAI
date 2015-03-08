@@ -131,26 +131,26 @@ template void im::core_block_convert(im::MtxView<double> mdst, im::MtxView<int> 
 
 // extract the real part
 template <typename TT>
-void im::core_block_complex_get_real(VecView<TT> vdst, VecView<std::complex<TT>> const &vsrc)
+void im::core_block_complex_get_real(VecView<TT> vdst, VecView< std::complex<TT> > const &vsrc)
 {
     core_block_convert(vdst, vsrc);
 }
 
-template void im::core_block_complex_get_real(VecView<float> vdst, VecView<std::complex<float>> const &vsrc);
-template void im::core_block_complex_get_real(VecView<double> vdst, VecView<std::complex<double>> const &vsrc);
+template void im::core_block_complex_get_real(VecView<float> vdst, VecView< std::complex<float> > const &vsrc);
+template void im::core_block_complex_get_real(VecView<double> vdst, VecView< std::complex<double> > const &vsrc);
 
 template <typename TT>
-void im::core_block_complex_get_real(MtxView<TT> mdst, MtxView<std::complex<TT>> const &msrc)
+void im::core_block_complex_get_real(MtxView<TT> mdst, MtxView< std::complex<TT> > const &msrc)
 {
     core_block_convert(mdst, msrc);
 }
 
-template void im::core_block_complex_get_real(MtxView<float> mdst, MtxView<std::complex<float>> const &msrc);
-template void im::core_block_complex_get_real(MtxView<double> mdst, MtxView<std::complex<double>> const &msrc);
+template void im::core_block_complex_get_real(MtxView<float> mdst, MtxView< std::complex<float> > const &msrc);
+template void im::core_block_complex_get_real(MtxView<double> mdst, MtxView< std::complex<double> > const &msrc);
 
 // extract the imag part
 template <typename TT>
-void im::core_block_complex_get_imag(VecView<TT> vdst, VecView<std::complex<TT>> const &vsrc)
+void im::core_block_complex_get_imag(VecView<TT> vdst, VecView< std::complex<TT> > const &vsrc)
 {
     IM_CHECK_VALID(vsrc);
     IM_CHECK_VALID(vdst);
@@ -180,11 +180,11 @@ void im::core_block_complex_get_imag(VecView<TT> vdst, VecView<std::complex<TT>>
         pout[0] = pin[0].imag();
 }
 
-template void im::core_block_complex_get_imag(VecView<float> vdst, VecView<std::complex<float>> const &vsrc);
-template void im::core_block_complex_get_imag(VecView<double> vdst, VecView<std::complex<double>> const &vsrc);
+template void im::core_block_complex_get_imag(VecView<float> vdst, VecView< std::complex<float> > const &vsrc);
+template void im::core_block_complex_get_imag(VecView<double> vdst, VecView< std::complex<double> > const &vsrc);
 
 template <typename TT>
-void im::core_block_complex_get_imag(MtxView<TT> mdst, MtxView<std::complex<TT>> const &msrc)
+void im::core_block_complex_get_imag(MtxView<TT> mdst, MtxView< std::complex<TT> > const &msrc)
 {
     IM_CHECK_VALID(msrc);
     IM_CHECK_VALID(mdst);
@@ -194,12 +194,12 @@ void im::core_block_complex_get_imag(MtxView<TT> mdst, MtxView<std::complex<TT>>
         core_block_complex_get_imag(mdst.row(i), msrc.row(i));
 }
 
-template void im::core_block_complex_get_imag(MtxView<float> mdst, MtxView<std::complex<float>> const &msrc);
-template void im::core_block_complex_get_imag(MtxView<double> mdst, MtxView<std::complex<double>> const &msrc);
+template void im::core_block_complex_get_imag(MtxView<float> mdst, MtxView< std::complex<float> > const &msrc);
+template void im::core_block_complex_get_imag(MtxView<double> mdst, MtxView< std::complex<double> > const &msrc);
 
 // set the real part
 template <typename TT>
-void im::core_block_complex_set_real(VecView<std::complex<TT>> vdst, VecView<TT> const &vsrc)
+void im::core_block_complex_set_real(VecView< std::complex<TT> > vdst, VecView<TT> const &vsrc)
 {
     IM_CHECK_VALID(vsrc);
     IM_CHECK_VALID(vdst);
@@ -229,11 +229,11 @@ void im::core_block_complex_set_real(VecView<std::complex<TT>> vdst, VecView<TT>
         pout[0].real(pin[0]);
 }
 
-template void im::core_block_complex_set_real(VecView<std::complex<float>> vdst, VecView<float> const &vsrc);
-template void im::core_block_complex_set_real(VecView<std::complex<double>> vdst, VecView<double> const &vsrc);
+template void im::core_block_complex_set_real(VecView< std::complex<float> > vdst, VecView<float> const &vsrc);
+template void im::core_block_complex_set_real(VecView< std::complex<double> > vdst, VecView<double> const &vsrc);
 
 template <typename TT>
-void im::core_block_complex_set_real(MtxView<std::complex<TT>> mdst, MtxView<TT> const &msrc)
+void im::core_block_complex_set_real(MtxView< std::complex<TT> > mdst, MtxView<TT> const &msrc)
 {
     IM_CHECK_VALID(msrc);
     IM_CHECK_VALID(mdst);
@@ -243,12 +243,12 @@ void im::core_block_complex_set_real(MtxView<std::complex<TT>> mdst, MtxView<TT>
         core_block_complex_set_real(mdst.row(i), msrc.row(i));
 }
 
-template void im::core_block_complex_set_real(MtxView<std::complex<float>> mdst, MtxView<float> const &msrc);
-template void im::core_block_complex_set_real(MtxView<std::complex<double>> mdst, MtxView<double> const &msrc);
+template void im::core_block_complex_set_real(MtxView< std::complex<float> > mdst, MtxView<float> const &msrc);
+template void im::core_block_complex_set_real(MtxView< std::complex<double> > mdst, MtxView<double> const &msrc);
 
 // set the imag part
 template <typename TT>
-void im::core_block_complex_set_imag(VecView<std::complex<TT>> vdst, VecView<TT> const &vsrc)
+void im::core_block_complex_set_imag(VecView< std::complex<TT> > vdst, VecView<TT> const &vsrc)
 {
     IM_CHECK_VALID(vsrc);
     IM_CHECK_VALID(vdst);
@@ -278,11 +278,11 @@ void im::core_block_complex_set_imag(VecView<std::complex<TT>> vdst, VecView<TT>
         pout[0].imag(pin[0]);
 }
 
-template void im::core_block_complex_set_imag(VecView<std::complex<float>> vdst, VecView<float> const &vsrc);
-template void im::core_block_complex_set_imag(VecView<std::complex<double>> vdst, VecView<double> const &vsrc);
+template void im::core_block_complex_set_imag(VecView< std::complex<float> > vdst, VecView<float> const &vsrc);
+template void im::core_block_complex_set_imag(VecView< std::complex<double> > vdst, VecView<double> const &vsrc);
 
 template <typename TT>
-void im::core_block_complex_set_imag(MtxView<std::complex<TT>> mdst, MtxView<TT> const &msrc)
+void im::core_block_complex_set_imag(MtxView< std::complex<TT> > mdst, MtxView<TT> const &msrc)
 {
     IM_CHECK_VALID(msrc);
     IM_CHECK_VALID(mdst);
@@ -292,7 +292,7 @@ void im::core_block_complex_set_imag(MtxView<std::complex<TT>> mdst, MtxView<TT>
         core_block_complex_set_imag(mdst.row(i), msrc.row(i));
 }
 
-template void im::core_block_complex_set_imag(MtxView<std::complex<float>> mdst, MtxView<float> const &msrc);
-template void im::core_block_complex_set_imag(MtxView<std::complex<double>> mdst, MtxView<double> const &msrc);
+template void im::core_block_complex_set_imag(MtxView< std::complex<float> > mdst, MtxView<float> const &msrc);
+template void im::core_block_complex_set_imag(MtxView< std::complex<double> > mdst, MtxView<double> const &msrc);
 
 

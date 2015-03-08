@@ -286,11 +286,13 @@ namespace im
             }
         }
         
-        void print_size(FILE *fp = stdout) const
+        void print_size(bool cr = true, FILE *fp = stdout) const
         {
             IM_CHECK_NULL(fp);
             
-            fprintf(fp, "(%d)\n", m_rows);
+            fprintf(fp, "(%d)", m_rows);
+            if(cr)
+                fputc('\n', fp);
         }
         
         // Print in Matlab format if known type

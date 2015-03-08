@@ -7,6 +7,7 @@
 //
 
 #include "meta_core.h"
+#include "meta_vision.h"
 
 void test1()
 {
@@ -57,8 +58,8 @@ void test1()
     //  printf("%lu\n", sizeof(im::TypeProperties<int>::Accurate));
     //  printf("%lu\n", sizeof(im::TypeProperties<float>::Accurate));
     //  printf("%lu\n", sizeof(im::TypeProperties<double>::Accurate));
-    //  printf("%lu\n", sizeof(im::TypeProperties<std::complex<float>>::Accurate));
-    //  printf("%lu\n", sizeof(im::TypeProperties<std::complex<double>>::Accurate));
+    //  printf("%lu\n", sizeof(im::TypeProperties< std::complex<float> >::Accurate));
+    //  printf("%lu\n", sizeof(im::TypeProperties< std::complex<double> >::Accurate));
     
     im::Mtx<float> mf(4,4);
     mf.random_gaussian(rnd);
@@ -536,9 +537,24 @@ void test9()
     
 }
 
+void test10()
+{
+    im::GenericImgView iv;
+    float data[256];
+    im::ImgView<float> ivf(8,16,2,16,data);
+    
+    ivf = 0.0f;
+    ivf.block(0,0,3,3).fill(1.0f);
+    ivf.matrix_view(0) = 42.0f;
+    ivf.print_pixel(1, 2);
+    ivf.print_pixel(3, 4);
+
+    
+}
+
 int main()
 {
-    test9();
+    test10();
     return 0;
 }
 

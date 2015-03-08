@@ -123,7 +123,7 @@ template <typename TT> TT im::core_block_blas_nrm2(VecView<TT> const &vx)
     return scale * std::sqrt(ssq);
 }
 
-template <typename TT> std::complex<TT> im::core_block_blas_nrm2(VecView<std::complex<TT>> const &vx)
+template <typename TT> std::complex<TT> im::core_block_blas_nrm2(VecView< std::complex<TT> > const &vx)
 {
     IM_CHECK_VALID(vx);
     
@@ -207,7 +207,7 @@ template <typename TT> TT im::core_block_blas_nrm2(MtxView<TT> const &mx)
     return scale * std::sqrt(ssq);
 }
 
-template <typename TT> std::complex<TT> im::core_block_blas_nrm2(MtxView<std::complex<TT>> const &mx)
+template <typename TT> std::complex<TT> im::core_block_blas_nrm2(MtxView< std::complex<TT> > const &mx)
 {
     IM_CHECK_VALID(mx);
     
@@ -574,7 +574,7 @@ template <typename TT> int im::core_block_blas_iamax(VecView<TT> const &vx)
     return maxind;
 }
 
-template <typename TT> int im::core_block_blas_iamax(VecView<std::complex<TT>> const &vx)
+template <typename TT> int im::core_block_blas_iamax(VecView< std::complex<TT> > const &vx)
 {
     IM_CHECK_VALID(vx);
     
@@ -620,7 +620,7 @@ template <typename TT> int im::core_block_blas_iamin(VecView<TT> const &vx)
     return minind;
 }
 
-template <typename TT> int im::core_block_blas_iamin(VecView<std::complex<TT>> const &vx)
+template <typename TT> int im::core_block_blas_iamin(VecView< std::complex<TT> > const &vx)
 {
     IM_CHECK_VALID(vx);
     

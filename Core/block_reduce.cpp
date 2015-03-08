@@ -78,7 +78,7 @@ template <typename TT, typename OP> TT core_priv_block_reduce_op(im::VecView<TT>
 
 template <typename TT> TT im::core_block_reduce_add(VecView<TT> const &vsrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceAdd<TT>>(vsrc, (TT)0);
+    return core_priv_block_reduce_op<TT, ReduceAdd<TT> >(vsrc, (TT)0);
 }
 
 #define INST(TT) template TT im::core_block_reduce_add(VecView<TT> const &vsrc)
@@ -87,7 +87,7 @@ INST(float); INST(double); INST(std::complex<float>); INST(std::complex<double>)
 
 template <typename TT> TT im::core_block_reduce_multiply(VecView<TT> const &vsrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMultiply<TT>>(vsrc, (TT)1);
+    return core_priv_block_reduce_op<TT, ReduceMultiply<TT> >(vsrc, (TT)1);
 }
 
 #define INST(TT) template TT im::core_block_reduce_multiply(VecView<TT> const &vsrc)
@@ -99,7 +99,7 @@ template <typename TT> TT im::core_block_reduce_mean(VecView<TT> const &vsrc)
     if(vsrc.count()<1)
         return (TT)0;
     
-    return core_priv_block_reduce_op<TT, ReduceAdd<TT>>(vsrc, (TT)0) / (TT)vsrc.count();
+    return core_priv_block_reduce_op<TT, ReduceAdd<TT> >(vsrc, (TT)0) / (TT)vsrc.count();
 }
 
 #define INST(TT) template TT im::core_block_reduce_mean(VecView<TT> const &vsrc)
@@ -170,7 +170,7 @@ INST(float); INST(double); INST(std::complex<float>); INST(std::complex<double>)
 
 template <typename TT> TT im::core_block_reduce_sum_squares(VecView<TT> const &vsrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceSumSquares<TT>>(vsrc, (TT)0);
+    return core_priv_block_reduce_op<TT, ReduceSumSquares<TT> >(vsrc, (TT)0);
 }
 
 #define INST(TT) template TT im::core_block_reduce_sum_squares(VecView<TT> const &vsrc)
@@ -309,7 +309,7 @@ template <typename TT, typename OP> TT core_priv_block_reduce_op(im::MtxView<TT>
 
 template <typename TT> TT im::core_block_reduce_add(MtxView<TT> const &msrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceAdd<TT>>(msrc, (TT)0);
+    return core_priv_block_reduce_op<TT, ReduceAdd<TT> >(msrc, (TT)0);
 }
 
 #define INST(TT) template TT im::core_block_reduce_add(MtxView<TT> const &msrc)
@@ -318,7 +318,7 @@ INST(float); INST(double); INST(std::complex<float>); INST(std::complex<double>)
 
 template <typename TT> TT im::core_block_reduce_multiply(MtxView<TT> const &msrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMultiply<TT>>(msrc, (TT)1);
+    return core_priv_block_reduce_op<TT, ReduceMultiply<TT> >(msrc, (TT)1);
 }
 
 #define INST(TT) template TT im::core_block_reduce_multiply(MtxView<TT> const &msrc)
@@ -330,7 +330,7 @@ template <typename TT> TT im::core_block_reduce_mean(MtxView<TT> const &msrc)
     if(msrc.count()<1)
         return (TT)0;
     
-    return core_priv_block_reduce_op<TT, ReduceAdd<TT>>(msrc, (TT)0) / (TT)msrc.count();
+    return core_priv_block_reduce_op<TT, ReduceAdd<TT> >(msrc, (TT)0) / (TT)msrc.count();
 }
 
 #define INST(TT) template TT im::core_block_reduce_mean(MtxView<TT> const &msrc)
@@ -410,7 +410,7 @@ INST(float); INST(double); INST(std::complex<float>); INST(std::complex<double>)
 
 template <typename TT> TT im::core_block_reduce_sum_squares(MtxView<TT> const &msrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceSumSquares<TT>>(msrc, (TT)0);
+    return core_priv_block_reduce_op<TT, ReduceSumSquares<TT> >(msrc, (TT)0);
 }
 
 #define INST(TT) template TT im::core_block_reduce_sum_squares(MtxView<TT> const &msrc)
@@ -508,7 +508,7 @@ INST(float); INST(double); INST(std::complex<float>); INST(std::complex<double>)
 
 template <typename TT> TT im::core_block_reduce_max(VecView<TT> const &vsrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMax<TT>>(vsrc, vsrc(0));
+    return core_priv_block_reduce_op<TT, ReduceMax<TT> >(vsrc, vsrc(0));
 }
 
 #define INST(TT) template TT im::core_block_reduce_max(VecView<TT> const &vsrc)
@@ -517,7 +517,7 @@ INST(uint8_t); INST(int16_t); INST(int); INST(float); INST(double); INST(std::co
 
 template <typename TT> TT im::core_block_reduce_min(VecView<TT> const &vsrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMin<TT>>(vsrc, vsrc(0));
+    return core_priv_block_reduce_op<TT, ReduceMin<TT> >(vsrc, vsrc(0));
 }
 
 #define INST(TT) template TT im::core_block_reduce_min(VecView<TT> const &vsrc)
@@ -526,7 +526,7 @@ INST(uint8_t); INST(int16_t); INST(int); INST(float); INST(double); INST(std::co
 
 template <typename TT> TT im::core_block_reduce_max_abs(VecView<TT> const &vsrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMaxAbs<TT>>(vsrc, std::abs(vsrc(0)));
+    return core_priv_block_reduce_op<TT, ReduceMaxAbs<TT> >(vsrc, std::abs(vsrc(0)));
 }
 
 #define INST(TT) template TT im::core_block_reduce_max_abs(VecView<TT> const &vsrc)
@@ -535,7 +535,7 @@ INST(uint8_t); INST(int16_t); INST(int); INST(float); INST(double); INST(std::co
 
 template <typename TT> TT im::core_block_reduce_min_abs(VecView<TT> const &vsrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMinAbs<TT>>(vsrc, std::abs(vsrc(0)));
+    return core_priv_block_reduce_op<TT, ReduceMinAbs<TT> >(vsrc, std::abs(vsrc(0)));
 }
 
 #define INST(TT) template TT im::core_block_reduce_min_abs(VecView<TT> const &vsrc)
@@ -618,7 +618,7 @@ INST(uint8_t); INST(int16_t); INST(int); INST(float); INST(double); INST(std::co
 
 template <typename TT> TT im::core_block_reduce_max(MtxView<TT> const &msrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMax<TT>>(msrc, msrc(0,0));
+    return core_priv_block_reduce_op<TT, ReduceMax<TT> >(msrc, msrc(0,0));
 }
 
 #define INST(TT) template TT im::core_block_reduce_max(MtxView<TT> const &msrc)
@@ -627,7 +627,7 @@ INST(uint8_t); INST(int16_t); INST(int); INST(float); INST(double); INST(std::co
 
 template <typename TT> TT im::core_block_reduce_min(MtxView<TT> const &msrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMin<TT>>(msrc, msrc(0,0));
+    return core_priv_block_reduce_op<TT, ReduceMin<TT> >(msrc, msrc(0,0));
 }
 
 #define INST(TT) template TT im::core_block_reduce_min(MtxView<TT> const &msrc)
@@ -636,7 +636,7 @@ INST(uint8_t); INST(int16_t); INST(int); INST(float); INST(double); INST(std::co
 
 template <typename TT> TT im::core_block_reduce_max_abs(MtxView<TT> const &msrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMaxAbs<TT>>(msrc, std::abs(msrc(0,0)));
+    return core_priv_block_reduce_op<TT, ReduceMaxAbs<TT> >(msrc, std::abs(msrc(0,0)));
 }
 
 #define INST(TT) template TT im::core_block_reduce_max_abs(MtxView<TT> const &msrc)
@@ -645,7 +645,7 @@ INST(uint8_t); INST(int16_t); INST(int); INST(float); INST(double); INST(std::co
 
 template <typename TT> TT im::core_block_reduce_min_abs(MtxView<TT> const &msrc)
 {
-    return core_priv_block_reduce_op<TT, ReduceMinAbs<TT>>(msrc, std::abs(msrc(0,0)));
+    return core_priv_block_reduce_op<TT, ReduceMinAbs<TT> >(msrc, std::abs(msrc(0,0)));
 }
 
 #define INST(TT) template TT im::core_block_reduce_min_abs(MtxView<TT> const &msrc)

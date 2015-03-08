@@ -23,12 +23,12 @@ namespace im
     {
     private:
         MtxView<TT> m_view;
-        std::shared_ptr<std::vector<TT>> m_mem;
+        std::shared_ptr< std::vector<TT> > m_mem;
       
     protected:
         friend class Vec<TT>;
         
-        Mtx(std::shared_ptr<std::vector<TT>> const &mem, MtxView<TT> const &mav) : m_mem(mem), m_view(mav) {}
+        Mtx(std::shared_ptr< std::vector<TT> > const &mem, MtxView<TT> const &mav) : m_mem(mem), m_view(mav) {}
         
     public:
         typedef TT ValueType;
@@ -777,9 +777,9 @@ namespace im
 
         //
         
-        void print_size(FILE *fp = stdout) const
+        void print_size(bool cr = true, FILE *fp = stdout) const
         {
-            m_view.print_size(fp);
+            m_view.print_size(cr, fp);
         }
         
         // Print in Matlab format

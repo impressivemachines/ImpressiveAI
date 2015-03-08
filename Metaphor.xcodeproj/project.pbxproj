@@ -72,10 +72,15 @@
 		C7D9A3F21AA913BF0046ADBB /* vector_view.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3B01AA913BF0046ADBB /* vector_view.h */; };
 		C7D9A3F31AA913BF0046ADBB /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3B11AA913BF0046ADBB /* vector.cpp */; };
 		C7D9A3F41AA913BF0046ADBB /* vector.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3B21AA913BF0046ADBB /* vector.h */; };
-		C7D9A3F71AA914180046ADBB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3F61AA914180046ADBB /* README.md */; };
 		C7D9A4051AA915780046ADBB /* debughacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A4041AA915780046ADBB /* debughacks.cpp */; };
 		C7D9A4071AA917700046ADBB /* meta_core.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A4061AA917700046ADBB /* meta_core.h */; };
 		C7D9A4081AA91CAC0046ADBB /* libMetaphor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D9A3681AA913560046ADBB /* libMetaphor.a */; };
+		C7D9A40F1AABD0AE0046ADBB /* meta_io.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A40E1AABD0AE0046ADBB /* meta_io.h */; };
+		C7D9A41B1AABD2910046ADBB /* meta_sound.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A41A1AABD2910046ADBB /* meta_sound.h */; };
+		C7D9A41D1AABD2A00046ADBB /* meta_vision.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A41C1AABD2A00046ADBB /* meta_vision.h */; };
+		C7D9A41F1AABD3290046ADBB /* vision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A41E1AABD3290046ADBB /* vision.cpp */; };
+		C7D9A4211AABD53B0046ADBB /* image.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A4201AABD53B0046ADBB /* image.h */; };
+		C7D9A4231AABD89C0046ADBB /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A4221AABD89C0046ADBB /* image.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +177,12 @@
 		C7D9A3FD1AA9155A0046ADBB /* DebugHacks */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DebugHacks; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D9A4041AA915780046ADBB /* debughacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = debughacks.cpp; path = UnitTests/debughacks.cpp; sourceTree = "<group>"; };
 		C7D9A4061AA917700046ADBB /* meta_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meta_core.h; path = Core/meta_core.h; sourceTree = "<group>"; };
+		C7D9A40E1AABD0AE0046ADBB /* meta_io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meta_io.h; path = IO/meta_io.h; sourceTree = "<group>"; };
+		C7D9A41A1AABD2910046ADBB /* meta_sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meta_sound.h; path = Sound/meta_sound.h; sourceTree = "<group>"; };
+		C7D9A41C1AABD2A00046ADBB /* meta_vision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meta_vision.h; path = Vision/meta_vision.h; sourceTree = "<group>"; };
+		C7D9A41E1AABD3290046ADBB /* vision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vision.cpp; path = Vision/vision.cpp; sourceTree = "<group>"; };
+		C7D9A4201AABD53B0046ADBB /* image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image.h; path = Vision/image.h; sourceTree = "<group>"; };
+		C7D9A4221AABD89C0046ADBB /* image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = image.cpp; path = Vision/image.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +227,9 @@
 				C7D9A3F51AA914180046ADBB /* LICENSE.txt */,
 				C7D9A3F61AA914180046ADBB /* README.md */,
 				C7D9A3701AA913A30046ADBB /* Core */,
+				C7D9A40D1AABD0250046ADBB /* IO */,
+				C7D9A4191AABD27F0046ADBB /* Sound */,
+				C7D9A4181AABD2770046ADBB /* Vision */,
 				C7D9A3F81AA914A00046ADBB /* UnitTests */,
 			);
 			name = Source;
@@ -302,6 +316,33 @@
 			name = UnitTests;
 			sourceTree = "<group>";
 		};
+		C7D9A40D1AABD0250046ADBB /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				C7D9A40E1AABD0AE0046ADBB /* meta_io.h */,
+			);
+			name = IO;
+			sourceTree = "<group>";
+		};
+		C7D9A4181AABD2770046ADBB /* Vision */ = {
+			isa = PBXGroup;
+			children = (
+				C7D9A41C1AABD2A00046ADBB /* meta_vision.h */,
+				C7D9A4201AABD53B0046ADBB /* image.h */,
+				C7D9A4221AABD89C0046ADBB /* image.cpp */,
+				C7D9A41E1AABD3290046ADBB /* vision.cpp */,
+			);
+			name = Vision;
+			sourceTree = "<group>";
+		};
+		C7D9A4191AABD27F0046ADBB /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				C7D9A41A1AABD2910046ADBB /* meta_sound.h */,
+			);
+			name = Sound;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -325,9 +366,13 @@
 				C7D9A3F11AA913BF0046ADBB /* utils.h in Headers */,
 				C7D9A3ED1AA913BF0046ADBB /* stats.h in Headers */,
 				C7D9A4071AA917700046ADBB /* meta_core.h in Headers */,
+				C7D9A4211AABD53B0046ADBB /* image.h in Headers */,
 				C7D9A3DF1AA913BF0046ADBB /* matrix_view.h in Headers */,
+				C7D9A40F1AABD0AE0046ADBB /* meta_io.h in Headers */,
 				C7D9A3C61AA913BF0046ADBB /* block_unary.h in Headers */,
+				C7D9A41B1AABD2910046ADBB /* meta_sound.h in Headers */,
 				C7D9A3E81AA913BF0046ADBB /* quaternion.h in Headers */,
+				C7D9A41D1AABD2A00046ADBB /* meta_vision.h in Headers */,
 				C7D9A3DB1AA913BF0046ADBB /* geometry.h in Headers */,
 				C7D9A3E21AA913BF0046ADBB /* mem.h in Headers */,
 				C7D9A3CB1AA913BF0046ADBB /* decomp_cholesky.h in Headers */,
@@ -430,7 +475,6 @@
 				C7D9A3D81AA913BF0046ADBB /* fft.cpp in Sources */,
 				C7D9A3C71AA913BF0046ADBB /* convolve.cpp in Sources */,
 				C7D9A3E71AA913BF0046ADBB /* quaternion.cpp in Sources */,
-				C7D9A3F71AA914180046ADBB /* README.md in Sources */,
 				C7D9A3CC1AA913BF0046ADBB /* decomp_eigen.cpp in Sources */,
 				C7D9A3D21AA913BF0046ADBB /* decomp_svd.cpp in Sources */,
 				C7D9A3D41AA913BF0046ADBB /* decomp_tools.cpp in Sources */,
@@ -443,8 +487,10 @@
 				C7D9A3D61AA913BF0046ADBB /* decomp_tridiag.cpp in Sources */,
 				C7D9A3F31AA913BF0046ADBB /* vector.cpp in Sources */,
 				C7D9A3B31AA913BF0046ADBB /* block_binary.cpp in Sources */,
+				C7D9A4231AABD89C0046ADBB /* image.cpp in Sources */,
 				C7D9A3CA1AA913BF0046ADBB /* decomp_cholesky.cpp in Sources */,
 				C7D9A3D01AA913BF0046ADBB /* decomp_qr.cpp in Sources */,
+				C7D9A41F1AABD3290046ADBB /* vision.cpp in Sources */,
 				C7D9A3DA1AA913BF0046ADBB /* geometry.cpp in Sources */,
 				C7D9A3C31AA913BF0046ADBB /* block_tools.cpp in Sources */,
 				C7D9A3B51AA913BF0046ADBB /* block_blas1.cpp in Sources */,
@@ -615,6 +661,7 @@
 				C7D9A4021AA9155A0046ADBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
