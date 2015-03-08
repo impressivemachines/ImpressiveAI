@@ -14,6 +14,7 @@
 #include <stdint.h>
 #include <string.h>
 
+#include <stdexcept>
 #include <cmath>
 #include <vector>
 #include <random>
