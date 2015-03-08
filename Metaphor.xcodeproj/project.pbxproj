@@ -328,9 +328,9 @@
 			isa = PBXGroup;
 			children = (
 				C7D9A41C1AABD2A00046ADBB /* meta_vision.h */,
+				C7D9A41E1AABD3290046ADBB /* vision.cpp */,
 				C7D9A4201AABD53B0046ADBB /* image.h */,
 				C7D9A4221AABD89C0046ADBB /* image.cpp */,
-				C7D9A41E1AABD3290046ADBB /* vision.cpp */,
 			);
 			name = Vision;
 			sourceTree = "<group>";

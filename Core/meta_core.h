@@ -22,13 +22,6 @@
 #include <random>
 #include <complex>
 
-//#include <boost/foreach.hpp>
-//#include <boost/distributions.hpp>
-//#include <boost/quaternion.hpp>
-//#include <boost/special_functions.hpp>
-//#include <boost/chrono.hpp>
-//#include <boost/filesystem.hpp>
-
 // Math constants to double precision
 
 #define CONST_E             2.71828182845904523536
