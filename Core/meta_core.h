@@ -15,6 +15,8 @@
 #include <string.h>
 
 #include <stdexcept>
+#include <chrono>
+#include <memory>
 #include <cmath>
 #include <vector>
 #include <random>
