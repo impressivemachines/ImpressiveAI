@@ -144,13 +144,13 @@ namespace im
         }
         
         // Fill with value
-        void set(TT const &f) { m_view.set(f); }
-        Vec &operator=(TT const &f) { m_view.set(f); return *this; }
+        void fill(TT const &f) { m_view.fill(f); }
+        Vec &operator=(TT const &f) { m_view.fill(f); return *this; }
         
         // Assign the elements indicated by index list
-        void set(TT const &val, std::vector<int> const &index_list)
+        void fill(TT const &val, std::vector<int> const &index_list)
         {
-            m_view.set(val, index_list);
+            m_view.fill(val, index_list);
         }
         
         // Create from matlab format text field, e.g. "[ 1 2 3 4 5 6 ]" or "[3+6i; 4-5i]"

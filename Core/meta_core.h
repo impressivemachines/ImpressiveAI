@@ -106,8 +106,10 @@
 // typical alignment for 128 bit (four float) SSE words
 
 // k must be a power of 2
-#define IM_IS_ALIGNED_K(p,k)              (( ((intptr_t)(p)) & (k-1))==0)
-#define IM_IS_ALIGNED_16(p)               IM_IS_ALIGNED_K(p,16)
+#define IM_SSE_ALIGN                    16
+#define IM_IS_ALIGNED_K(p,k)            (( ((intptr_t)(p)) & (k-1))==0)
+#define IM_IS_ALIGNED_SSE(p)            IM_IS_ALIGNED_K(p,IM_SSE_ALIGN)
+#define IM_IS_SIZED_SSE(c)              (((c) & (IM_SSE_ALIGN-1))==0)
 
 namespace im
 {

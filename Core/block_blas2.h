@@ -11,9 +11,8 @@
 
 // Packed triangular matrix format
 // N is number of rows/cols of square matrix
-#define TRCOUNT(N,i) ((((i)+1)*(2*(N)-(i)))/2)
-#define TPUP(N,i,j) (TRCOUNT(N,(i)-1)+(j)-(i))
-#define TPLO(N,i,j) (((i)*((i)+1))/2 + (j))
+#define TRI_UP(N,i,j) (((i)*(2*(N)+1-(i)))/2 + (j) - (i))
+#define TRI_LO(N,i,j) (((i)*((i)+1))/2 + (j))
 
 namespace im
 {

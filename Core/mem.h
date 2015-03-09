@@ -34,7 +34,6 @@ namespace im
             else if(m_p==NULL || size!=m_size || !IM_IS_ALIGNED_K(m_p, align_bytes))
             {
                 uint8_t *palloc;
-                
                 if(posix_memalign((void **)&palloc, align_bytes, size))
                     IM_THROW_ALLOC;
                 
@@ -52,7 +51,6 @@ namespace im
         {
             if(m_p)
                 free(m_p);
-            
             m_p = NULL;
             m_size = 0;
         }

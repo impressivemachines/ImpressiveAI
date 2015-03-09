@@ -164,20 +164,20 @@ namespace im
         }
         
         // Set all elements to value
-        void set(TT const &f)
+        void fill(TT const &f)
         {
             core_block_fill(*this, f);
         }
         
         MtxView &operator=(TT const &f)
         {
-            set(f);
+            fill(f);
             return *this;
         }
         
         
         // Assign the elements indicated by index list
-        void set(TT const &val, std::vector<MtxLoc> const &index_list)
+        void fill(TT const &val, std::vector<MtxLoc> const &index_list)
         {
             for(int i=0; i<index_list.size(); i++)
             {

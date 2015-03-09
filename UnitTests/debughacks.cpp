@@ -549,7 +549,13 @@ void test10()
     ivf.print_pixel(1, 2);
     ivf.print_pixel(3, 4);
 
+    im::Img<uint8_t> myimg(128,64);
+    myimg(0,0) = 128;
+    myimg.print_size();
+    myimg.print_pixel(0, 0);
     
+  //  myimg.wrap(16, 16, 1, 16, data);
+    printf("done\n");
 }
 
 int main()

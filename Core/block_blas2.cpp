@@ -555,13 +555,13 @@ template <typename TT> void im::core_block_blas_hpmv(VecView<TT> vy, VecView<TT>
         {
             TT temp1 = alpha * vx(i);
             TT temp2 = (TT)0;
-            TT Aii = vA(TPUP(N, i, i));
+            TT Aii = vA(TRI_UP(N, i, i));
             Aii.imag(0);
             vy(i) += temp1 * Aii;
             
             for(int j=i+1; j<N; j++)
             {
-                TT Aij = vA(TPUP(N, i, j));
+                TT Aij = vA(TRI_UP(N, i, j));
                 vy(j) += temp1 * core_conj(Aij);
                 temp2 += vx(j) * Aij;
             }
@@ -575,13 +575,13 @@ template <typename TT> void im::core_block_blas_hpmv(VecView<TT> vy, VecView<TT>
         {
             TT temp1 = alpha * vx(i);
             TT temp2 = (TT)0;
-            TT Aii = vA(TPLO(N, i, i));
+            TT Aii = vA(TRI_LO(N, i, i));
             Aii.imag(0);
             vy(i) += temp1 * Aii;
             
             for(int j=0; j<i; j++)
             {
-                TT Aij = vA(TPLO(N, i, j));
+                TT Aij = vA(TRI_LO(N, i, j));
                 vy(j) += temp1 * core_conj(Aij);
                 temp2 += vx(j) * Aij;
             }
@@ -617,11 +617,11 @@ template <typename TT> void im::core_block_blas_hpr(VecView<TT> vA, VecView<TT> 
         {
             TT temp = alpha * vx(i);
             
-            vA(TPUP(N, i, i)) += core_conj(vx(i)) * temp;
-            vA(TPUP(N, i, i)).imag(0);
+            vA(TRI_UP(N, i, i)) += core_conj(vx(i)) * temp;
+            vA(TRI_UP(N, i, i)).imag(0);
             
             for(int j=i+1; j<N; j++)
-                vA(TPUP(N, i, j)) += core_conj(vx(j)) * temp;
+                vA(TRI_UP(N, i, j)) += core_conj(vx(j)) * temp;
         }
     }
     else
@@ -631,10 +631,10 @@ template <typename TT> void im::core_block_blas_hpr(VecView<TT> vA, VecView<TT> 
             TT temp = alpha * vx(i);
             
             for(int j=0; j<i; j++)
-                vA(TPLO(N, i, j)) += core_conj(vx(j)) * temp;
+                vA(TRI_LO(N, i, j)) += core_conj(vx(j)) * temp;
             
-            vA(TPLO(N, i, i)) += core_conj(vx(i)) * temp;
-            vA(TPLO(N, i, i)).imag(0);
+            vA(TRI_LO(N, i, i)) += core_conj(vx(i)) * temp;
+            vA(TRI_LO(N, i, i)).imag(0);
         }
     }
 }
@@ -668,11 +668,11 @@ template <typename TT> void im::core_block_blas_hpr2(VecView<TT> vA, VecView<TT>
             TT temp1 = alpha * vx(i);
             TT temp2 = core_conj(alpha) * vy(i);
             
-            vA(TPUP(N, i, i)).real(vA(TPUP(N, i, i)).real() + 2 * (temp1.real() * vy(i).real() + temp1.imag() * vy(i).imag()));
-            vA(TPUP(N, i, i)).imag(0);
+            vA(TRI_UP(N, i, i)).real(vA(TRI_UP(N, i, i)).real() + 2 * (temp1.real() * vy(i).real() + temp1.imag() * vy(i).imag()));
+            vA(TRI_UP(N, i, i)).imag(0);
             
             for(int j=i+1; j<N; j++)
-                vA(TPUP(N, i, j)) += temp1 * core_conj(vy(j)) + temp2 * core_conj(vx(j));
+                vA(TRI_UP(N, i, j)) += temp1 * core_conj(vy(j)) + temp2 * core_conj(vx(j));
         }
     }
     else
@@ -682,11 +682,11 @@ template <typename TT> void im::core_block_blas_hpr2(VecView<TT> vA, VecView<TT>
             TT temp1 = alpha * vx(i);
             TT temp2 = core_conj(alpha) * vy(i);
             
-            vA(TPLO(N, i, i)).real(vA(TPLO(N, i, i)).real() + 2 * (temp1.real() * vy(i).real() + temp1.imag() * vy(i).imag()));
-            vA(TPLO(N, i, i)).imag(0);
+            vA(TRI_LO(N, i, i)).real(vA(TRI_LO(N, i, i)).real() + 2 * (temp1.real() * vy(i).real() + temp1.imag() * vy(i).imag()));
+            vA(TRI_LO(N, i, i)).imag(0);
             
             for(int j=0; j<i; j++)
-                vA(TPLO(N, i, j)) += temp1 * core_conj(vy(j)) + temp2 * core_conj(vx(j));
+                vA(TRI_LO(N, i, j)) += temp1 * core_conj(vy(j)) + temp2 * core_conj(vx(j));
         }
     }
 }
@@ -814,12 +814,12 @@ template <typename TT> void im::core_block_blas_spmv(VecView<TT> vy, VecView<TT>
         {
             TT temp1 = alpha * vx(i);
             TT temp2 = (TT)0;
-            TT Aii = vA(TPUP(N, i, i));
+            TT Aii = vA(TRI_UP(N, i, i));
             vy(i) += temp1 * Aii;
             
             for(int j=i+1; j<N; j++)
             {
-                TT Aij = vA(TPUP(N, i, j));
+                TT Aij = vA(TRI_UP(N, i, j));
                 vy(j) += temp1 * Aij;
                 temp2 += vx(j) * Aij;
             }
@@ -833,12 +833,12 @@ template <typename TT> void im::core_block_blas_spmv(VecView<TT> vy, VecView<TT>
         {
             TT temp1 = alpha * vx(i);
             TT temp2 = (TT)0;
-            TT Aii = vA(TPLO(N, i, i));
+            TT Aii = vA(TRI_LO(N, i, i));
             vy(i) += temp1 * Aii;
             
             for(int j=0; j<i; j++)
             {
-                TT Aij = vA(TPLO(N, i, j));
+                TT Aij = vA(TRI_LO(N, i, j));
                 vy(j) += temp1 * Aij;
                 temp2 += vx(j) * Aij;
             }
@@ -875,7 +875,7 @@ template <typename TT> void im::core_block_blas_spr(VecView<TT> vA, VecView<TT> 
             TT temp = alpha * vx(i);
 
             for(int j=i; j<N; j++)
-                vA(TPUP(N, i, j)) += vx(j) * temp;
+                vA(TRI_UP(N, i, j)) += vx(j) * temp;
         }
     }
     else
@@ -885,7 +885,7 @@ template <typename TT> void im::core_block_blas_spr(VecView<TT> vA, VecView<TT> 
             TT temp = alpha * vx(i);
             
             for(int j=0; j<=i; j++)
-                vA(TPLO(N, i, j)) += vx(j) * temp;
+                vA(TRI_LO(N, i, j)) += vx(j) * temp;
         }
     }
 }
@@ -920,7 +920,7 @@ template <typename TT> void im::core_block_blas_spr2(VecView<TT> vA, VecView<TT>
             TT temp2 = alpha * vy(i);
 
             for(int j=i; j<N; j++)
-                vA(TPUP(N, i, j)) += temp1 * vy(j) + temp2 * vx(j);
+                vA(TRI_UP(N, i, j)) += temp1 * vy(j) + temp2 * vx(j);
         }
     }
     else
@@ -931,7 +931,7 @@ template <typename TT> void im::core_block_blas_spr2(VecView<TT> vA, VecView<TT>
             TT temp2 = alpha * vy(i);
 
             for(int j=0; j<=i; j++)
-                vA(TPLO(N, i, j)) += temp1 * vy(j) + temp2 * vx(j);
+                vA(TRI_LO(N, i, j)) += temp1 * vy(j) + temp2 * vx(j);
         }
     }
 }
@@ -1396,11 +1396,11 @@ template <typename TT> void im::core_block_blas_tpmv(VecView<TT> vx, VecView<TT>
         {
             for(int i=0; i<N; i++)
             {
-                TT atemp = vA(TPUP(N,i,i));
+                TT atemp = vA(TRI_UP(N,i,i));
                 TT temp = (diag==DiagMode_N ? atemp : (TT)1.0) * vx(i);
                 
                 for(int j=i+1; j<N; j++)
-                    temp += vx(j) * vA(TPUP(N,i,j));
+                    temp += vx(j) * vA(TRI_UP(N,i,j));
                 
                 vx(i) = temp;
             }
@@ -1409,11 +1409,11 @@ template <typename TT> void im::core_block_blas_tpmv(VecView<TT> vx, VecView<TT>
         {
             for(int i=N-1; i>=0; i--)
             {
-                TT atemp = vA(TPLO(N,i,i));
+                TT atemp = vA(TRI_LO(N,i,i));
                 TT temp = (diag==DiagMode_N ? atemp : (TT)1.0) * vx(i);
 
                 for(int j=0; j<i; j++)
-                    temp += vx(j) * vA(TPLO(N,i,j));
+                    temp += vx(j) * vA(TRI_LO(N,i,j));
                 
                 vx(i) = temp;
             }
@@ -1425,11 +1425,11 @@ template <typename TT> void im::core_block_blas_tpmv(VecView<TT> vx, VecView<TT>
         {
             for(int i=N-1; i>=0; i--)
             {
-                TT atemp = vA(TPUP(N,i,i));
+                TT atemp = vA(TRI_UP(N,i,i));
                 TT temp = (diag==DiagMode_N ? atemp : (TT)1.0) * vx(i);
                 
                 for(int j=0; j<i; j++)
-                    temp += vx(j) * vA(TPUP(N,j,i));
+                    temp += vx(j) * vA(TRI_UP(N,j,i));
                 
                 vx(i) = temp;
             }
@@ -1438,11 +1438,11 @@ template <typename TT> void im::core_block_blas_tpmv(VecView<TT> vx, VecView<TT>
         {
             for(int i=0; i<N; i++)
             {
-                TT atemp = vA(TPLO(N,i,i));
+                TT atemp = vA(TRI_LO(N,i,i));
                 TT temp = (diag==DiagMode_N ? atemp : (TT)1.0) * vx(i);
                 
                 for(int j=i+1; j<N; j++)
-                    temp += vx(j) * vA(TPLO(N,j,i));
+                    temp += vx(j) * vA(TRI_LO(N,j,i));
 
                 vx(i) = temp;
             }
@@ -1454,11 +1454,11 @@ template <typename TT> void im::core_block_blas_tpmv(VecView<TT> vx, VecView<TT>
         {
             for(int i=N-1; i>=0; i--)
             {
-                TT atemp = core_conj(vA(TPUP(N,i,i)));
+                TT atemp = core_conj(vA(TRI_UP(N,i,i)));
                 TT temp = (diag==DiagMode_N ? atemp : (TT)1.0) * vx(i);
                 
                 for(int j=0; j<i; j++)
-                    temp += vx(j) * core_conj(vA(TPUP(N,j,i)));
+                    temp += vx(j) * core_conj(vA(TRI_UP(N,j,i)));
                 
                 vx(i) = temp;
             }
@@ -1467,11 +1467,11 @@ template <typename TT> void im::core_block_blas_tpmv(VecView<TT> vx, VecView<TT>
         {
             for(int i=0; i<N; i++)
             {
-                TT atemp = core_conj(vA(TPLO(N,i,i)));
+                TT atemp = core_conj(vA(TRI_LO(N,i,i)));
                 TT temp = (diag==DiagMode_N ? atemp : (TT)1.0) * vx(i);
                 
                 for(int j=i+1; j<N; j++)
-                    temp += vx(j) * core_conj(vA(TPLO(N,j,i)));
+                    temp += vx(j) * core_conj(vA(TRI_LO(N,j,i)));
                 
                 vx(i) = temp;
             }
@@ -1509,10 +1509,10 @@ template <typename TT> void im::core_block_blas_tpsv(VecView<TT> vx, VecView<TT>
                 TT tmp = vx(i);
 
                 for(int j=i+1; j<N; j++)
-                    tmp -= vA(TPUP(N,i,j)) * vx(j);
+                    tmp -= vA(TRI_UP(N,i,j)) * vx(j);
                 
                 if(diag==DiagMode_N)
-                    vx(i) = tmp / vA(TPUP(N,i,i));
+                    vx(i) = tmp / vA(TRI_UP(N,i,i));
                 else
                     vx(i) = tmp;
             }
@@ -1524,10 +1524,10 @@ template <typename TT> void im::core_block_blas_tpsv(VecView<TT> vx, VecView<TT>
                 TT tmp = vx(i);
 
                 for(int j=0; j<i; j++)
-                    tmp -= vA(TPLO(N,i,j)) * vx(j);
+                    tmp -= vA(TRI_LO(N,i,j)) * vx(j);
                 
                 if(diag==DiagMode_N)
-                    vx(i) = tmp / vA(TPLO(N,i,i));
+                    vx(i) = tmp / vA(TRI_LO(N,i,i));
                 else
                     vx(i) = tmp;
             }
@@ -1542,10 +1542,10 @@ template <typename TT> void im::core_block_blas_tpsv(VecView<TT> vx, VecView<TT>
                 TT tmp = vx(i);
                 
                 for(int j=0; j<i; j++)
-                    tmp -= vA(TPUP(N,j,i)) * vx(j);
+                    tmp -= vA(TRI_UP(N,j,i)) * vx(j);
                 
                 if(diag==DiagMode_N)
-                    vx(i) = tmp / vA(TPUP(N,i,i));
+                    vx(i) = tmp / vA(TRI_UP(N,i,i));
                 else
                     vx(i) = tmp;
             }
@@ -1557,10 +1557,10 @@ template <typename TT> void im::core_block_blas_tpsv(VecView<TT> vx, VecView<TT>
                 TT tmp = vx(i);
                 
                 for(int j=i+1; j<N; j++)
-                    tmp -= vA(TPLO(N,j,i)) * vx(j);
+                    tmp -= vA(TRI_LO(N,j,i)) * vx(j);
                 
                 if(diag==DiagMode_N)
-                    vx(i) = tmp / vA(TPLO(N,i,i));
+                    vx(i) = tmp / vA(TRI_LO(N,i,i));
                 else
                     vx(i) = tmp;
             }
@@ -1575,10 +1575,10 @@ template <typename TT> void im::core_block_blas_tpsv(VecView<TT> vx, VecView<TT>
                 TT tmp = vx(i);
                 
                 for(int j=0; j<i; j++)
-                    tmp -= core_conj(vA(TPUP(N,j,i))) * vx(j);
+                    tmp -= core_conj(vA(TRI_UP(N,j,i))) * vx(j);
                 
                 if(diag==DiagMode_N)
-                    vx(i) = tmp / core_conj(vA(TPUP(N,i,i)));
+                    vx(i) = tmp / core_conj(vA(TRI_UP(N,i,i)));
                 else
                     vx(i) = tmp;
             }
@@ -1590,10 +1590,10 @@ template <typename TT> void im::core_block_blas_tpsv(VecView<TT> vx, VecView<TT>
                 TT tmp = vx(i);
                 
                 for(int j=i+1; j<N; j++)
-                    tmp -= core_conj(vA(TPLO(N,j,i))) * vx(j);
+                    tmp -= core_conj(vA(TRI_LO(N,j,i))) * vx(j);
                 
                 if(diag==DiagMode_N)
-                    vx(i) = tmp / core_conj(vA(TPLO(N,i,i)));
+                    vx(i) = tmp / core_conj(vA(TRI_LO(N,i,i)));
                 else
                     vx(i) = tmp;
             }

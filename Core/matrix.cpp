@@ -477,7 +477,7 @@ im::Mtx<TT> &im::Mtx<TT>::operator<<(char const *ptext)
                 }
                 
                 resize(r+1, cols);
-                set((TT)0);
+                fill((TT)0);
                 for(int i=0; i<vecloc.size(); i++)
                 {
                     MtxLoc &loc = vecloc[i];
