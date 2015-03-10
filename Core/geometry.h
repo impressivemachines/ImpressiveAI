@@ -26,7 +26,7 @@ namespace im
     template <typename TT> void core_make_3x3_rotation_about_y(MtxView<TT> m, TT angle);
     template <typename TT> void core_make_3x3_rotation_about_z(MtxView<TT> m, TT angle);
     template <typename TT> void core_make_3x3_rotation_axis_angle(MtxView<TT> m, VecView<TT> const &vaxis, TT angle);
-    template <typename TT> void core_make_3x3_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw);
+    template <typename TT> void core_make_3x3_rotation_euler(MtxView<TT> m, TT pitch, TT yaw, TT roll);
     template <typename TT> void core_make_3x3_scale(MtxView<TT> m, TT sx, TT sy, TT sz);
     
     // Make 4x4 matrices for homogeneous 3D transforms
@@ -34,7 +34,7 @@ namespace im
     template <typename TT> void core_make_4x4_rotation_about_y(MtxView<TT> m, TT angle);
     template <typename TT> void core_make_4x4_rotation_about_z(MtxView<TT> m, TT angle);
     template <typename TT> void core_make_4x4_rotation_axis_angle(MtxView<TT> m, VecView<TT> const &vaxis, TT angle);
-    template <typename TT> void core_make_4x4_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw);
+    template <typename TT> void core_make_4x4_rotation_euler(MtxView<TT> m, TT pitch, TT yaw, TT roll);
     template <typename TT> void core_make_4x4_scale(MtxView<TT> m, TT sx, TT sy, TT sz);
     template <typename TT> void core_make_4x4_translate(MtxView<TT> m, TT tx, TT ty, TT tz);
     

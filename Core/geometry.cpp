@@ -184,29 +184,35 @@ INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_make_3x3_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
+void im::core_make_3x3_rotation_euler(MtxView<TT> m, TT pitch, TT yaw, TT roll)
 {
     IM_CHECK_VALID(m);
     IM_CHECK_MATRIX_SIZE(m, 3, 3);
     
-    TT ca = cos(yaw);
-    TT sa = sin(yaw);
-    TT cb = cos(pitch);
-    TT sb = sin(pitch);
-    TT cc = cos(roll);
-    TT sc = sin(roll);
+    TT cr = cos(roll);
+    TT sr = sin(roll);
+    TT cy = cos(yaw);
+    TT sy = sin(yaw);
+    TT cp = cos(pitch);
+    TT sp = sin(pitch);
     
-    m(0,0) = ca * cb;
-    m(0,1) = ca * sb * sc - sa * cc;
-    m(0,2) = ca * sb * cc + sa * sc;
+    // This is using the Tait-Bryan angles with composition order Y_yaw X_pitch Z_roll
+    // given r, p, y, matrix is:
+    // [ cy*cr+sy*sr*sp      -cy*sr+sy*cr*sp     sy*cp;
+    //   sr*cp               cr*cp               -sp;
+    //   -sy*cr+cy*sr*sp     sy*sr+cy*cr*sp      cy*cp ]
     
-    m(1,0) = sa * cb;
-    m(1,1) = sa * sb * sc + ca * cc;
-    m(1,2) = sa * sb * cc - ca * sc;
+    m(0,0) = cy * cr + sy * sr * sp;
+    m(0,1) = -cy * sr + sy * cr * sp;
+    m(0,2) = sy * cp;
     
-    m(2,0) = -sb;
-    m(2,1) = cb * sc;
-    m(2,2) = cb * cc;
+    m(1,0) = sr * cp;
+    m(1,1) = cr * cp;
+    m(1,2) = -sp;
+    
+    m(2,0) = -sy * cr + cy * sr * sp;
+    m(2,1) = sy * sr + cy * cr * sp;
+    m(2,2) = cy * cp;
 }
 
 #define INST(TT) template void im::core_make_3x3_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
@@ -299,12 +305,12 @@ INST(float); INST(double);
 #undef INST
 
 template <typename TT>
-void im::core_make_4x4_rotation_euler(MtxView<TT> m, TT roll, TT pitch, TT yaw)
+void im::core_make_4x4_rotation_euler(MtxView<TT> m, TT pitch, TT yaw, TT roll)
 {
     IM_CHECK_VALID(m);
     IM_CHECK_MATRIX_SIZE(m, 4, 4);
     
-    core_make_3x3_rotation_euler(m.block(0,0,3,3), roll, pitch, yaw);
+    core_make_3x3_rotation_euler(m.block(0,0,3,3), pitch, yaw, roll);
     m.block(3,0,1,3) = (TT)0;
     m.block(0,3,3,1) = (TT)0;
     m(3,3) = (TT)1;

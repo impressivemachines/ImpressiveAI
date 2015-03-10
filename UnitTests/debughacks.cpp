@@ -517,23 +517,32 @@ void test9()
     v(2) = 0;
     
     core_make_3x3_skew_symmetric(m.view(), 0.01f, 0.0f, 0.0f);
-    m.print();
+    //m.print();
     core_make_3x3_rotation_about_x(m.view(), 0.01f);
     m.print();
     core_make_3x3_skew_symmetric(m.view(), 0.0f, 0.1f, 0.0f);
-    m.print();
+    //m.print();
     core_make_3x3_rotation_about_y(m.view(), 0.01f);
     m.print();
     core_make_3x3_skew_symmetric(m.view(), 0.0f, 0.0f, 0.1f);
-    m.print();
+    //m.print();
     core_make_3x3_rotation_about_z(m.view(), 0.01f);
     m.print();
     core_make_3x3_rotation_euler(m.view(), 0.01f, 0.0f, 0.0f);
-    m.print();
+    //m.print();
     core_make_3x3_rotation_axis_angle(m.view(), v.view(), 0.01f);
-    m.print();
+    //m.print();
     core_make_4x4_rotation_about_x(m4.view(), 0.01f);
-    m4.print();
+    //m4.print();
+    
+    core_make_3x3_rotation_euler(m.view(), 0.01f, 0.0f, 0.0f);
+    m.print();
+    
+    core_make_3x3_rotation_euler(m.view(), 0.00f, 0.01f, 0.0f);
+    m.print();
+    
+    core_make_3x3_rotation_euler(m.view(), 0.00f, 0.0f, 0.01f);
+    m.print();
     
 }
 
@@ -558,9 +567,60 @@ void test10()
     printf("done\n");
 }
 
+void test11()
+{
+    im::Quat<float> q1,q2,q3;
+    
+    q1.from_euler_angles(1, -1, -0.99);
+    float r,p,y;
+    q1.to_euler_angles(p,y,r);
+    printf("%g %g %g\n", p, y, r);
+    im::Mtx<float> mrot(3,3);
+    q1.to_rotation_matrix(mrot.view());
+    mrot.print();
+    core_make_3x3_rotation_euler(mrot.view(), p, y, r);
+    mrot.print();
+    q1.from_rotation_matrix(mrot.view());
+    q1.to_euler_angles(p,y,r);
+    printf("%g %g %g\n", p, y, r);
+    
+    q1.from_euler_angles(0.1, 0, 0);
+    q2.from_euler_angles(0.4, 0, 0);
+    
+    q3.from_iterpolation(q1, q2, 0.5f);
+    q3.to_euler_angles(p, y, r);
+    printf("%g %g %g\n", p, y, r);
+    
+    float v1[3], v2[3];
+    v1[0] = 1;
+    v1[1] = 0;
+    v1[2] = 0;
+    v2[0] = 1;
+    v2[1] = 0;
+    v2[2] = -1;
+    q3.from_vector_rotation(im::VecView<float>(3, 1, v1), im::VecView<float>(3,1,v2));
+    q3.to_rotation_matrix(mrot.view());
+    mrot.print();
+    q3.to_euler_angles(p, y, r);
+    printf("%g %g %g\n", p*CONST_180_PI, y*CONST_180_PI, r*CONST_180_PI);
+    
+    q1.from_euler_angles(0.2, 0, 0);
+    q2.from_euler_angles(0.5, 0.3, 0);
+    q3 = q2 * q1;
+    q3.to_euler_angles(p, y, r);
+    printf("%g %g %g\n", p, y, r);
+    float u[3];
+    float ang;
+    q3.to_axis_angle(im::VecView<float>(3,1,u), ang);
+    printf("%g %g %g %g\n", u[0],u[1],u[2],ang);
+    q3.from_axis_angle(im::VecView<float>(3,1,u), ang);
+    q3.to_euler_angles(p,y,r);
+    printf("%g %g %g\n", p, y, r);
+}
+
 int main()
 {
-    test10();
+    test11();
     return 0;
 }
 
