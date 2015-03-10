@@ -31,7 +31,7 @@ Core provides many common tools for linear algebra and statistics and is built o
 * Least squares and robust 2D line fitting.
 * Multi-dimensional regression.
 * Geometric 2D and 3D rotations and transforms.
-* Quaternions.
+* Quaternions with SLERP and rotation matrix / euler / axis-angle integration.
 
 Some features that are under development:
 * Root finding.
