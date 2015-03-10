@@ -31,12 +31,14 @@ Core provides many common tools for linear algebra and statistics and is built o
 * Least squares and robust 2D line fitting.
 * Multi-dimensional regression.
 * Geometric 2D and 3D rotations and transforms.
+* Quaternions.
 
 Some features that are under development:
-* Line minimization / root finding.
+* Root finding.
+* Line minimization.
 * Optimization of functions.
-* Tensors.
-* Quaternions.
+* Tensors?
+
 
 The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order. 
 
