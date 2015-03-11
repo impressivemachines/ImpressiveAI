@@ -618,9 +618,20 @@ void test11()
     printf("%g %g %g\n", p, y, r);
 }
 
+double func(double x, void *p)
+{
+    return log(x)+sin(x)-2;
+}
+
+void test12()
+{
+    double r = im::core_root_search(func, NULL, 1.0, 8.0);
+    printf("%.10g\n",r);
+}
+
 int main()
 {
-    test11();
+    test12();
     return 0;
 }
 

@@ -43,7 +43,8 @@ namespace im
     // mavCoefs is a length 4 vector and mavRoots is length 3
     template <typename T> void core_solve_cubic_pos_real(VecView<T> mavRoots, const VecView<T> &mavCoefs);
 
-    
+    // Find root numerically without using derivatives using Brent method
+    template <typename TT> TT core_root_search(TT (*pfunc)(TT x, void *puser), void *puser, TT bracket_min, TT bracket_max);
 }
 
 #endif

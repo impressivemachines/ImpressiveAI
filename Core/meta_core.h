@@ -58,6 +58,7 @@
 #define IM_THROW_BAD_DATA                   throw std::runtime_error("Unexpected data values encountered.")
 #define IM_THROW_END_OF_FILE                throw std::runtime_error("End of file encountered.")
 #define IM_THROW_ALLOC                      throw std::runtime_error("Memory allocation failed.")
+#define IM_THROW_NO_IMPL                    throw std::runtime_error("Not implemented.")
 
 #define IM_CHECK(e)                         do { if(!(e)) IM_THROW_GENERIC; } while(false)
 #define IM_CHECK_ARGS(e)                    do { if(!(e)) IM_THROW_ARGUMENTS; } while(false)

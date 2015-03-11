@@ -54,7 +54,6 @@
 		C7D9A3E01AA913BF0046ADBB /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A39E1AA913BF0046ADBB /* matrix.cpp */; };
 		C7D9A3E11AA913BF0046ADBB /* matrix.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A39F1AA913BF0046ADBB /* matrix.h */; };
 		C7D9A3E21AA913BF0046ADBB /* mem.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3A01AA913BF0046ADBB /* mem.h */; };
-		C7D9A3E31AA913BF0046ADBB /* optimize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3A11AA913BF0046ADBB /* optimize.cpp */; };
 		C7D9A3E41AA913BF0046ADBB /* optimize.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3A21AA913BF0046ADBB /* optimize.h */; };
 		C7D9A3E51AA913BF0046ADBB /* permute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3A31AA913BF0046ADBB /* permute.cpp */; };
 		C7D9A3E61AA913BF0046ADBB /* permute.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3A41AA913BF0046ADBB /* permute.h */; };
@@ -154,7 +153,6 @@
 		C7D9A39E1AA913BF0046ADBB /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = matrix.cpp; path = Core/matrix.cpp; sourceTree = "<group>"; };
 		C7D9A39F1AA913BF0046ADBB /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = matrix.h; path = Core/matrix.h; sourceTree = "<group>"; };
 		C7D9A3A01AA913BF0046ADBB /* mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mem.h; path = Core/mem.h; sourceTree = "<group>"; };
-		C7D9A3A11AA913BF0046ADBB /* optimize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = optimize.cpp; path = Core/optimize.cpp; sourceTree = "<group>"; };
 		C7D9A3A21AA913BF0046ADBB /* optimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = optimize.h; path = Core/optimize.h; sourceTree = "<group>"; };
 		C7D9A3A31AA913BF0046ADBB /* permute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = permute.cpp; path = Core/permute.cpp; sourceTree = "<group>"; };
 		C7D9A3A41AA913BF0046ADBB /* permute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = permute.h; path = Core/permute.h; sourceTree = "<group>"; };
@@ -238,6 +236,7 @@
 		C7D9A3701AA913A30046ADBB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C7D9A4061AA917700046ADBB /* meta_core.h */,
 				C7D9A3711AA913BF0046ADBB /* block_binary.cpp */,
 				C7D9A3721AA913BF0046ADBB /* block_binary.h */,
 				C7D9A3731AA913BF0046ADBB /* block_blas1.cpp */,
@@ -279,14 +278,12 @@
 				C7D9A3971AA913BF0046ADBB /* fft.h */,
 				C7D9A3981AA913BF0046ADBB /* geometry.cpp */,
 				C7D9A3991AA913BF0046ADBB /* geometry.h */,
-				C7D9A4061AA917700046ADBB /* meta_core.h */,
 				C7D9A39B1AA913BF0046ADBB /* matrix_io.cpp */,
 				C7D9A39C1AA913BF0046ADBB /* matrix_io.h */,
 				C7D9A39D1AA913BF0046ADBB /* matrix_view.h */,
 				C7D9A39E1AA913BF0046ADBB /* matrix.cpp */,
 				C7D9A39F1AA913BF0046ADBB /* matrix.h */,
 				C7D9A3A01AA913BF0046ADBB /* mem.h */,
-				C7D9A3A11AA913BF0046ADBB /* optimize.cpp */,
 				C7D9A3A21AA913BF0046ADBB /* optimize.h */,
 				C7D9A3A31AA913BF0046ADBB /* permute.cpp */,
 				C7D9A3A41AA913BF0046ADBB /* permute.h */,
@@ -500,7 +497,6 @@
 				C7D9A3C11AA913BF0046ADBB /* block_sort.cpp in Sources */,
 				C7D9A3C91AA913BF0046ADBB /* core.cpp in Sources */,
 				C7D9A3EA1AA913BF0046ADBB /* solve.cpp in Sources */,
-				C7D9A3E31AA913BF0046ADBB /* optimize.cpp in Sources */,
 				C7D9A3BB1AA913BF0046ADBB /* block_convert.cpp in Sources */,
 				C7D9A3F01AA913BF0046ADBB /* utils.cpp in Sources */,
 			);

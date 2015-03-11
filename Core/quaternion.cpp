@@ -242,7 +242,7 @@ void im::Quat<TT>::to_axis_angle(VecView<TT> vaxis, TT &angle)
     IM_CHECK_VALID(vaxis);
     IM_CHECK_VECTOR_SIZE(vaxis, 3);
     
-    Quat q = unit();
+    Quat<TT> q = unit();
     angle = std::acos(q.w);
     
     if(std::abs(angle)<=TypeProperties<TT>::epsilon())

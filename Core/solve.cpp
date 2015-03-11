@@ -214,3 +214,114 @@ template <typename T> void im::core_solve_cubic_pos_real(VecView<T> vRoots, cons
 template void im::core_solve_cubic_pos_real(VecView<float> vRoots, const VecView<float> &vCoefs);
 template void im::core_solve_cubic_pos_real(VecView<double> vRoots, const VecView<double> &vCoefs);
 
+template <typename TT>
+TT im::core_root_search(TT (*pfunc)(TT x, void *puser), void *puser, TT bracket_min, TT bracket_max)
+{
+    IM_CHECK_ARGS(bracket_max >= bracket_min);
+    
+    if(bracket_max==bracket_min)
+        return bracket_min;
+    
+    TT a = bracket_min;
+    TT fa = (*pfunc)(a, puser);
+    TT b = bracket_max;
+    TT fb = (*pfunc)(b, puser);
+    
+    if((fa<(TT)0 && fb<(TT)0) || (fa>(TT)0 && fb>(TT)0))
+        IM_THROW_NO_SOLUTION; // root is not in this interval
+    
+    TT c = a;
+    TT fc = fa;
+    TT d = b-a;
+    TT e = b-a;
+    
+    for(int i=0; i<1000; i++)
+    {
+        if(std::abs(fc) < std::abs(fb))
+        {
+            a = b;
+            b = c;
+            c = a;
+            fa = fb;
+            fb = fc;
+            fc = fa;
+        }
+        
+        TT tol = (TT)0.5 * TypeProperties<TT>::epsilon() * std::abs(b);
+        TT m = (TT)0.5 * (c-b);
+        
+        if(fb==(TT)0 || std::abs(m) <= tol)
+            return b;
+        
+        if(std::abs(e) < tol || std::abs(fa) <= std::abs(fb))
+        {
+            // use bisection
+            d = m;
+            e = m;
+        }
+        else
+        {
+            // try interpolation
+            TT s = fb / fa;
+            TT p,q,r;
+            
+            if(a==c)
+            {
+                p = (TT)2 * m * s;
+                q = (TT)1 - s;
+            }
+            else
+            {
+                q = fa / fc;
+                r = fb / fc;
+                p = s * ((TT)2 * m * q * (q-r) - (b-a) * (r-(TT)1));
+                q = (q-(TT)1) * (r-(TT)1) * (s-(TT)1);
+            }
+            
+            if(p>(TT)0)
+                q = -q;
+            else
+                p = -p;
+            
+            TT p2 = (TT)2 * p;
+            if(p2 < std::abs(e * q) && p2 < (TT)3 * m * q - std::abs(tol * q))
+            {
+                // interpolation ok
+                e = d;
+                d = p/q;
+            }
+            else
+            {
+                // fall back on bisection
+                d = m;
+                e = m;
+            }
+        }
+        
+        a = b;
+        fa = fb;
+        
+        if(tol < std::abs(d))
+            b += d;
+        else
+            b += (m>(TT)0 ? tol : -tol);
+        
+        fb = (*pfunc)(b, puser);
+        
+        if((fb < (TT)0 && fc < (TT)0) || (fb > (TT)0 && fc > (TT)0))
+        {
+            c = a;
+            fc = fa;
+            d = e = b-a;
+        }
+    }
+    
+    IM_THROW_NO_SOLUTION;
+    
+    return (TT)0;
+}
+
+template float im::core_root_search(float (*pfunc)(float x, void *puser), void *puser, float bracket_min, float bracket_max);
+template double im::core_root_search(double (*pfunc)(double x, void *puser), void *puser, double bracket_min, double bracket_max);
+
+
