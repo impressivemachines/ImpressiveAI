@@ -190,7 +190,7 @@ namespace im
         uint8_t *m_p; // pointer to the data
     };
     
-    // Templated image view that works with the specific element types supported by the library:
+    // Templated image that works with the specific element types supported by the library:
     
     // CoreTypeByte (uint8_t)
     // CoreTypeShort (int16_t)
@@ -199,19 +199,22 @@ namespace im
     // CoreTypeDouble (double)
     // CoreTypeComplexFloat (std::complex<float>)
     // CoreTypeComplexDouble (std::complex<double>)
-    
+    /*
     template <typename TT>
-    class ImgView
+    class Img
     {
     public:
-        ImgView() {}
+        Img() {}
         
-        ImgView(GenericImgView const &gv) { wrap(gv); }
+        Img(GenericImgView const &gv) { wrap(gv); }
         
-        ImgView(ImgInfo const &info, TT const *p) { wrap(info, p); }
+        Img(ImgInfo const &info, TT const *p) { wrap(info, p); }
         
-        ImgView(int w, int h, int b, int row_stride, TT const *p, ColorModel cm = ColorModelUndefined)
+        Img(int w, int h, int b, int row_stride, TT const *p, ColorModel cm = ColorModelUndefined)
             { wrap(w, h, b, row_stride, p, cm); }
+        
+        // allocate an image of designated size
+        Img(int w, int h, int b = 1, ColorModel cm = ColorModelUndefined) { resize(w, h, b, cm); }
         
         // wrap existing image data
         void wrap(GenericImgView const &gv) { wrap(gv.info(), (TT const *)gv.ptr()); }
@@ -232,6 +235,7 @@ namespace im
             m_stride = (int)(info.stride_bytes / sizeof(TT));
             m_color_model = info.color_model;
             m_p = const_cast<TT *>(p);
+            m_mem.reset();
             
             return m_p + stride() * height();
         }
@@ -252,11 +256,18 @@ namespace im
             m_stride = row_stride;
             m_color_model = cm;
             m_p = const_cast<TT *>(p);
+            m_mem.reset();
             
             return m_p + stride() * height();
         }
         
-        void reset()
+        // resize image and allocate memory
+        // if bands are <1 then the number of bands is not changed
+        void resize(int w, int h, int b = 0, ColorModel cm = ColorModelUndefined);
+        
+        void stop_sharing();
+        
+        void deallocate()
         {
             m_size.width = 0;
             m_size.height = 0;
@@ -264,6 +275,7 @@ namespace im
             m_stride = 0;
             m_color_model = ColorModelUndefined;
             m_p = NULL;
+            m_mem.reset();
         }
         
         TT *ptr() { return m_p; }
@@ -369,7 +381,7 @@ namespace im
             return MtxView<TT>(height(), width(), stride(), bands(), m_p + band);
         }
         
-        ImgView block(int x, int y, int w, int h)
+        Img block(int x, int y, int w, int h)
         {
             IM_CHECK_ARGS(x>=0 && x+w <= width());
             IM_CHECK_ARGS(y>=0 && y+h <= height());
@@ -377,7 +389,7 @@ namespace im
             return ImgView(w, h, bands(), stride(), ptr(x,y), color_model());
         }
         
-        ImgView const block(int x, int y, int w, int h) const
+        Img const block(int x, int y, int w, int h) const
         {
             IM_CHECK_ARGS(x>=0 && x+w <= width());
             IM_CHECK_ARGS(y>=0 && y+h <= height());
@@ -385,11 +397,11 @@ namespace im
             return ImgView(w, h, bands(), stride(), ptr(x,y), color_model());
         }
         
-        ImgView block(ImgPoint pt, ImgSize sz) { return block(pt.x, pt.y, sz.width, sz.height); }
-        ImgView const block(ImgPoint pt, ImgSize sz) const { return block(pt.x, pt.y, sz.width, sz.height); }
+        Img block(ImgPoint pt, ImgSize sz) { return block(pt.x, pt.y, sz.width, sz.height); }
+        Img const block(ImgPoint pt, ImgSize sz) const { return block(pt.x, pt.y, sz.width, sz.height); }
         
-        ImgView block(ImgRect rct) { return block(rct.origin.x, rct.origin.y, rct.size.width, rct.size.height); }
-        ImgView const block(ImgRect rct) const { return block(rct.origin.x, rct.origin.y, rct.size.width, rct.size.height); }
+        Img block(ImgRect rct) { return block(rct.origin.x, rct.origin.y, rct.size.width, rct.size.height); }
+        Img const block(ImgRect rct) const { return block(rct.origin.x, rct.origin.y, rct.size.width, rct.size.height); }
         
         void clear() { fill((TT)0); }
         
@@ -411,14 +423,14 @@ namespace im
         // Fills all pixels with the multi-band data given
         void fill(TT const *ppixel);
         
-        ImgView &operator=(TT const &val)
+        Img &operator=(TT const &val)
         {
             fill(val);
             return *this;
         }
         
         // copy from another view with exactly the same size and format
-        void copy_from(ImgView const &iv);
+        void copy_from(Img const &img);
         
         // paste from another view with any  source size and at position, including out of destination bounds
         void paste_from(ImgView const &iv, int destx, int desty);
@@ -452,6 +464,7 @@ namespace im
         int m_stride;
         ColorModel m_color_model;
         TT *m_p;
+        std::shared_ptr< MemoryBlock > m_mem;
     };
 
     // Templated image object that maintains shared pixel storage
@@ -460,7 +473,7 @@ namespace im
     {
     private:
         ImgView<TT> m_view;
-        std::shared_ptr< MemoryBlock > m_mem;
+        
         
     protected:
         Img(std::shared_ptr< MemoryBlock > const &mem, ImgView<TT> const &v) : m_mem(mem), m_view(v) {}
@@ -602,7 +615,7 @@ namespace im
         void print_pixel(int x, int y, bool cr = true, FILE *fp = stdout) const { m_view.print_pixel(x,y,cr,fp); }
         
     };
-    
+    */
 }
 
 

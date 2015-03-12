@@ -33,9 +33,10 @@ Core provides many common tools for linear algebra and statistics and is built o
 * Geometric 2D and 3D rotations and transforms.
 * Quaternions with SLERP and rotation matrix / euler / axis-angle integration.
 * Numerical root finding for scalar functions.
+* Bracketing, line minimization, and line minimization with derivatives.
 
 Some features that are under development:
-* Line minimization.
+
 * Levenberg Marquardt minimization.
 * Powell minimization.
 * Conjugate gradients.

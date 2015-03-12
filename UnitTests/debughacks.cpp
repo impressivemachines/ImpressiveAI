@@ -546,7 +546,7 @@ void test9()
     
 }
 
-void test10()
+/*void test10()
 {
     im::GenericImgView iv;
     float data[256];
@@ -566,7 +566,7 @@ void test10()
   //  myimg.wrap(16, 16, 1, 16, data);
     printf("done\n");
 }
-
+*/
 void test11()
 {
     im::Quat<float> q1,q2,q3;
@@ -618,15 +618,51 @@ void test11()
     printf("%g %g %g\n", p, y, r);
 }
 
-double func(double x, void *p)
+class FuncTest : public im::FuncEval1D<double>
 {
-    return log(x)+sin(x)-2;
-}
+public:
+    double eval_fx(double x)
+    {
+     //   printf("ev %.16f\n",x);
+        return log(std::abs(x)+1)+sin(x)-2;
+    }
+};
+
+class FuncTest2 : public im::FuncEval1D<double>
+{
+public:
+    double eval_fx(double x)
+    {
+        printf("ev %.16f\n",x);
+        return sin(x);
+    }
+    
+    double eval_dfx(double x)
+    {
+        printf("evd %.16f\n",x);
+        return cos(x);
+    }
+};
 
 void test12()
 {
-    double r = im::core_root_search(func, NULL, 1.0, 8.0);
-    printf("%.10g\n",r);
+   // double r = im::core_root_search(func, NULL, 1.0, 8.0);
+   // printf("%.10g\n",r);
+    
+    FuncTest ft;
+    FuncTest2 ft2;
+    
+    double xa, xb, xc;
+    im::core_line_min_bracket(xa, xb, xc, &ft, 12.71, 12.74);
+    printf("%g %g %g\n", xa, xb, xc);
+    
+    double xmin, fxmin;
+    im::core_line_min(xmin, fxmin, &ft, 14.0, 18.0);
+    printf("%g %g\n", xmin, fxmin);
+    
+    im::core_line_min_using_derivs(xmin, fxmin, &ft2, 0.0, 5.0);
+    printf("%g %g\n", xmin, fxmin);
+    
 }
 
 int main()

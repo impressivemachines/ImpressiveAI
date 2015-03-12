@@ -47,6 +47,7 @@ void im::GenericImgView::paste_from(GenericImgView const &gv, int destx, int des
         block(rctcopydest).copy_from(gv.block(rctcopysrc));
     }
 }
+/*
 
 template <typename TT>
 void im::ImgView<TT>::fill(TT const *ppixel)
@@ -198,4 +199,4 @@ template class im::Img<float>;
 template class im::Img<double>;
 template class im::Img< std::complex<float> >;
 template class im::Img< std::complex<double> >;
-
+*/

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C76747C51AB002DC00406116 /* opt_linemin.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747C41AB002DC00406116 /* opt_linemin.h */; };
+		C76747C71AB002EE00406116 /* opt_linemin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C61AB002EE00406116 /* opt_linemin.cpp */; };
 		C7D9A3B31AA913BF0046ADBB /* block_binary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3711AA913BF0046ADBB /* block_binary.cpp */; };
 		C7D9A3B41AA913BF0046ADBB /* block_binary.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3721AA913BF0046ADBB /* block_binary.h */; };
 		C7D9A3B51AA913BF0046ADBB /* block_blas1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3731AA913BF0046ADBB /* block_blas1.cpp */; };
@@ -105,6 +107,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C76747C41AB002DC00406116 /* opt_linemin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_linemin.h; path = Core/opt_linemin.h; sourceTree = "<group>"; };
+		C76747C61AB002EE00406116 /* opt_linemin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_linemin.cpp; path = Core/opt_linemin.cpp; sourceTree = "<group>"; };
 		C7D9A3681AA913560046ADBB /* libMetaphor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetaphor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D9A3711AA913BF0046ADBB /* block_binary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = block_binary.cpp; path = Core/block_binary.cpp; sourceTree = "<group>"; };
 		C7D9A3721AA913BF0046ADBB /* block_binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = block_binary.h; path = Core/block_binary.h; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 				C7D9A39F1AA913BF0046ADBB /* matrix.h */,
 				C7D9A3A01AA913BF0046ADBB /* mem.h */,
 				C7D9A3A21AA913BF0046ADBB /* optimize.h */,
+				C76747C41AB002DC00406116 /* opt_linemin.h */,
+				C76747C61AB002EE00406116 /* opt_linemin.cpp */,
 				C7D9A3A31AA913BF0046ADBB /* permute.cpp */,
 				C7D9A3A41AA913BF0046ADBB /* permute.h */,
 				C7D9A3A51AA913BF0046ADBB /* quaternion.cpp */,
@@ -387,6 +393,7 @@
 				C7D9A3F41AA913BF0046ADBB /* vector.h in Headers */,
 				C7D9A3D91AA913BF0046ADBB /* fft.h in Headers */,
 				C7D9A3EB1AA913BF0046ADBB /* solve.h in Headers */,
+				C76747C51AB002DC00406116 /* opt_linemin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,7 +441,7 @@
 		C7D9A3601AA913560046ADBB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Impressive Machines LLC";
 				TargetAttributes = {
 					C7D9A3671AA913560046ADBB = {
@@ -498,6 +505,7 @@
 				C7D9A3C91AA913BF0046ADBB /* core.cpp in Sources */,
 				C7D9A3EA1AA913BF0046ADBB /* solve.cpp in Sources */,
 				C7D9A3BB1AA913BF0046ADBB /* block_convert.cpp in Sources */,
+				C76747C71AB002EE00406116 /* opt_linemin.cpp in Sources */,
 				C7D9A3F01AA913BF0046ADBB /* utils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,6 +606,7 @@
 		C7D9A36D1AA913560046ADBB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -606,6 +615,7 @@
 		C7D9A36E1AA913560046ADBB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

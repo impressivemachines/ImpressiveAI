@@ -292,5 +292,6 @@ namespace im
 #include "quaternion.h"
 #include "geometry.h"
 #include "optimize.h"
+#include "opt_linemin.h"
 
 #endif
