@@ -363,7 +363,7 @@ void im::core_line_min_using_derivs(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, 
         
         if(going_for_bisect)
         {
-            // have to default on bisection
+            // have to default to bisection
             if(dfx>=(TT)0)
                 e = xa - x;
             else

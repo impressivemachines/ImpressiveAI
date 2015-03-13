@@ -34,10 +34,9 @@ Core provides many common tools for linear algebra and statistics and is built o
 * Quaternions with SLERP and rotation matrix / euler / axis-angle integration.
 * Numerical root finding for scalar functions.
 * Bracketing, line minimization, and line minimization with derivatives.
+* Levenberg Marquardt minimization.
 
 Some features that are under development:
-
-* Levenberg Marquardt minimization.
 * Powell minimization.
 * Conjugate gradients.
 * Stochastic gradients,

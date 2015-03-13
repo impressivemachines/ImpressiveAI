@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C76747C51AB002DC00406116 /* opt_linemin.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747C41AB002DC00406116 /* opt_linemin.h */; };
 		C76747C71AB002EE00406116 /* opt_linemin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C61AB002EE00406116 /* opt_linemin.cpp */; };
+		C76747C91AB2087300406116 /* opt_levmarq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C81AB2087300406116 /* opt_levmarq.cpp */; };
+		C76747CB1AB2088200406116 /* opt_levmarq.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747CA1AB2088200406116 /* opt_levmarq.h */; };
 		C7D9A3B31AA913BF0046ADBB /* block_binary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3711AA913BF0046ADBB /* block_binary.cpp */; };
 		C7D9A3B41AA913BF0046ADBB /* block_binary.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3721AA913BF0046ADBB /* block_binary.h */; };
 		C7D9A3B51AA913BF0046ADBB /* block_blas1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3731AA913BF0046ADBB /* block_blas1.cpp */; };
@@ -109,6 +111,8 @@
 /* Begin PBXFileReference section */
 		C76747C41AB002DC00406116 /* opt_linemin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_linemin.h; path = Core/opt_linemin.h; sourceTree = "<group>"; };
 		C76747C61AB002EE00406116 /* opt_linemin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_linemin.cpp; path = Core/opt_linemin.cpp; sourceTree = "<group>"; };
+		C76747C81AB2087300406116 /* opt_levmarq.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_levmarq.cpp; path = Core/opt_levmarq.cpp; sourceTree = "<group>"; };
+		C76747CA1AB2088200406116 /* opt_levmarq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_levmarq.h; path = Core/opt_levmarq.h; sourceTree = "<group>"; };
 		C7D9A3681AA913560046ADBB /* libMetaphor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetaphor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D9A3711AA913BF0046ADBB /* block_binary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = block_binary.cpp; path = Core/block_binary.cpp; sourceTree = "<group>"; };
 		C7D9A3721AA913BF0046ADBB /* block_binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = block_binary.h; path = Core/block_binary.h; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 				C7D9A3A21AA913BF0046ADBB /* optimize.h */,
 				C76747C41AB002DC00406116 /* opt_linemin.h */,
 				C76747C61AB002EE00406116 /* opt_linemin.cpp */,
+				C76747CA1AB2088200406116 /* opt_levmarq.h */,
+				C76747C81AB2087300406116 /* opt_levmarq.cpp */,
 				C7D9A3A31AA913BF0046ADBB /* permute.cpp */,
 				C7D9A3A41AA913BF0046ADBB /* permute.h */,
 				C7D9A3A51AA913BF0046ADBB /* quaternion.cpp */,
@@ -368,6 +374,7 @@
 				C7D9A3B41AA913BF0046ADBB /* block_binary.h in Headers */,
 				C7D9A3F11AA913BF0046ADBB /* utils.h in Headers */,
 				C7D9A3ED1AA913BF0046ADBB /* stats.h in Headers */,
+				C76747CB1AB2088200406116 /* opt_levmarq.h in Headers */,
 				C7D9A4071AA917700046ADBB /* meta_core.h in Headers */,
 				C7D9A4211AABD53B0046ADBB /* image.h in Headers */,
 				C7D9A3DF1AA913BF0046ADBB /* matrix_view.h in Headers */,
@@ -507,6 +514,7 @@
 				C7D9A3BB1AA913BF0046ADBB /* block_convert.cpp in Sources */,
 				C76747C71AB002EE00406116 /* opt_linemin.cpp in Sources */,
 				C7D9A3F01AA913BF0046ADBB /* utils.cpp in Sources */,
+				C76747C91AB2087300406116 /* opt_levmarq.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

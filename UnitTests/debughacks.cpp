@@ -665,9 +665,52 @@ void test12()
     
 }
 
+class LMFunc : public im::LevenbergMarquardt<double>
+{
+    void eval_residual(im::Vec<double> &vresidual, im::Vec<double> const &vx)
+    {
+        for(int i=0; i<vx.rows(); i++)
+            vresidual(i) = 1-cos(vx(i));
+    }
+    
+    void eval_jacobian(im::Mtx<double> &mjacobian, im::Vec<double> &vx)
+    {
+        for(int i=0; i<vx.rows(); i++)
+            for(int j=0; j<vx.rows(); j++)
+            {
+                if(i==j)
+                    mjacobian(i,j) = sin(vx(i));
+                else
+                    mjacobian(i,j) = 0;
+            }
+    }
+};
+
+void test13()
+{
+    LMFunc lm;
+    
+    im::Rand rnd;
+    im::Vec<double> vx(5);
+    vx.random_gaussian(rnd);
+    vx *= 10.0;
+    vx.print();
+    lm.init(vx);
+    
+    while(!lm.step())
+    {
+        lm.state().print();
+        printf("err=%g derr=%g dx=%g lam=%g\n", lm.error(), lm.delta_error(), lm.delta_x(), lm.lambda());
+    }
+    
+    (lm.state()/CONST_PI).print();
+    if(lm.early_exit())
+        printf("failed\n");
+}
+
 int main()
 {
-    test12();
+    test13();
     return 0;
 }
 

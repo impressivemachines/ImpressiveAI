@@ -293,5 +293,7 @@ namespace im
 #include "geometry.h"
 #include "optimize.h"
 #include "opt_linemin.h"
+#include "opt_levmarq.h"
+
 
 #endif
