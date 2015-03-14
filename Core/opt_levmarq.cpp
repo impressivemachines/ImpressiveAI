@@ -106,7 +106,7 @@ bool im::LevenbergMarquardt<TT>::step()
         }
         
         // termination check
-        TT error_ratio_sq = core_block_reduce_squared_distance(m_vresidual.view(), m_vnewresidual.view()) / m_error;
+        TT error_ratio_sq = core_block_reduce_squared_distance(m_vresidual.view(), m_vnewresidual.view()) / (m_error + TypeProperties<TT>::epsilon());
         if(error_ratio_sq < m_params.error_ratio_min * m_params.error_ratio_min)
             complete = true;
 

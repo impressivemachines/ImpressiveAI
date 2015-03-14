@@ -294,6 +294,9 @@ namespace im
 #include "optimize.h"
 #include "opt_linemin.h"
 #include "opt_levmarq.h"
-
+#include "opt_powell.h"
+#include "opt_conjgrad.h"
+#include "opt_bfgs.h"
+#include "opt_stochastic.h"
 
 #endif

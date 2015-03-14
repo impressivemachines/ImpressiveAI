@@ -39,7 +39,7 @@ Core provides many common tools for linear algebra and statistics and is built o
 Some features that are under development:
 * Powell minimization.
 * Conjugate gradients.
-* Stochastic gradients,
+* Stochastic gradients.
 * BFGS / Limited memory BFGS.
 
 The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order. 

@@ -708,9 +708,54 @@ void test13()
         printf("failed\n");
 }
 
+class SGFunc : public im::StochasticMin<double>
+{
+    double eval_fx(im::Vec<double> const &vx)
+    {
+        double v = 1;
+        for(int i=0; i<vx.rows(); i++)
+            v *= cos(vx(i));
+        return v;
+    }
+    
+    void eval_dfx(im::Vec<double> &vdfx, im::Vec<double> const &vx)
+    {
+        for(int i=0; i<vx.rows(); i++)
+        {
+            double v = 1;
+            for(int j=0; j<vx.rows(); j++)
+                if(i==j)
+                    v *= -sin(vx(j));
+                else
+                    v *= cos(vx(j));
+            vdfx(i) = v;
+        }
+    }
+};
+
+void test14()
+{
+    SGFunc sg;
+ 
+    im::Rand rnd;
+    im::Vec<double> vx(5);
+    vx.random_gaussian(rnd);
+    vx *= 10.0;
+    vx.print();
+    sg.init(vx);
+    
+    while(!sg.step())
+    {
+        sg.state().print();
+        printf("%d r=%g m=%g fx=%g dfx=%g dx=%g\n", sg.iteration_count(), sg.rate(), sg.momentum(), sg.fx(), sg.delta_fx(), sg.delta_x());
+    }
+    
+    (sg.state()/CONST_PI).print();
+}
+
 int main()
 {
-    test13();
+    test14();
     return 0;
 }
 

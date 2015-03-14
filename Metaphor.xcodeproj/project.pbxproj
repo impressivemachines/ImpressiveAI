@@ -11,6 +11,14 @@
 		C76747C71AB002EE00406116 /* opt_linemin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C61AB002EE00406116 /* opt_linemin.cpp */; };
 		C76747C91AB2087300406116 /* opt_levmarq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C81AB2087300406116 /* opt_levmarq.cpp */; };
 		C76747CB1AB2088200406116 /* opt_levmarq.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747CA1AB2088200406116 /* opt_levmarq.h */; };
+		C76747CD1AB276DE00406116 /* opt_powell.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747CC1AB276DE00406116 /* opt_powell.h */; };
+		C76747CF1AB276FC00406116 /* opt_conjgrad.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747CE1AB276FC00406116 /* opt_conjgrad.h */; };
+		C76747D11AB2771200406116 /* opt_bfgs.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747D01AB2771200406116 /* opt_bfgs.h */; };
+		C76747D31AB2773000406116 /* opt_powell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747D21AB2773000406116 /* opt_powell.cpp */; };
+		C76747D51AB2774400406116 /* opt_conjgrad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747D41AB2774400406116 /* opt_conjgrad.cpp */; };
+		C76747D71AB2775600406116 /* opt_bfgs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747D61AB2775600406116 /* opt_bfgs.cpp */; };
+		C76747D91AB277B000406116 /* opt_stochastic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747D81AB277B000406116 /* opt_stochastic.cpp */; };
+		C76747DB1AB277BF00406116 /* opt_stochastic.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747DA1AB277BF00406116 /* opt_stochastic.h */; };
 		C7D9A3B31AA913BF0046ADBB /* block_binary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3711AA913BF0046ADBB /* block_binary.cpp */; };
 		C7D9A3B41AA913BF0046ADBB /* block_binary.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3721AA913BF0046ADBB /* block_binary.h */; };
 		C7D9A3B51AA913BF0046ADBB /* block_blas1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3731AA913BF0046ADBB /* block_blas1.cpp */; };
@@ -113,6 +121,14 @@
 		C76747C61AB002EE00406116 /* opt_linemin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_linemin.cpp; path = Core/opt_linemin.cpp; sourceTree = "<group>"; };
 		C76747C81AB2087300406116 /* opt_levmarq.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_levmarq.cpp; path = Core/opt_levmarq.cpp; sourceTree = "<group>"; };
 		C76747CA1AB2088200406116 /* opt_levmarq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_levmarq.h; path = Core/opt_levmarq.h; sourceTree = "<group>"; };
+		C76747CC1AB276DE00406116 /* opt_powell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_powell.h; path = Core/opt_powell.h; sourceTree = "<group>"; };
+		C76747CE1AB276FC00406116 /* opt_conjgrad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_conjgrad.h; path = Core/opt_conjgrad.h; sourceTree = "<group>"; };
+		C76747D01AB2771200406116 /* opt_bfgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_bfgs.h; path = Core/opt_bfgs.h; sourceTree = "<group>"; };
+		C76747D21AB2773000406116 /* opt_powell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_powell.cpp; path = Core/opt_powell.cpp; sourceTree = "<group>"; };
+		C76747D41AB2774400406116 /* opt_conjgrad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_conjgrad.cpp; path = Core/opt_conjgrad.cpp; sourceTree = "<group>"; };
+		C76747D61AB2775600406116 /* opt_bfgs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_bfgs.cpp; path = Core/opt_bfgs.cpp; sourceTree = "<group>"; };
+		C76747D81AB277B000406116 /* opt_stochastic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_stochastic.cpp; path = Core/opt_stochastic.cpp; sourceTree = "<group>"; };
+		C76747DA1AB277BF00406116 /* opt_stochastic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_stochastic.h; path = Core/opt_stochastic.h; sourceTree = "<group>"; };
 		C7D9A3681AA913560046ADBB /* libMetaphor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetaphor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D9A3711AA913BF0046ADBB /* block_binary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = block_binary.cpp; path = Core/block_binary.cpp; sourceTree = "<group>"; };
 		C7D9A3721AA913BF0046ADBB /* block_binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = block_binary.h; path = Core/block_binary.h; sourceTree = "<group>"; };
@@ -297,6 +313,14 @@
 				C76747C61AB002EE00406116 /* opt_linemin.cpp */,
 				C76747CA1AB2088200406116 /* opt_levmarq.h */,
 				C76747C81AB2087300406116 /* opt_levmarq.cpp */,
+				C76747CC1AB276DE00406116 /* opt_powell.h */,
+				C76747D21AB2773000406116 /* opt_powell.cpp */,
+				C76747CE1AB276FC00406116 /* opt_conjgrad.h */,
+				C76747D41AB2774400406116 /* opt_conjgrad.cpp */,
+				C76747D01AB2771200406116 /* opt_bfgs.h */,
+				C76747D61AB2775600406116 /* opt_bfgs.cpp */,
+				C76747DA1AB277BF00406116 /* opt_stochastic.h */,
+				C76747D81AB277B000406116 /* opt_stochastic.cpp */,
 				C7D9A3A31AA913BF0046ADBB /* permute.cpp */,
 				C7D9A3A41AA913BF0046ADBB /* permute.h */,
 				C7D9A3A51AA913BF0046ADBB /* quaternion.cpp */,
@@ -378,6 +402,7 @@
 				C7D9A4071AA917700046ADBB /* meta_core.h in Headers */,
 				C7D9A4211AABD53B0046ADBB /* image.h in Headers */,
 				C7D9A3DF1AA913BF0046ADBB /* matrix_view.h in Headers */,
+				C76747D11AB2771200406116 /* opt_bfgs.h in Headers */,
 				C7D9A40F1AABD0AE0046ADBB /* meta_io.h in Headers */,
 				C7D9A3C61AA913BF0046ADBB /* block_unary.h in Headers */,
 				C7D9A41B1AABD2910046ADBB /* meta_sound.h in Headers */,
@@ -392,6 +417,8 @@
 				C7D9A3DE1AA913BF0046ADBB /* matrix_io.h in Headers */,
 				C7D9A3E91AA913BF0046ADBB /* random.h in Headers */,
 				C7D9A3E41AA913BF0046ADBB /* optimize.h in Headers */,
+				C76747CD1AB276DE00406116 /* opt_powell.h in Headers */,
+				C76747CF1AB276FC00406116 /* opt_conjgrad.h in Headers */,
 				C7D9A3C01AA913BF0046ADBB /* block_reduce.h in Headers */,
 				C7D9A3D71AA913BF0046ADBB /* decomp_tridiag.h in Headers */,
 				C7D9A3C41AA913BF0046ADBB /* block_tools.h in Headers */,
@@ -401,6 +428,7 @@
 				C7D9A3D91AA913BF0046ADBB /* fft.h in Headers */,
 				C7D9A3EB1AA913BF0046ADBB /* solve.h in Headers */,
 				C76747C51AB002DC00406116 /* opt_linemin.h in Headers */,
+				C76747DB1AB277BF00406116 /* opt_stochastic.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,11 +521,15 @@
 				C7D9A3EE1AA913BF0046ADBB /* time.cpp in Sources */,
 				C7D9A3BF1AA913BF0046ADBB /* block_reduce.cpp in Sources */,
 				C7D9A3DD1AA913BF0046ADBB /* matrix_io.cpp in Sources */,
+				C76747D51AB2774400406116 /* opt_conjgrad.cpp in Sources */,
 				C7D9A3CE1AA913BF0046ADBB /* decomp_lu.cpp in Sources */,
+				C76747D71AB2775600406116 /* opt_bfgs.cpp in Sources */,
 				C7D9A3C51AA913BF0046ADBB /* block_unary.cpp in Sources */,
 				C7D9A3D61AA913BF0046ADBB /* decomp_tridiag.cpp in Sources */,
 				C7D9A3F31AA913BF0046ADBB /* vector.cpp in Sources */,
+				C76747D91AB277B000406116 /* opt_stochastic.cpp in Sources */,
 				C7D9A3B31AA913BF0046ADBB /* block_binary.cpp in Sources */,
+				C76747D31AB2773000406116 /* opt_powell.cpp in Sources */,
 				C7D9A4231AABD89C0046ADBB /* image.cpp in Sources */,
 				C7D9A3CA1AA913BF0046ADBB /* decomp_cholesky.cpp in Sources */,
 				C7D9A3D01AA913BF0046ADBB /* decomp_qr.cpp in Sources */,

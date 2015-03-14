@@ -71,25 +71,25 @@ namespace im
         bool step();
         
         // Returns true if the solver stopped before convergence.
-        bool early_exit(){ return m_early_exit; }
+        bool early_exit() const { return m_early_exit; }
         
         // Current sum squared error
-        TT error() { return m_error; }
+        TT error() const { return m_error; }
         
         // Get the change in error during the last step
-        TT delta_error() { return m_delta_error; }
+        TT delta_error() const { return m_delta_error; }
         
-        // Get the distance moved during the last step
-        TT delta_x() { return m_delta_x; }
+        // Get the distance moved during the last step (note step sizes may rise and fall)
+        TT delta_x() const { return m_delta_x; }
         
         // Diagnostic
-        TT lambda() { return m_lambda; }
+        TT lambda() const { return m_lambda; }
         
         // Get/set the current state vector x
         Vec<TT> state() { return m_vstate; }
         
         // Dimenstionality of the state vector x
-        int dims() { return m_vstate.rows(); }
+        int dims() const { return m_vstate.rows(); }
         
         // Functions which are to be over-ridden by derived class.
         // The only essential function is eval_residual.
