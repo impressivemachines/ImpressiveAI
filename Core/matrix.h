@@ -176,13 +176,14 @@ namespace im
         void set_identity() { m_view = (TT)0; m_view.diag() = (TT)1; }
         
         // Conversion of 1x1 matrix to TT
-        operator TT() const
+        // removed since it creates confusion for matrix vector multiplication
+        /*operator TT() const
         {
             if(rows()!=1 || cols()!=1)
                 IM_THROW_MATRIX;
             
             return at(0,0);
-        }
+        }*/
         
         // Matrix sub view
         Mtx const block(int rowstart, int colstart,

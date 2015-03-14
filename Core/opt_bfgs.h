@@ -24,9 +24,10 @@ namespace im
     {
         BFGSMinParams()
         {
-            
+            iterations_max = 1000000; // number step calls before we quit
         }
         
+        int iterations_max;
     };
     
     template <typename TT>
@@ -66,6 +67,9 @@ namespace im
         // Dimenstionality of the state vector x
         int dims() const { return m_vstate.rows(); }
         
+        // Returns the number of calls to step()
+        int iteration_count() const { return m_iterations; }
+        
         // Functions which are to be over-ridden by derived class.
         
         // Called after init is called
@@ -89,6 +93,7 @@ namespace im
         TT m_delta_fx;
         TT m_delta_x;
         Vec<TT> m_vstate;
+        int m_iterations;
         BFGSMinParams m_params;
     };
 }

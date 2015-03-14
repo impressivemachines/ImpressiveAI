@@ -33,7 +33,7 @@ namespace im
     {
         StochasticMinParams()
         {
-            update_mode = StochasticUpdateModeMomentum;
+            update_mode = StochasticUpdateModeSimple;
             blend_mode = false; // if true, then rate is pre-multiplied by (1-momentum) in update formulas with momentum
             fx_eval_interval = 1; // how many step calls to count between fx evaluations, i.e. how many minibatches between cost evaluations
             delta_fx_min = 1e-8; // if delta_fx falls below this threshold then we quit

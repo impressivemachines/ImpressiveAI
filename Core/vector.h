@@ -178,13 +178,14 @@ namespace im
         }
         
         // Conversion of length 1 vector to TT
-        operator TT() const
+        // removed since it creates confusion for matrix vector multiplication
+        /*operator TT() const
         {
             if(rows()!=1)
                 IM_THROW_MATRIX;
             
             return at(0);
-        }
+        }*/
         
         // Vector sub view
         Vec const block(int rowstart,
@@ -660,14 +661,14 @@ namespace im
         return v;
     }
     
-    template <typename TT> Mtx<TT> operator-(TT const &val, Vec<TT> const &vin)
+    template <typename TT> Vec<TT> operator-(TT const &val, Vec<TT> const &vin)
     {
         Vec<TT> v(vin.rows());
         core_block_scale_offset(v.view(), vin.view(), (TT)-1, val);
         return v;
     }
     
-    template <typename TT> Mtx<TT> operator*(TT const &val, Vec<TT> const &vin)
+    template <typename TT> Vec<TT> operator*(TT const &val, Vec<TT> const &vin)
     {
         Vec<TT> v(vin.rows());
         core_block_scale(v.view(), vin.view(), val);

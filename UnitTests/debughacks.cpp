@@ -710,7 +710,32 @@ void test13()
 
 class SGFunc : public im::StochasticMin<double>
 {
+public:
+    void setup(int d)
+    {
+        im::Mtx<double> ma(d,d);
+        im::Rand rnd;
+        ma.random_gaussian(rnd);
+        m = ma.t() * ma;
+        
+        im::MatrixDecompEigenSymmetric<double> eig(m.view());
+        m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+    }
+    
     double eval_fx(im::Vec<double> const &vx)
+    {
+        return vx.dot_product((m * vx));
+    }
+    
+    void eval_dfx(im::Vec<double> &vdfx, im::Vec<double> const &vx)
+    {
+        im::Vec<double> grad = 2.0 * (m*vx);
+        printf("grad = ");
+        grad.print();
+        vdfx.copy_from(grad);
+    }
+    
+    /*double eval_fx(im::Vec<double> const &vx)
     {
         double v = 1;
         for(int i=0; i<vx.rows(); i++)
@@ -730,15 +755,20 @@ class SGFunc : public im::StochasticMin<double>
                     v *= cos(vx(j));
             vdfx(i) = v;
         }
-    }
+    }*/
+    
+    im::Mtx<double> m;
+    double m_cond;
 };
 
 void test14()
 {
     SGFunc sg;
  
+    int d = 5;
+    sg.setup(d);
     im::Rand rnd;
-    im::Vec<double> vx(5);
+    im::Vec<double> vx(d);
     vx.random_gaussian(rnd);
     vx *= 10.0;
     vx.print();
@@ -750,12 +780,66 @@ void test14()
         printf("%d r=%g m=%g fx=%g dfx=%g dx=%g\n", sg.iteration_count(), sg.rate(), sg.momentum(), sg.fx(), sg.delta_fx(), sg.delta_x());
     }
     
-    (sg.state()/CONST_PI).print();
+    sg.state().print();
+    printf("condition number was %g\n", sg.m_cond);
+}
+
+class PFunc : public im::PowellMin<double>
+{
+public:
+    void setup(int d)
+    {
+        im::Mtx<double> ma(d,d);
+        im::Rand rnd;
+        ma.random_gaussian(rnd);
+        m = ma.t() * ma;
+        
+        im::MatrixDecompEigenSymmetric<double> eig(m.view());
+        m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+    }
+    
+    double eval_fx(im::Vec<double> const &vx)
+    {
+       // printf("eval: ");
+       // vx.print();
+    
+        return vx.dot_product((m * vx));
+    }
+    
+    im::Mtx<double> m;
+    double m_cond;
+};
+
+void test15()
+{
+    PFunc powell;
+    im::PowellMinParams params;
+    params.line_min_eps = 1e-4;
+    
+    int d = 5;
+    powell.set_parameters(params);
+    powell.setup(d);
+    
+    im::Rand rnd;
+    im::Vec<double> vx(d);
+    vx.random_gaussian(rnd);
+    vx *= 10.0;
+    vx.print();
+    powell.init(vx);
+    
+    while(!powell.step())
+    {
+        powell.state().print();
+        printf("%d fx=%g dfx=%g dx=%g\n", powell.iteration_count(), powell.fx(), powell.delta_fx(), powell.delta_x());
+    }
+    
+    powell.state().print();
+    printf("condition number was %g\n", powell.m_cond);
 }
 
 int main()
 {
-    test14();
+    test15();
     return 0;
 }
 

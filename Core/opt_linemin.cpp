@@ -131,7 +131,7 @@ template void im::core_line_min_bracket(float &xa, float &xb, float &xc, FuncEva
 template void im::core_line_min_bracket(double &xa, double &xb, double &xc, FuncEval1D<double> *peval, double bmin, double bmax);
 
 template <typename TT>
-void im::core_line_min(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax)
+void im::core_line_min(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax, TT eps)
 {
     TT const golden = (TT)(1.0  / (CONST_G + 1.0));
 
@@ -152,7 +152,7 @@ void im::core_line_min(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT b
     TT d = (TT)0;
     TT e = (TT)0;
     
-    TT const eps = TypeProperties<TT>::epsilon();
+    eps = std::max(TypeProperties<TT>::epsilon(), eps);
     TT const t = TypeProperties<TT>::epsilon() * (TT)1.0e-3;
     
     int count;
@@ -264,11 +264,11 @@ void im::core_line_min(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT b
     IM_THROW_NO_SOLUTION;
 }
 
-template void im::core_line_min(float &xmin, float &fxmin, FuncEval1D<float> *peval, float bmin, float bmax);
-template void im::core_line_min(double &xmin, double &fxmin, FuncEval1D<double> *peval, double bmin, double bmax);
+template void im::core_line_min(float &xmin, float &fxmin, FuncEval1D<float> *peval, float bmin, float bmax, float eps);
+template void im::core_line_min(double &xmin, double &fxmin, FuncEval1D<double> *peval, double bmin, double bmax, double eps);
 
 template <typename TT>
-void im::core_line_min_using_derivs(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax)
+void im::core_line_min_using_derivs(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax, TT eps)
 {
     if(bmin>bmax)
         std::swap(bmin, bmax);
@@ -291,7 +291,7 @@ void im::core_line_min_using_derivs(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, 
     TT d = (TT)0;
     TT e = (TT)0;
     
-    TT const eps = TypeProperties<TT>::epsilon();
+    eps = std::max(TypeProperties<TT>::epsilon(), eps);
     TT const t = TypeProperties<TT>::epsilon() * (TT)1.0e-3;
     
     int count;
@@ -444,5 +444,5 @@ void im::core_line_min_using_derivs(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, 
     IM_THROW_NO_SOLUTION;
 }
 
-template void im::core_line_min_using_derivs(float &xmin, float &fxmin, FuncEval1D<float> *peval, float bmin, float bmax);
-template void im::core_line_min_using_derivs(double &xmin, double &fxmin, FuncEval1D<double> *peval, double bmin, double bmax);
+template void im::core_line_min_using_derivs(float &xmin, float &fxmin, FuncEval1D<float> *peval, float bmin, float bmax, float eps);
+template void im::core_line_min_using_derivs(double &xmin, double &fxmin, FuncEval1D<double> *peval, double bmin, double bmax, double eps);

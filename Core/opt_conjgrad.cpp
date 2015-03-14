@@ -20,7 +20,11 @@ void im::ConjGradientMin<TT>::init(Vec<TT> vstate)
     m_delta_fx = (TT)0;
     m_delta_x = (TT)0;
     
+    m_iterations = 0;
+    
     eval_init();
+    
+
 }
 
 template <typename TT>
@@ -41,6 +45,10 @@ bool im::ConjGradientMin<TT>::step()
     
     
     m_early_exit = eval_end_step() || m_early_exit;
+    
+    m_iterations++;
+    if(m_iterations > m_params.iterations_max)
+        complete = true;
     
     return m_early_exit || complete;
 }

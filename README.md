@@ -36,9 +36,9 @@ Core provides many common tools for linear algebra and statistics and is built o
 * Bracketing, line minimization, and line minimization with derivatives.
 * Levenberg Marquardt minimization.
 * Stochastic gradients with optional momentum or acceleration.
+* Powell minimization.
 
 Some features that are under development:
-* Powell minimization.
 * Conjugate gradients.
 * BFGS / Limited memory BFGS.
 

@@ -25,11 +25,66 @@ namespace im
     {
         PowellMinParams()
         {
-
+            bracket_max = 1.0; // bracketing operation in line minimization uses the range [0, bracket_max]
+            termination_ratio = 1e-7; // ratio of delta_fx to fx to cause termination
+            iterations_max = 1000000; // number step calls before we quit
+            line_min_eps = 0; // if >0 set the error tolerance for line min termination
         }
         
+        double bracket_max;
+        double termination_ratio;
+        int iterations_max;
+        double line_min_eps;
     };
     
+    template <typename TT> class PowellMin;
+    
+    // class used by minimizer
+    template <typename TT>
+    class PowellVectorLineMin : public FuncEval1D<TT>
+    {
+    public:
+        void init(PowellMin<TT> *p, int dims, TT eps)
+        {
+            m_p = p;
+            m_vx.resize(dims);
+            m_eps = eps;
+        }
+        
+        void linemin(Vec<TT> &vbase, Vec<TT> const &vdir, TT bracketmax)
+        {
+            m_vbase = vbase; // reference
+            m_vdir = vdir; // reference
+            
+            TT xa, xb, xc;
+            core_line_min_bracket(xa, xb, xc, this, (TT)0, bracketmax);
+            core_line_min(m_xmin, m_fxmin, this, xa, xc, m_eps);
+            
+            // copy back into vbase
+            core_block_blas_axpy(vbase.view(), m_vdir.view(), m_xmin);
+        }
+        
+        TT xmin() { return m_xmin; }
+        TT fxmin() { return m_fxmin; }
+        
+        TT eval_fx(TT x)
+        {
+            m_vx.copy_from(m_vbase);
+            core_block_blas_axpy(m_vx.view(), m_vdir.view(), x);
+            return m_p->eval_fx(m_vx);
+        }
+        
+    private:
+        PowellMin<TT> *m_p;
+        TT m_xmin;
+        TT m_fxmin;
+        Vec<TT> m_vbase;
+        Vec<TT> m_vdir;
+        Vec<TT> m_vx;
+        TT m_eps;
+    };
+    
+    // the actual minimizer
     template <typename TT>
     class PowellMin
     {
@@ -67,6 +122,9 @@ namespace im
         // Dimenstionality of the state vector x
         int dims() const { return m_vstate.rows(); }
         
+        // Returns the number of calls to step()
+        int iteration_count() const { return m_iterations; }
+        
         // Functions which are to be over-ridden by derived class.
         // The only essential function is eval_fx.
         
@@ -84,12 +142,19 @@ namespace im
         
     protected:
         bool m_early_exit;
+        bool m_startup;
         TT m_fx;
         TT m_delta_fx;
         TT m_delta_x;
         Vec<TT> m_vstate;
+        Vec<TT> m_vstatesave;
+        Mtx<TT> m_mdirset;
+        Vec<TT> m_vdir;
         PowellMinParams m_params;
+        PowellVectorLineMin<TT> m_linemin;
+        int m_iterations;
     };
+    
 }
 
 #endif

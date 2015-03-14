@@ -33,6 +33,7 @@ namespace im
             deriv_delta_ratio = 1e-6; // numerical deriv delta as a ratio of parameter size
             deriv_delta_min = 1e-6; // min value of deriv delta
             update_fraction = 1.0; // amount of update to add each time (<1 means don't step the whole way)
+            iterations_max = 1000000; // number step calls before we quit
         }
         
         bool use_marquardt_mode;
@@ -44,6 +45,7 @@ namespace im
         double deriv_delta_ratio;
         double deriv_delta_min;
         double update_fraction;
+        int iterations_max;
     };
     
     // Minimizes the least squares error ||f(X)||
@@ -91,6 +93,9 @@ namespace im
         // Dimenstionality of the state vector x
         int dims() const { return m_vstate.rows(); }
         
+        // Returns the number of calls to step()
+        int iteration_count() const { return m_iterations; }
+        
         // Functions which are to be over-ridden by derived class.
         // The only essential function is eval_residual.
         
@@ -133,6 +138,7 @@ namespace im
         TT m_delta_error;
         TT m_delta_x;
         TT m_lambda;
+        int m_iterations;
     };
     
 }

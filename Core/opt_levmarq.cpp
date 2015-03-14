@@ -30,6 +30,8 @@ void im::LevenbergMarquardt<TT>::init(Vec<TT> vstate)
     
     m_lambda = (TT)m_params.lambda_start;
     
+    m_iterations = 0;
+    
     eval_init();
 }
 
@@ -136,6 +138,10 @@ bool im::LevenbergMarquardt<TT>::step()
     }
 
     m_early_exit = eval_end_step() || m_early_exit;
+    
+    m_iterations++;
+    if(m_iterations > m_params.iterations_max)
+        complete = true;
     
     return m_early_exit || complete;
 }

@@ -29,12 +29,12 @@ namespace im
     // find a 1D minimum without derivatives
     // throws exception if the minimum can't be found in the given interval
     template <typename TT>
-    void core_line_min(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax);
+    void core_line_min(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax, TT eps = (TT)0);
     
     // find a 1D minimum using derivatives
     // throws exception if the minimum can't be found in the given interval
     template <typename TT>
-    void core_line_min_using_derivs(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax);
+    void core_line_min_using_derivs(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax, TT eps = (TT)0);
     
 }
 
