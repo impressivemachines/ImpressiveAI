@@ -837,9 +837,70 @@ void test15()
     printf("condition number was %g\n", powell.m_cond);
 }
 
+class CGFunc : public im::ConjGradientMin<double>
+{
+public:
+    void setup(int d)
+    {
+        im::Mtx<double> ma(d,d);
+        im::Rand rnd;
+        ma.random_gaussian(rnd);
+        m = ma.t() * ma;
+        
+        im::MatrixDecompEigenSymmetric<double> eig(m.view());
+        m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+    }
+    
+    double eval_fx(im::Vec<double> const &vx)
+    {
+        // printf("eval: ");
+        // vx.print();
+        
+        return vx.dot_product((m * vx));
+    }
+    
+    void eval_dfx(im::Vec<double> &vdfx, im::Vec<double> const &vx)
+    {
+        im::Vec<double> grad = 2.0 * (m*vx);
+        printf("grad = ");
+        grad.print();
+        vdfx.copy_from(grad);
+    }
+    
+    im::Mtx<double> m;
+    double m_cond;
+};
+
+void test16()
+{
+    CGFunc cg;
+    im::ConjGradientMinParams params;
+    params.line_min_eps = 1e-4;
+    
+    int d = 5;
+    cg.set_parameters(params);
+    cg.setup(d);
+    
+    im::Rand rnd;
+    im::Vec<double> vx(d);
+    vx.random_gaussian(rnd);
+    vx *= 10.0;
+    vx.print();
+    cg.init(vx);
+    
+    while(!cg.step())
+    {
+        cg.state().print();
+        printf("%d fx=%g dfx=%g dx=%g\n", cg.iteration_count(), cg.fx(), cg.delta_fx(), cg.delta_x());
+    }
+    
+    cg.state().print();
+    printf("condition number was %g\n", cg.m_cond);
+}
+
 int main()
 {
-    test15();
+    test16();
     return 0;
 }
 

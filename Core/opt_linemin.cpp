@@ -267,6 +267,9 @@ void im::core_line_min(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT b
 template void im::core_line_min(float &xmin, float &fxmin, FuncEval1D<float> *peval, float bmin, float bmax, float eps);
 template void im::core_line_min(double &xmin, double &fxmin, FuncEval1D<double> *peval, double bmin, double bmax, double eps);
 
+// Note that some other code, such as conjugate gradients, rely on this function always calling eval_dfx
+// immediately after eval_fx with the same value of x.
+
 template <typename TT>
 void im::core_line_min_using_derivs(TT &xmin, TT &fxmin, FuncEval1D<TT> *peval, TT bmin, TT bmax, TT eps)
 {
