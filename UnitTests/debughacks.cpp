@@ -898,9 +898,369 @@ void test16()
     printf("condition number was %g\n", cg.m_cond);
 }
 
+void test17()
+{
+    int d = 2;
+    im::Mtx<double> ma(d,d);
+    im::Rand rnd;
+    ma.random_gaussian(rnd);
+    im::Mtx<double> m = ma.t() * ma;
+    m.set_identity();
+    m(0,0) = 0.001;
+    
+    im::MatrixDecompEigenSymmetric<double> eig(m.view());
+    double cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+    printf("condition number = %g\n", cond);
+    
+    im::Vec<double> vx(d), vx1(d);
+    vx.random_gaussian(rnd);
+    vx *= 10.0;
+    vx(0) = 21;
+    vx(1) = 8;
+    printf("x = ");
+    vx.print();
+    
+    FILE *fp3 = fopen("c.txt", "w");
+    im::Mtx<double> invQ = eig.inverse_square_root();
+    invQ.print();
+    for(double sc = 1; sc<=8; sc *=2)
+    {
+        for(double th = 0; th < CONST_2PI; th += 0.01)
+        {
+            double x = sc*cos(th);
+            double y = sc*sin(th);
+            double xx = invQ(0,0) * x + invQ(0,1) * y;
+            double yy = invQ(1,0) * x + invQ(1,1) * y;
+            fprintf(fp3, "%g %g\n", xx, yy);
+        }
+        fprintf(fp3, "\n");
+    }
+    
+    im::Vec<double> vg1(d), vg2(d);
+    
+    double h = 0.001; // step size
+    
+    FILE *fp1 = fopen("a.txt", "w");
+    FILE *fp2 = fopen("b.txt", "w");
+    FILE *fp4 = fopen("g.txt", "w");
+    FILE *fp5 = fopen("g2.txt", "w");
+    FILE *fp6 = fopen("ag.txt", "w");
+    for(double xx = -2;xx<=2; xx+=0.1)
+        for(double yy=-2;yy<=2; yy+=0.1)
+        {
+            double gx = m(0,0)*xx+m(0,1)*yy;
+            double gy = m(1,0)*xx+m(1,1)*yy;
+            //double mag = std::sqrt(gx*gx+gy*gy);
+            //if(mag>0)
+           // {
+           //     gx/=mag;
+           //     gy/=mag;
+           // }
+            fprintf(fp6,"%g %g\n", xx, yy);
+            fprintf(fp6,"%g %g\n\n", xx+0.1*gx, yy+0.1*gy);
+        }
+    fclose(fp6);
+    
+    for(int i=0; i<10000; i++)
+    {
+        printf("iteration = %d\n", i);
+        
+        // eval f(x) and df(x)
+        double fx = 0.5 * vx.dot_product(m * vx);
+        vg1 = m * vx;
+        printf("  f(x) = %g, df(x) = ", fx);
+        vg1.print();
+        
+        //fprintf(stderr,"%d %g %g %g\n", i, log(h), vg1.magnitude(), fx);
+        fprintf(fp1,"%g %g\n", vx(0), vx(1));
+        fprintf(fp2,"%g %g\n", vx(0), vx(1));
+        
+        if(vg1.magnitude() < 0.00001)
+        {
+            printf("done\n");
+            break;
+        }
+        
+        vg1.normalize();
+        fprintf(fp4,"%g %g\n", vx(0), vx(1));
+        fprintf(fp4,"%g %g\n\n", vx(0)+0.1*vg1(0), vx(1)+0.1*vg1(1));
+        
+        while(true)
+        {
+            printf("  step = %g\n", h);
+            
+            vx1 = vx - h * vg1;
+            fprintf(fp2,"%g %g\n", vx1(0), vx1(1));
+            printf("  x1 = ");
+            vx1.print();
+            
+            // eval f(x1) and df(x1)
+            double fx1 = 0.5 * vx1.dot_product(m * vx1);
+            vg2 = m * vx1;
+            printf("  f(x1) = %g, df(x1) = ", fx1);
+            vg2.print();
+            
+            vg2.normalize();
+            fprintf(fp5,"%g %g\n", vx1(0), vx1(1));
+            fprintf(fp5,"%g %g\n\n", vx1(0)+0.1*vg2(0), vx1(1)+0.1*vg2(1));
+            
+            double dot = vg1.dot_product(vg2);
+            printf("  dot = %g\n", dot);
+        
+            if(dot>0.95)
+            {
+                double rho = 0.8;
+                printf("  accept\n");
+                vx -= h * (rho*vg1 + (1.0-rho)*vg2);
+                //if(dot>0.99)
+                //    h *= 2;
+                //else
+                    h *= 1.05;
+                break;
+            }
+            else
+            {
+                printf("  reject\n"); // can
+                h /= 2;
+            }
+        }
+        
+        printf("  x = ");
+        vx.print();
+    }
+    
+    fclose(fp1);
+    fclose(fp2);
+    fclose(fp3);
+    fclose(fp4);
+    fclose(fp5);
+    
+    printf("condition number = %g\n", cond);
+}
+
+void test18()
+{
+    int d = 2;
+    im::Mtx<double> ma(d,d);
+    im::Rand rnd;
+    ma.random_gaussian(rnd);
+    im::Mtx<double> m = ma.t() * ma;
+    //m.set_identity();
+    //m(0,0) = 0.001;
+    
+    im::MatrixDecompEigenSymmetric<double> eig(m.view());
+    double cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+    printf("condition number = %g\n", cond);
+    
+    im::Vec<double> vx(d), vx1(d);
+    vx.random_gaussian(rnd);
+    vx *= 10.0;
+    vx(0) = 1;
+    vx(1) = -1;
+    printf("x = ");
+    vx.print();
+    
+    FILE *fp3 = fopen("c.txt", "w");
+    im::Mtx<double> invQ = eig.inverse_square_root();
+    invQ.print();
+    for(double sc = 1; sc<=8; sc *=2)
+    {
+        for(double th = 0; th < CONST_2PI; th += 0.01)
+        {
+            double x = sc*cos(th);
+            double y = sc*sin(th);
+            double xx = invQ(0,0) * x + invQ(0,1) * y;
+            double yy = invQ(1,0) * x + invQ(1,1) * y;
+            fprintf(fp3, "%g %g\n", xx, yy);
+        }
+        fprintf(fp3, "\n");
+    }
+
+    
+    FILE *fp1 = fopen("a.txt", "w");
+    FILE *fp2 = fopen("b.txt", "w");
+    FILE *fp4 = fopen("g.txt", "w");
+    FILE *fp5 = fopen("g2.txt", "w");
+    FILE *fp6 = fopen("ag.txt", "w");
+    for(double xx = -2;xx<=2; xx+=0.1)
+        for(double yy=-2;yy<=2; yy+=0.1)
+        {
+            double gx = m(0,0)*xx+m(0,1)*yy;
+            double gy = m(1,0)*xx+m(1,1)*yy;
+            //double mag = std::sqrt(gx*gx+gy*gy);
+            //if(mag>0)
+            // {
+            //     gx/=mag;
+            //     gy/=mag;
+            // }
+            fprintf(fp6,"%g %g\n", xx, yy);
+            fprintf(fp6,"%g %g\n\n", xx+0.1*gx, yy+0.1*gy);
+        }
+    fclose(fp6);
+    
+    double h = 0.001; // step size
+    im::Vec<double> vg(d), vgnew(d), vxnew(d);
+    
+    // eval f(x) and df(x)
+    double fx = (1-vx(0))*(1-vx(0)) + 100*(vx(1)-vx(0)*vx(0))*(vx(1)-vx(0)*vx(0));
+    //double fx = 0.5 * vx.dot_product(m * vx);
+    vg(0) = -2+2*vx(0)-400*vx(1)*vx(0)+400*vx(0)*vx(0)*vx(0);
+    vg(1) = 200*vx(1)-200*vx(0)*vx(0);
+    //vg = m * vx;
+    printf("  f(x) = %g, df(x) = ", fx);
+    vg.print();
+    vg.normalize();
+    
+    bool complete = false;
+    for(int i=0; i<10000; i++)
+    {
+        printf("iteration = %d\n", i);
+
+        fprintf(fp1,"%g %g\n", vx(0), vx(1));
+        fprintf(fp2,"%g %g\n", vx(0), vx(1));
+        fprintf(fp4,"%g %g\n", vx(0), vx(1));
+        fprintf(fp4,"%g %g\n\n", vx(0)+0.001*vg(0), vx(1)+0.001*vg(1));
+        
+        while(1)
+        {
+            printf("h = %g\n",h);
+            vxnew = vx - h * vg;
+            
+            fprintf(fp2,"%g %g\n", vxnew(0), vxnew(1));
+            
+            // eval f(x) and df(x)
+            double fxnew = (1-vxnew(0))*(1-vxnew(0)) + 100*(vxnew(1)-vxnew(0)*vxnew(0))*(vxnew(1)-vxnew(0)*vxnew(0));
+            //double fxnew = 0.5 * vxnew.dot_product(m * vxnew);
+            vgnew(0) = -2+2*vxnew(0)-400*vxnew(1)*vxnew(0)+400*vxnew(0)*vxnew(0)*vxnew(0);
+            vgnew(1) = 200*vxnew(1)-200*vxnew(0)*vxnew(0);
+            //vgnew = m * vxnew;
+            printf("  f(xnew) = %g, df(xnew) = ", fxnew);
+            vgnew.print();
+            
+            if(vgnew.magnitude() < 0.001)
+            {
+                vx.copy_from(vxnew);
+                printf("done\n");
+                complete = true;
+                break;
+            }
+            
+            vgnew.normalize();
+        
+            fprintf(fp5,"%g %g\n", vxnew(0), vxnew(1));
+            fprintf(fp5,"%g %g\n\n", vxnew(0)+0.001*vgnew(0), vxnew(1)+0.001*vgnew(1));
+            
+            double dot = vg.dot_product(vgnew);
+            printf("  dot = %g\n", dot);
+        
+            if(dot>0.9)
+            {
+                printf("  accept\n");
+                //vg.copy_from(vgnew);
+                double rho = 0.9;
+                vg = rho*vg + (1-rho)*vgnew;
+                vx.copy_from(vxnew);
+
+                //h *= (1.1+2*(dot-0.9));
+                //if(dot>0.999)
+                    h*=1.5;
+                break;
+            }
+            else
+            {
+                printf("  reject\n");
+                h /= 1.5;
+            }
+        }
+
+        
+        printf("  x = ");
+        vx.print();
+        if(complete)
+            break;
+    }
+    
+    fclose(fp1);
+    fclose(fp2);
+    fclose(fp3);
+    fclose(fp4);
+    fclose(fp5);
+    
+    printf("condition number = %g\n", cond);
+}
+
+class BFGSFunc : public im::BFGSMin<double>
+{
+public:
+    void setup(int d)
+    {
+        im::Mtx<double> ma(d,d);
+        im::Rand rnd;
+        ma.random_gaussian(rnd);
+        m = ma.t() * ma;
+        
+        im::MatrixDecompEigenSymmetric<double> eig(m.view());
+        m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+        count = 0;
+    }
+    
+    double eval_fx(im::Vec<double> const &vx)
+    {
+        // printf("eval: ");
+        // vx.print();
+        
+        /*return vx.dot_product((m * vx));*/
+        return (1-vx(0))*(1-vx(0)) + 100*(vx(1)-vx(0)*vx(0))*(vx(1)-vx(0)*vx(0));
+    }
+    
+    void eval_dfx(im::Vec<double> &vdfx, im::Vec<double> const &vx)
+    {
+        /*im::Vec<double> grad = 2.0 * (m*vx);
+        printf("grad = ");
+        grad.print();
+        vdfx.copy_from(grad);*/
+        
+        vdfx(0) = -2+2*vx(0)-400*vx(1)*vx(0)+400*vx(0)*vx(0)*vx(0);
+        vdfx(1) = 200*vx(1)-200*vx(0)*vx(0);
+        printf("%d grad = ", count++);
+        vdfx.print();
+    }
+    
+    im::Mtx<double> m;
+    double m_cond;
+    int count;
+};
+
+void test19()
+{
+    BFGSFunc bfgs;
+    im::BFGSMinParams params;
+    params.line_min_eps = 1e-4;
+    
+    int d = 2;
+    bfgs.set_parameters(params);
+    bfgs.setup(d);
+    
+    im::Rand rnd;
+    im::Vec<double> vx(d);
+    vx.random_gaussian(rnd);
+    vx *= 10.0;
+    vx.print();
+    bfgs.init(vx);
+    
+    while(!bfgs.step())
+    {
+        bfgs.state().print();
+        printf("%d fx=%g dfx=%g dx=%g\n", bfgs.iteration_count(), bfgs.fx(), bfgs.delta_fx(), bfgs.delta_x());
+    }
+    
+    bfgs.state().print();
+    printf("condition number was %g\n", bfgs.m_cond);
+}
+
 int main()
 {
-    test16();
+    test19();
     return 0;
 }
 

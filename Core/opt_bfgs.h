@@ -24,10 +24,74 @@ namespace im
     {
         BFGSMinParams()
         {
+            termination_ratio = 1e-7; // ratio of delta_fx to fx to cause termination
             iterations_max = 1000000; // number step calls before we quit
+            line_min_eps = 0; // if >0 set the error tolerance for line min termination
+            bracket_max = 1.0; // bracketing operation in line minimization uses the range [0, bracket_max]
         }
         
         int iterations_max;
+        double line_min_eps;
+        double bracket_max;
+        double termination_ratio;
+    };
+    
+    template <typename TT> class BFGSMin;
+    
+    // class used by minimizer
+    template <typename TT>
+    class BFGSLineMin : public FuncEval1D<TT>
+    {
+    public:
+        void init(BFGSMin<TT> *p, int dims, TT eps)
+        {
+            m_p = p;
+            m_vx.resize(dims);
+            m_vderiv.resize(dims);
+            m_eps = eps;
+        }
+        
+        void linemin(Vec<TT> &vbase, Vec<TT> const &vdir, TT bracketmax)
+        {
+            m_vbase = vbase; // reference
+            m_vdir = vdir; // reference
+            
+            TT xa, xb, xc;
+            core_line_min_bracket(xa, xb, xc, this, (TT)0, bracketmax);
+            core_line_min_using_derivs(m_xmin, m_fxmin, this, xa, xc, m_eps);
+            
+            // copy back into vbase
+            core_block_blas_axpy(vbase.view(), m_vdir.view(), m_xmin);
+        }
+        
+        TT xmin() { return m_xmin; }
+        TT fxmin() { return m_fxmin; }
+        
+        TT eval_fx(TT x)
+        {
+            m_vx.copy_from(m_vbase);
+            core_block_blas_axpy(m_vx.view(), m_vdir.view(), x);
+            return m_p->eval_fx(m_vx);
+        }
+        
+        TT eval_dfx(TT x)
+        {
+            // eval derivative
+            // note that core_line_min_using_derivs always calls eval_dfx after calling eval_fx
+            // and uses the same value of x, so it is not necessary to re-calculate m_vx
+            m_p->eval_dfx(m_vderiv, m_vx);
+            return m_vderiv.dot_product(m_vdir); // project back onto the line direction
+        }
+        
+    private:
+        BFGSMin<TT> *m_p;
+        TT m_xmin;
+        TT m_fxmin;
+        Vec<TT> m_vbase;
+        Vec<TT> m_vdir;
+        Vec<TT> m_vx;
+        Vec<TT> m_vderiv;
+        TT m_eps;
     };
     
     template <typename TT>
@@ -93,8 +157,19 @@ namespace im
         TT m_delta_fx;
         TT m_delta_x;
         Vec<TT> m_vstate;
+        Vec<TT> m_vprevstate;
+        Vec<TT> m_vgrad;
+        Vec<TT> m_vprevgrad;
+        Vec<TT> m_vdelta_state;
+        Vec<TT> m_vdelta_grad;
+        Vec<TT> m_vHg;
+        Vec<TT> m_vgH;
+        Mtx<TT> m_mH;
         int m_iterations;
+        bool m_startup;
+        bool m_hessianok;
         BFGSMinParams m_params;
+        BFGSLineMin<TT> m_linemin;
     };
 }
 

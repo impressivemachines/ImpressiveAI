@@ -291,7 +291,6 @@ namespace im
 #include "fft.h"
 #include "quaternion.h"
 #include "geometry.h"
-#include "optimize.h"
 #include "opt_linemin.h"
 #include "opt_levmarq.h"
 #include "opt_powell.h"

@@ -66,7 +66,6 @@
 		C7D9A3E01AA913BF0046ADBB /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A39E1AA913BF0046ADBB /* matrix.cpp */; };
 		C7D9A3E11AA913BF0046ADBB /* matrix.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A39F1AA913BF0046ADBB /* matrix.h */; };
 		C7D9A3E21AA913BF0046ADBB /* mem.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3A01AA913BF0046ADBB /* mem.h */; };
-		C7D9A3E41AA913BF0046ADBB /* optimize.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3A21AA913BF0046ADBB /* optimize.h */; };
 		C7D9A3E51AA913BF0046ADBB /* permute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3A31AA913BF0046ADBB /* permute.cpp */; };
 		C7D9A3E61AA913BF0046ADBB /* permute.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D9A3A41AA913BF0046ADBB /* permute.h */; };
 		C7D9A3E71AA913BF0046ADBB /* quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7D9A3A51AA913BF0046ADBB /* quaternion.cpp */; };
@@ -177,7 +176,6 @@
 		C7D9A39E1AA913BF0046ADBB /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = matrix.cpp; path = Core/matrix.cpp; sourceTree = "<group>"; };
 		C7D9A39F1AA913BF0046ADBB /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = matrix.h; path = Core/matrix.h; sourceTree = "<group>"; };
 		C7D9A3A01AA913BF0046ADBB /* mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mem.h; path = Core/mem.h; sourceTree = "<group>"; };
-		C7D9A3A21AA913BF0046ADBB /* optimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = optimize.h; path = Core/optimize.h; sourceTree = "<group>"; };
 		C7D9A3A31AA913BF0046ADBB /* permute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = permute.cpp; path = Core/permute.cpp; sourceTree = "<group>"; };
 		C7D9A3A41AA913BF0046ADBB /* permute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = permute.h; path = Core/permute.h; sourceTree = "<group>"; };
 		C7D9A3A51AA913BF0046ADBB /* quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = quaternion.cpp; path = Core/quaternion.cpp; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 				C7D9A39E1AA913BF0046ADBB /* matrix.cpp */,
 				C7D9A39F1AA913BF0046ADBB /* matrix.h */,
 				C7D9A3A01AA913BF0046ADBB /* mem.h */,
-				C7D9A3A21AA913BF0046ADBB /* optimize.h */,
 				C76747C41AB002DC00406116 /* opt_linemin.h */,
 				C76747C61AB002EE00406116 /* opt_linemin.cpp */,
 				C76747CA1AB2088200406116 /* opt_levmarq.h */,
@@ -416,7 +413,6 @@
 				C7D9A3CF1AA913BF0046ADBB /* decomp_lu.h in Headers */,
 				C7D9A3DE1AA913BF0046ADBB /* matrix_io.h in Headers */,
 				C7D9A3E91AA913BF0046ADBB /* random.h in Headers */,
-				C7D9A3E41AA913BF0046ADBB /* optimize.h in Headers */,
 				C76747CD1AB276DE00406116 /* opt_powell.h in Headers */,
 				C76747CF1AB276FC00406116 /* opt_conjgrad.h in Headers */,
 				C7D9A3C01AA913BF0046ADBB /* block_reduce.h in Headers */,
