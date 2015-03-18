@@ -58,12 +58,12 @@ namespace im
     // Fits a 1D quadratic and returns the position of the minimum or maximum and the function value at that point
     // The zero position corresponds to the middle sample of the length 3 vector vf
     // The function returns 1 for a maximum, -1 for a minimum, or 0 for any other condition.
-    template <typename TT> int core_quadratic_interp_1d(TT &xminmax, TT &fxminmax, VecView<TT> const &vf);
+    template <typename TT> int core_quadratic_minmax_1d(TT &xminmax, TT &fxminmax, VecView<TT> const &vf);
     
     // Fits a 2D quadratic and returns the position of the minimum or maximum and the function value at that point
     // The zero position corresponds to the middle sample of the 3x3 matrix mf
     // The function returns 1 for a maximum, -1 for a minimum, or 0 for any other condition, e.g. flat, negligable curvature, or saddle point.
-    template <typename TT> int core_quadratic_interp_2d(TT &xminmax, TT &yminmax, TT &fxminmax, MtxView<TT> const &mf);
+    template <typename TT> int core_quadratic_minmax_2d(TT &xminmax, TT &yminmax, TT &fxminmax, MtxView<TT> const &mf);
     
     // Evaluates a 1D quadratic at the point x.
     // The quadratic is f(x) = coef(0) * x*x + coef(1) * x + coef(2)

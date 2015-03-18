@@ -1382,7 +1382,7 @@ void test21()
     vc.print();
     
     double x,y,fx;
-    int type = core_quadratic_interp_2d(x,y,fx, f.view());
+    int type = core_quadratic_minmax_2d(x,y,fx, f.view());
     printf("%d %g %g %g\n",type,x,y,fx);
 }
 

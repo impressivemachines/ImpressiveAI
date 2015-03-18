@@ -357,7 +357,7 @@ template <typename TT> void im::core_quadratic_fit_2d(VecView<TT> vCoefs, MtxVie
 template void im::core_quadratic_fit_2d(VecView<float> vCoefs, MtxView<float> const &mf);
 template void im::core_quadratic_fit_2d(VecView<double> vCoefs, MtxView<double> const &mf);
 
-template <typename TT> int im::core_quadratic_interp_1d(TT &xminmax, TT &fxminmax, VecView<TT> const &vf)
+template <typename TT> int im::core_quadratic_minmax_1d(TT &xminmax, TT &fxminmax, VecView<TT> const &vf)
 {
     TT coefs[3];
     core_quadratic_fit_1d(VecView<TT>(3, 1, coefs), vf);
@@ -374,10 +374,10 @@ template <typename TT> int im::core_quadratic_interp_1d(TT &xminmax, TT &fxminma
     return coefs[0] > (TT)0 ? -1 : 1;
 }
 
-template int im::core_quadratic_interp_1d(float &xminmax, float &fxminmax, VecView<float> const &vf);
-template int im::core_quadratic_interp_1d(double &xminmax, double &fxminmax, VecView<double> const &vf);
+template int im::core_quadratic_minmax_1d(float &xminmax, float &fxminmax, VecView<float> const &vf);
+template int im::core_quadratic_minmax_1d(double &xminmax, double &fxminmax, VecView<double> const &vf);
 
-template <typename TT> int im::core_quadratic_interp_2d(TT &xminmax, TT &yminmax, TT &fxminmax, MtxView<TT> const &mf)
+template <typename TT> int im::core_quadratic_minmax_2d(TT &xminmax, TT &yminmax, TT &fxminmax, MtxView<TT> const &mf)
 {
     TT coefs[6];
     core_quadratic_fit_2d(VecView<TT>(6, 1, coefs), mf);
@@ -400,6 +400,6 @@ template <typename TT> int im::core_quadratic_interp_2d(TT &xminmax, TT &yminmax
     return coefs[0] > (TT)0 ? -1 : 1;
 }
 
-template int im::core_quadratic_interp_2d(float &xminmax, float &yminmax, float &fxminmax, MtxView<float> const &mf);
-template int im::core_quadratic_interp_2d(double &xminmax, double &yminmax, double &fxminmax, MtxView<double> const &mf);
+template int im::core_quadratic_minmax_2d(float &xminmax, float &yminmax, float &fxminmax, MtxView<float> const &mf);
+template int im::core_quadratic_minmax_2d(double &xminmax, double &yminmax, double &fxminmax, MtxView<double> const &mf);
 
