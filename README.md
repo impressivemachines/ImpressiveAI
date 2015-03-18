@@ -16,7 +16,10 @@ Core provides many common tools for linear algebra and statistics and is built o
     * A full suite of optimized standard BLAS operations supporting BLAS 1, 2 and 3.
     * Optimized low-level matrix block math functions which work on vector and matrix view types.
     * Math operations include data sorting, conversion, statistics, and reduce operations.
-* Matrix and vector shared memory objects which have a multitude of member functions for common linear algebra operations.
+* Matrix and vector memory objects
+    * Tightly integrated with view objects
+    * Offer a multitude of member functions for common linear algebra operations.
+    * Use shared pointers to memory to avoid data copying.
 * Typical matrix decompositions:
     * LU decomposition.
     * Cholesky LDLT and LLT decomposition.
