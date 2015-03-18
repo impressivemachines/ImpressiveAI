@@ -26,7 +26,7 @@ Core provides many common tools for linear algebra and statistics and is built o
     * Jacobi SVD with QR preconditioning.
     * Special case 2x2 Eigen and SVD decompositions.
 * Signal processing:
-    * Fast convolution for 1D and 2D signals.
+    * Fast block-based convolution for 1D and 2D signals.
     * Arbitrary radix FFT in 1D and 2D.
 * Statistics:
     * Convenient interfaces for random number generation.
@@ -51,9 +51,9 @@ Core provides many common tools for linear algebra and statistics and is built o
 Some features that are under development:
 * Limited memory BFGS.
 
-The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride which is stored in bottom up order. 
+The matrix and vector view objects have independent signed row and columns strides and so they can operate on many data formats and with any data type - they do not require classical row or column major memory organization. All operations support positive or negative row or column strides. Therefore they can refer to memory which is reversed, decimated, or fragmented, such as all red pixels of an RGB image with arbitrary row stride such as being stored in bottom up order. 
 
-Decimating, reversing, or extracting rows, columns, blocks, or diagonals of matrices is therefore a constant time operation. Most operations in the library involve passing only the small view structures as arguments to functions (often by reference) and unnecessary data copying is avoided. Matrix and vector classes exist to dynamically create memory blocks where needed and these make use of standard shared pointers. Alternatively, memory can be statically allocated by the user and trivially wrapped into matrix view objects for use with any library functions.
+Decimating, reversing, or extracting rows, columns, blocks, or diagonals of matrices is therefore a constant time operation. Most operations in the library involve passing only the small view structures as arguments to functions (often by reference) and unnecessary data copying is avoided. Matrix and vector classes exist to dynamically create memory blocks where needed and these make use of standard shared pointers. Alternatively, memory can be statically allocated by the user and trivially wrapped into matrix view objects for use with any library functions. Other data blocks in related libraries, such as images, may be referenced easily thought this library's matrix or vector view classes.
 
 ### Dependencies
 There are no external dependencies for the core library.
