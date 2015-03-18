@@ -12,7 +12,7 @@ Core provides many common tools for linear algebra and statistics and is built o
     * Any data type supported.
     * Many common data operations, such as sub-views copying, re-ordering, and decimation.
     * Matrices and vectors can be saved and printed in a variety of formats, including Matlab text format.
-* Mathematical operations for float, double, and complex types:
+* Linear algebra operations for float, double, and complex types:
     * A full suite of conforming BLAS operations supporting BLAS 1, 2 and 3 linear algebra manipulations.
     * Optimized low-level matrix block math functions which work on vector and matrix view types.
     * Math operations include data sorting, conversion, statistics, and reduce operations.
