@@ -7,10 +7,10 @@ The eventual aim of this library is to create a self-contained set of tools for 
 ## Core
 Core provides many common tools for linear algebra and statistics and is built on very flexible matrix and vector objects. The features include:
 
-* General purpose matrix and vector view classes:
-    * Light weight objects which can reference existing data with arbitrary signed row and column stride
-    * Any data type supported
-    * Many common data operations, such as sub-views copying, re-ordering, and decimation
+* General purpose light-weight matrix and vector view classes:
+    * View objects can reference existing data with arbitrary signed row and column stride.
+    * Any data type supported.
+    * Many common data operations, such as sub-views copying, re-ordering, and decimation.
     * Matrices and vectors can be saved and printed in a variety of formats, including Matlab text format.
 * Mathematical operations for float, double, and complex types:
     * A full suite of conforming BLAS operations supporting BLAS 1, 2 and 3 linear algebra manipulations.
