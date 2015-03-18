@@ -7,11 +7,16 @@ The eventual aim of this library is to create a self-contained set of tools for 
 ## Core
 Core provides many common tools for linear algebra and statistics and is built on very flexible matrix and vector objects. The features include:
 
-* Light-weight matrix and vector views which provide a unified, powerful, and simple way to refer to one and two dimensional memory in a multitude of configurations.
-* A full suite of conforming BLAS operations supporting BLAS 1, 2 and 3 linear algebra manipulations. These make use of matrix and vector views for their arguments.
-* Optimized low-level matrix block functions which work on vector and matrix types to implement common operations, such as math, data sorting, conversion, statistics and reduce operations.
-* Matrix and vector memory objects which manage shared memory and can be used to express a multitude of elaborate mathematical operations neatly and efficiently.
-* Real and complex types are supported for many math operations.
+* General purpose matrix and vector view classes:
+    * Light weight objects which can reference existing data with arbitrary signed row and column stride
+    * Any data type supported
+    * Many common data operations, such as sub-views copying, re-ordering, and decimation
+    * Matrices and vectors can be saved and printed in a variety of formats, including Matlab text format.
+* Mathematical operations for float, double, and complex types:
+    * A full suite of conforming BLAS operations supporting BLAS 1, 2 and 3 linear algebra manipulations.
+    * Optimized low-level matrix block math functions which work on vector and matrix view types.
+    * Math operations include data sorting, conversion, statistics, and reduce operations.
+* Matrix and vector shared memory objects which have a multitude of member functions for common linear algebra operations.
 * Typical matrix decompositions:
     * LU decomposition.
     * Cholesky LDLT and LLT decomposition.
@@ -20,15 +25,16 @@ Core provides many common tools for linear algebra and statistics and is built o
     * Eigenvalue decomposition for symmetric matrices.
     * Jacobi SVD with QR preconditioning.
     * Special case 2x2 Eigen and SVD decompositions.
-* Fast convolution for 1D and 2D signals.
-* Matrices and vectors can be saved and printed in a variety of formats, including Matlab text format.
-* Convenient interfaces for random number generation.
+* Signal processing:
+    * Fast convolution for 1D and 2D signals.
+    * Arbitrary radix FFT in 1D and 2D.
+* Statistics:
+    * Convenient interfaces for random number generation.
+    * Principal components analysis.
+    * Estimation of covariances.
+    * Generation of multidimensional Gaussian noise with specified covariance.
+    * Computation of multivariate Gaussians and Mahalanobis distance.
 * Solution to quadratic and cubic polynomials.
-* Principal components analysis.
-* Estimation of covariances.
-* Generation of multidimensional Gaussian noise with specified covariance.
-* Computation of multivariate Gaussians and Mahalanobis distance.
-* Arbitrary radix FFT in 1D and 2D.
 * Least squares and robust 2D line fitting.
 * Multi-dimensional regression.
 * Geometric 2D and 3D rotations and transforms.
