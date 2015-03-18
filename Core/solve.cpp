@@ -324,4 +324,82 @@ TT im::core_root_search(TT (*pfunc)(TT x, void *puser), void *puser, TT bracket_
 template float im::core_root_search(float (*pfunc)(float x, void *puser), void *puser, float bracket_min, float bracket_max);
 template double im::core_root_search(double (*pfunc)(double x, void *puser), void *puser, double bracket_min, double bracket_max);
 
+template <typename TT> void im::core_quadratic_fit_1d(VecView<TT> vCoefs, VecView<TT> const &vf)
+{
+    IM_CHECK_VALID(vf);
+    IM_CHECK_VALID(vCoefs);
+    IM_CHECK_VECTOR_SIZE(vf, 3);
+    IM_CHECK_VECTOR_SIZE(vCoefs, 3);
+    
+    vCoefs(0) = (TT)0.5 * (vf(2) + vf(0)) - vf(1);
+    vCoefs(1) = (TT)0.5 * (vf(2) - vf(0));
+    vCoefs(2) = vf(0);
+}
+
+template void im::core_quadratic_fit_1d(VecView<float> vCoefs, VecView<float> const &vf);
+template void im::core_quadratic_fit_1d(VecView<double> vCoefs, VecView<double> const &vf);
+
+template <typename TT> void im::core_quadratic_fit_2d(VecView<TT> vCoefs, MtxView<TT> const &mf)
+{
+    IM_CHECK_VALID(mf);
+    IM_CHECK_VALID(vCoefs);
+    IM_CHECK_MATRIX_SIZE(mf, 3, 3);
+    IM_CHECK_VECTOR_SIZE(vCoefs, 6);
+    
+    vCoefs(0) = (mf(0,0) + mf(1,0) + mf(2,0) - (TT)2 * (mf(0,1) + mf(1,1) + mf(2,1)) + mf(0,2) + mf(1,2) + mf(2,2)) / (TT)3;
+    vCoefs(1) = (mf(0,0) - mf(0,2) - mf(2,0) + mf(2,2))/(TT)4;
+    vCoefs(2) = (mf(0,0) + mf(0,1) + mf(0,2) - (TT)2 * (mf(1,0) + mf(1,1) + mf(1,2)) + mf(2,0) + mf(2,1) + mf(2,2)) / (TT)3;
+    vCoefs(3) = (mf(0,2) + mf(1,2) + mf(2,2) - mf(0,0) - mf(1,0) - mf(2,0))/(TT)6;
+    vCoefs(4) = (mf(2,0) + mf(2,1) + mf(2,2) - mf(0,0) - mf(0,1) - mf(0,2))/(TT)6;
+    vCoefs(5) = ((TT)2 * (mf(0,1) + mf(1,0) + mf(1,2) + mf(2,1)) + (TT)5 * mf(1,1) - mf(0,0) - mf(0,2) - mf(2,0) - mf(2,2))/(TT)9;
+}
+
+template void im::core_quadratic_fit_2d(VecView<float> vCoefs, MtxView<float> const &mf);
+template void im::core_quadratic_fit_2d(VecView<double> vCoefs, MtxView<double> const &mf);
+
+template <typename TT> int im::core_quadratic_interp_1d(TT &xminmax, TT &fxminmax, VecView<TT> const &vf)
+{
+    TT coefs[3];
+    core_quadratic_fit_1d(VecView<TT>(3, 1, coefs), vf);
+ 
+    if(std::abs(coefs[0]) < TypeProperties<TT>::epsilon())
+    {
+        xminmax = (TT)0;
+        fxminmax = coefs[2];
+        return 0;
+    }
+    
+    xminmax = -coefs[1]/((TT)2*coefs[0]);
+    fxminmax = core_quadratic_sample_1d(VecView<TT>(3, 1, coefs), xminmax);
+    return coefs[0] > (TT)0 ? -1 : 1;
+}
+
+template int im::core_quadratic_interp_1d(float &xminmax, float &fxminmax, VecView<float> const &vf);
+template int im::core_quadratic_interp_1d(double &xminmax, double &fxminmax, VecView<double> const &vf);
+
+template <typename TT> int im::core_quadratic_interp_2d(TT &xminmax, TT &yminmax, TT &fxminmax, MtxView<TT> const &mf)
+{
+    TT coefs[6];
+    core_quadratic_fit_2d(VecView<TT>(6, 1, coefs), mf);
+    
+    // determinant is product of eigenvalues, so if negative they have opposite signs
+    TT det = coefs[0] * coefs[2] - coefs[1] * coefs[1];
+    if(det <= TypeProperties<TT>::epsilon())
+    {
+        // not sufficiently curved or else a saddle point
+        xminmax = (TT)0;
+        yminmax = (TT)0;
+        fxminmax = coefs[5];
+        return 0;
+    }
+    
+    xminmax = (-coefs[2] * coefs[3] + coefs[1] * coefs[4]) / det;
+    yminmax = (coefs[1] * coefs[3] - coefs[0] * coefs[4]) / det;
+    fxminmax = core_quadratic_sample_2d(VecView<TT>(6, 1, coefs), xminmax, yminmax);
+
+    return coefs[0] > (TT)0 ? -1 : 1;
+}
+
+template int im::core_quadratic_interp_2d(float &xminmax, float &yminmax, float &fxminmax, MtxView<float> const &mf);
+template int im::core_quadratic_interp_2d(double &xminmax, double &yminmax, double &fxminmax, MtxView<double> const &mf);
 

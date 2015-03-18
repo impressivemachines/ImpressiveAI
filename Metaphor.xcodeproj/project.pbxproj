@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C7266D891AB9294D00D283FE /* opt_lbfgs.h in Headers */ = {isa = PBXBuildFile; fileRef = C7266D881AB9294D00D283FE /* opt_lbfgs.h */; };
 		C7266D8D1AB9297900D283FE /* opt_lbfgs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7266D8C1AB9297900D283FE /* opt_lbfgs.cpp */; };
+		C7266D911AB94F1000D283FE /* svector.h in Headers */ = {isa = PBXBuildFile; fileRef = C7266D901AB94F1000D283FE /* svector.h */; };
 		C76747C51AB002DC00406116 /* opt_linemin.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747C41AB002DC00406116 /* opt_linemin.h */; };
 		C76747C71AB002EE00406116 /* opt_linemin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C61AB002EE00406116 /* opt_linemin.cpp */; };
 		C76747C91AB2087300406116 /* opt_levmarq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C81AB2087300406116 /* opt_levmarq.cpp */; };
@@ -120,6 +121,7 @@
 /* Begin PBXFileReference section */
 		C7266D881AB9294D00D283FE /* opt_lbfgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_lbfgs.h; path = Core/opt_lbfgs.h; sourceTree = "<group>"; };
 		C7266D8C1AB9297900D283FE /* opt_lbfgs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_lbfgs.cpp; path = Core/opt_lbfgs.cpp; sourceTree = "<group>"; };
+		C7266D901AB94F1000D283FE /* svector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = svector.h; path = Core/svector.h; sourceTree = "<group>"; };
 		C76747C41AB002DC00406116 /* opt_linemin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_linemin.h; path = Core/opt_linemin.h; sourceTree = "<group>"; };
 		C76747C61AB002EE00406116 /* opt_linemin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_linemin.cpp; path = Core/opt_linemin.cpp; sourceTree = "<group>"; };
 		C76747C81AB2087300406116 /* opt_levmarq.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_levmarq.cpp; path = Core/opt_levmarq.cpp; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				C7D9A3B01AA913BF0046ADBB /* vector_view.h */,
 				C7D9A3B11AA913BF0046ADBB /* vector.cpp */,
 				C7D9A3B21AA913BF0046ADBB /* vector.h */,
+				C7266D901AB94F1000D283FE /* svector.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				C7D9A3C41AA913BF0046ADBB /* block_tools.h in Headers */,
 				C7D9A3B81AA913BF0046ADBB /* block_blas2.h in Headers */,
 				C7D9A3EF1AA913BF0046ADBB /* types.h in Headers */,
+				C7266D911AB94F1000D283FE /* svector.h in Headers */,
 				C7D9A3F41AA913BF0046ADBB /* vector.h in Headers */,
 				C7D9A3D91AA913BF0046ADBB /* fft.h in Headers */,
 				C7D9A3EB1AA913BF0046ADBB /* solve.h in Headers */,

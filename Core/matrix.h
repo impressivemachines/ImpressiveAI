@@ -114,8 +114,8 @@ namespace im
         TT &at(int row, int col) { return m_view.at(row, col); }
         
         // Index as linear array regardless of shape
-        TT const &index(int index) const { return m_view.index(index); }
-        TT &index(int index) { return m_view.index(index); }
+        TT const &index(int i) const { return m_view.index(i); }
+        TT &index(int i) { return m_view.index(i); }
         
         // Return a deep copy of this object
         Mtx copy() const

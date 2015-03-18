@@ -103,8 +103,8 @@ namespace im
         TT *ptr() { return m_pdata; }
         
         // Index as linear array regardless of shape
-        TT const &index(int index) const { return at(index / m_cols, index % m_cols); }
-        TT &index(int index) { return at(index / m_cols, index % m_cols); }
+        TT const &index(int i) const { return at(i / m_cols, i % m_cols); }
+        TT &index(int i) { return at(i / m_cols, i % m_cols); }
         
         // Copy over data from another view having the same size
         void copy_from(MtxView const &mav)

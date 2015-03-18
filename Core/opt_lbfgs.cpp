@@ -33,7 +33,7 @@ void im::LBFGSMin<TT>::init(Vec<TT> vstate)
     m_vprevdir.resize(d);
     
     m_history_length = m_params.history_length;
-    if(m_history_length<1)
+    if(m_history_length<1 || m_history_length>d)
         m_history_length = d;
     
     eval_init();

@@ -1277,40 +1277,46 @@ public:
     {
         im::Mtx<double> ma(d,d);
         im::Rand rnd;
+        printf("random\n");
         ma.random_gaussian(rnd);
+        printf("multiply\n");
         m = ma.t() * ma;
+        printf("random vec\n");
         v0.resize(d);
         v0.random_gaussian(rnd);
         //v0 = 0.0;
         //v0(0) = 1.0;
         
-        im::MatrixDecompEigenSymmetric<double> eig(m.view());
-        m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+        //im::MatrixDecompEigenSymmetric<double> eig(m.view());
+        //m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+        m_cond = 0;
         count = 0;
     }
     
     double eval_fx(im::Vec<double> const &vx)
     {
-        //im::Vec<double> vxx = vx - v0;
-         //printf("eval: ");
-         //vx.print();
-        //return vxx.dot_product((m * vxx));
+        printf("%d evalfx\n", count);
+        im::Vec<double> vxx = vx - v0;
+        // printf("eval: ");
+        // vx.print();
+        return vxx.dot_product((m * vxx));
         
-        return (1-vx(0))*(1-vx(0)) + 100*(vx(1)-vx(0)*vx(0))*(vx(1)-vx(0)*vx(0));
+        //return (1-vx(0))*(1-vx(0)) + 100*(vx(1)-vx(0)*vx(0))*(vx(1)-vx(0)*vx(0));
     }
     
     void eval_dfx(im::Vec<double> &vdfx, im::Vec<double> const &vx)
     {
-       // im::Vec<double> vxx = vx - v0;
-      //  im::Vec<double> grad = 2.0 * (m*vxx);
-      //   printf("%d grad = ",count++);
-      //   grad.print();
-        // vdfx.copy_from(grad);
+        printf("%d evaldfx\n", count++);
+        im::Vec<double> vxx = vx - v0;
+        im::Vec<double> grad = 2.0 * (m*vxx);
+        // printf("%d grad = ",count++);
+        // grad.print();
+         vdfx.copy_from(grad);
         
-        vdfx(0) = -2+2*vx(0)-400*vx(1)*vx(0)+400*vx(0)*vx(0)*vx(0);
-        vdfx(1) = 200*vx(1)-200*vx(0)*vx(0);
-        printf("%d grad = ", count++);
-        vdfx.print();
+        //vdfx(0) = -2+2*vx(0)-400*vx(1)*vx(0)+400*vx(0)*vx(0)*vx(0);
+        //vdfx(1) = 200*vx(1)-200*vx(0)*vx(0);
+        //printf("%d grad = ", count++);
+        //vdfx.print();
     }
     
     im::Mtx<double> m;
@@ -1324,33 +1330,65 @@ void test20()
     LBFGSFunc lbfgs;
     im::LBFGSMinParams params;
     params.line_min_eps = 1e-4;
-    params.history_length = 2;
+    params.history_length = 10;
     
-    int d = 2;
+    int d = 1000;
     lbfgs.set_parameters(params);
     lbfgs.setup(d);
     
+    printf("running\n");
     im::Rand rnd;
     im::Vec<double> vx(d);
     vx.random_gaussian(rnd);
     vx *= 10.0;
-    vx.print();
+   // vx.print();
     lbfgs.init(vx);
     
     while(!lbfgs.step())
     {
-        lbfgs.state().print();
+       // lbfgs.state().print();
         printf("%d fx=%g dfx=%g dx=%g\n", lbfgs.iteration_count(), lbfgs.fx(), lbfgs.delta_fx(), lbfgs.delta_x());
     }
     
-    lbfgs.state().print();
+    //lbfgs.state().print();
     printf("condition number was %g\n", lbfgs.m_cond);
     printf("%d fx=%g dfx=%g dx=%g\n", lbfgs.iteration_count(), lbfgs.fx(), lbfgs.delta_fx(), lbfgs.delta_x());
 }
 
+void test21()
+{
+    im::Mtx<double> m(9,6);
+    
+    int r = 0;
+    for(int y=-1; y<=1; y++)
+        for(int x=-1; x<=1; x++, r++)
+        {
+            m(r,0) = 0.5*x*x;
+            m(r,1) = x*y;
+            m(r,2) = 0.5*y*y;
+            m(r,3) = x;
+            m(r,4) = y;
+            m(r,5) = 1;
+        }
+    
+    m.print();
+    ((m.t() * m).inverse() * m.t()).print();
+    
+    im::Mtx<double> f;
+    f = "[ 4 2 4; 2 1 3; 4 2 4]";
+    im::Vec<double> vc(6);
+    
+    core_quadratic_fit_2d(vc.view(), f.view());
+    vc.print();
+    
+    double x,y,fx;
+    int type = core_quadratic_interp_2d(x,y,fx, f.view());
+    printf("%d %g %g %g\n",type,x,y,fx);
+}
+
 int main()
 {
-    test20();
+    test21();
     return 0;
 }
 

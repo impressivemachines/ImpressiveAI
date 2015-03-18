@@ -275,6 +275,7 @@ namespace im
 #include "block_tools.h"
 #include "random.h"
 #include "vector.h"
+#include "svector.h"
 #include "matrix.h"
 #include "convolve.h"
 #include "utils.h"

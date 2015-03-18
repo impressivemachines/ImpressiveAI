@@ -87,8 +87,8 @@ namespace im
         TT *ptr() { return m_pdata; }
         
         // For consistency with matrix view
-        TT const &index(int index) const { return at(index); }
-        TT &index(int index) { return at(index); }
+        TT const &index(int i) const { return at(i); }
+        TT &index(int i) { return at(i); }
         
         // Copy over data from another view having the same size
         void copy_from(VecView const &vv)

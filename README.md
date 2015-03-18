@@ -38,6 +38,7 @@ Core provides many common tools for linear algebra and statistics and is built o
     * Generation of multidimensional Gaussian noise with specified covariance.
     * Computation of multivariate Gaussians and Mahalanobis distance.
 * Solution to quadratic and cubic polynomials.
+* Quadratic fitting and interpolation in 1D and 2D.
 * Least squares and robust 2D line fitting.
 * Multi-dimensional regression.
 * Geometric 2D and 3D rotations and transforms.

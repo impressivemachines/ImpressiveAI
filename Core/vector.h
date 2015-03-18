@@ -106,8 +106,8 @@ namespace im
         TT &operator()(int row) { return m_view.at(row); }
         TT const &at(int row) const { return m_view.at(row); }
         TT &at(int row) { return m_view.at(row); }
-        TT const &index(int index) const { return m_view.index(index); }
-        TT &index(int index) { return m_view.index(index); }
+        TT const &index(int i) const { return m_view.index(i); }
+        TT &index(int i) { return m_view.index(i); }
         
         // Return a deep copy of this object
         Vec copy() const
