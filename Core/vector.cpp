@@ -84,22 +84,6 @@ void im::Vec<TT>::random_gaussian(Rand &rnd, TT const &mean, TT const &stddev)
         at(row) = stddev * (TT)rnd.gauss() + mean;
 }
 
-static void core_priv_clamp_ranges(int &a, int &b, int &c, int lower, int upper)
-{
-    if(a<lower)
-        a = lower;
-    else if(a>upper)
-        a = upper;
-    if(b<lower)
-        b = lower;
-    else if(b>upper)
-        b = upper;
-    if(c<lower)
-        c = lower;
-    else if(c>upper)
-        c = upper;
-}
-
 template <typename TT>
 TT im::Vec<TT>::sample_bicubic(float row) const
 {
@@ -114,7 +98,11 @@ TT im::Vec<TT>::sample_bicubic(float row) const
     int r3 = r1 + 2;
     
     if(r1<1 || r1>nrows-3)
-        core_priv_clamp_ranges(r0, r2, r3, 0, nrows-1);
+    {
+        r0 = core_range_limit(r0, 0, nrows-1);
+        r2 = core_range_limit(r2, 0, nrows-1);
+        r3 = core_range_limit(r3, 0, nrows-1);
+    }
     
     float ar = row - r1;
     float mar = (1-ar);

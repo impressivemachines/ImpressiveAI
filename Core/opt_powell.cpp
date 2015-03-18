@@ -23,7 +23,7 @@ void im::PowellMin<TT>::init(Vec<TT> vstate)
     
     int const d = dims();
     
-    m_linemin.init(this, d, m_params.line_min_eps);
+    m_linemin.init(this, d, m_params.line_min_eps, false);
     
     m_mdirset.resize(d, d);
     m_mdirset.set_identity();

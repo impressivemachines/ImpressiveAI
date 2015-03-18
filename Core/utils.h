@@ -112,6 +112,13 @@ namespace im
         return val;
     }
     
+    template <typename TT> TT core_range_limit(TT val, TT const low, TT const high)
+    {
+        val = std::min(val, high);
+        val = std::max(val, low);
+        return val;
+    }
+    
     // triangular reflection of range, e.g. with mod=4:
     // in = -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
     // out = 2,  1, 0, 1, 2, 3, 2, 1, 0, 1, 2, 3
@@ -138,6 +145,7 @@ namespace im
 
     // get absolute time in seconds - source in time.cpp
     double core_get_time();
+
 }
 
 #endif

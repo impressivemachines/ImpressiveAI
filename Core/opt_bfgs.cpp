@@ -17,7 +17,7 @@ void im::BFGSMin<TT>::init(Vec<TT> vstate)
     m_vstate = vstate;
     m_early_exit = false;
     m_hessianok = false;
-    m_startup = false;
+    m_startup = true;
     m_fx = (TT)0;
     m_delta_fx = (TT)0;
     m_delta_x = (TT)0;
@@ -26,7 +26,7 @@ void im::BFGSMin<TT>::init(Vec<TT> vstate)
     
     int const d = dims();
     
-    m_linemin.init(this, d, m_params.line_min_eps);
+    m_linemin.init(this, d, m_params.line_min_eps, true);
     
     m_vprevstate.resize(d);
     m_vgrad.resize(d);
@@ -73,11 +73,7 @@ bool im::BFGSMin<TT>::step()
             if(dg_dot_dg > TypeProperties<TT>::epsilon())
             {
                 TT t = dx_dot_dg / dg_dot_dg;
-                if(t<(TT)0.01)
-                    t = (TT)0.01;
-                else if(t>(TT)100.0)
-                    t = (TT)100.0;
-                m_mH.diag() = t;
+                m_mH.diag() = core_range_limit(t, (TT)0.01, (TT)100.0);
                 m_hessianok = true;
             }
         }
@@ -105,14 +101,24 @@ bool im::BFGSMin<TT>::step()
     core_block_blas_gemv(m_vdelta_grad.view(), m_mH.view(), m_vgrad.view(), (TT)-1, (TT)0, TransMode_N);
     
     TT fxstart = m_fx;
-    m_linemin.linemin(m_vstate, m_vdelta_grad, m_params.bracket_max);
-    m_fx = m_linemin.fxmin();
-    m_delta_x = m_linemin.xmin() * m_vdelta_grad.magnitude_squared();
-    m_delta_fx = m_fx - fxstart;
-    
-    if((TT)2*(std::abs(m_delta_fx)) <= m_params.termination_ratio * (std::abs(m_fx) + std::abs(fxstart) + TypeProperties<TT>::epsilon()))
+    TT dirmag = m_vdelta_grad.magnitude();
+    if(dirmag > TypeProperties<TT>::epsilon())
+    {
+        m_linemin.linemin(m_vstate, m_vdelta_grad, m_params.bracket_max);
+        m_fx = m_linemin.fxmin();
+        m_delta_x = std::abs(m_linemin.xmin()) * dirmag;
+        m_delta_fx = m_fx - fxstart;
+        
+        if((TT)2*(std::abs(m_delta_fx)) <= m_params.termination_ratio * (std::abs(m_fx) + std::abs(fxstart) + TypeProperties<TT>::epsilon()))
+            complete = true;
+    }
+    else
+    {
+        m_delta_x = (TT)0;
+        m_delta_fx = (TT)0;
         complete = true;
-    
+    }
+
     m_early_exit = eval_end_step() || m_early_exit;
     
     m_iterations++;

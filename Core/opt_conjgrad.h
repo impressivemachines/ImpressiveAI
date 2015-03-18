@@ -46,64 +46,6 @@ namespace im
         double line_min_eps;
     };
     
-    template <typename TT> class ConjGradientMin;
-    
-    // class used by minimizer
-    template <typename TT>
-    class ConjGradientLineMin : public FuncEval1D<TT>
-    {
-    public:
-        void init(ConjGradientMin<TT> *p, int dims, TT eps)
-        {
-            m_p = p;
-            m_vx.resize(dims);
-            m_vderiv.resize(dims);
-            m_eps = eps;
-        }
-        
-        void linemin(Vec<TT> &vbase, Vec<TT> const &vdir, TT bracketmax)
-        {
-            m_vbase = vbase; // reference
-            m_vdir = vdir; // reference
-            
-            TT xa, xb, xc;
-            core_line_min_bracket(xa, xb, xc, this, (TT)0, bracketmax);
-            core_line_min_using_derivs(m_xmin, m_fxmin, this, xa, xc, m_eps);
-            
-            // copy back into vbase
-            core_block_blas_axpy(vbase.view(), m_vdir.view(), m_xmin);
-        }
-        
-        TT xmin() { return m_xmin; }
-        TT fxmin() { return m_fxmin; }
-        
-        TT eval_fx(TT x)
-        {
-            m_vx.copy_from(m_vbase);
-            core_block_blas_axpy(m_vx.view(), m_vdir.view(), x);
-            return m_p->eval_fx(m_vx);
-        }
-        
-        TT eval_dfx(TT x)
-        {
-            // eval derivative
-            // note that core_line_min_using_derivs always calls eval_dfx after calling eval_fx
-            // and uses the same value of x, so it is not necessary to re-calculate m_vx
-            m_p->eval_dfx(m_vderiv, m_vx);
-            return m_vderiv.dot_product(m_vdir); // project back onto the line direction
-        }
-        
-    private:
-        ConjGradientMin<TT> *m_p;
-        TT m_xmin;
-        TT m_fxmin;
-        Vec<TT> m_vbase;
-        Vec<TT> m_vdir;
-        Vec<TT> m_vx;
-        Vec<TT> m_vderiv;
-        TT m_eps;
-    };
-    
     template <typename TT>
     class ConjGradientMin
     {
@@ -174,7 +116,7 @@ namespace im
         bool m_startup;
         
         ConjGradientMinParams m_params;
-        ConjGradientLineMin<TT> m_linemin;
+        VectorLineMin<TT, ConjGradientMin<TT> > m_linemin;
     };
     
 }

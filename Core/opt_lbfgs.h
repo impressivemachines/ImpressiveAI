@@ -1,13 +1,13 @@
 //
-//  opt_bfgs.h
+//  opt_lbfgs.h
 //  Metaphor
 //
-//  Created by SIMON WINDER on 3/12/15.
+//  Created by SIMON WINDER on 3/17/15.
 //  Copyright (c) 2015 Impressive Machines LLC. All rights reserved.
 //
 
-#ifndef Metaphor_opt_bfgs_h
-#define Metaphor_opt_bfgs_h
+#ifndef Metaphor_opt_lbfgs_h
+#define Metaphor_opt_lbfgs_h
 
 namespace im
 {
@@ -20,18 +20,20 @@ namespace im
     // You can print the progress by adding print statements in the while loop that examine fx(), delta_fx(), delta_x()
     // Get the result by calling state()
     
-    // http://en.wikipedia.org/wiki/Broyden–Fletcher–Goldfarb–Shanno_algorithm
+    // http://en.wikipedia.org/wiki/Limited-memory_BFGS
     
-    struct BFGSMinParams
+    struct LBFGSMinParams
     {
-        BFGSMinParams()
+        LBFGSMinParams()
         {
+            history_length = 0; // length of history to keep. If zero then just keeps the number of dimensions (==bfgs)
             termination_ratio = 1e-7; // ratio of delta_fx to fx to cause termination
             iterations_max = 1000000; // number step calls before we quit
             line_min_eps = 0; // if >0 set the error tolerance for line min termination
             bracket_max = 1.0; // bracketing operation in line minimization uses the range [0, bracket_max]
         }
         
+        int history_length;
         int iterations_max;
         double line_min_eps;
         double bracket_max;
@@ -39,15 +41,22 @@ namespace im
     };
     
     template <typename TT>
-    class BFGSMin
+    struct LBFGSItem
+    {
+        Vec<TT> vs, vy;
+        TT rho;
+    };
+    
+    template <typename TT>
+    class LBFGSMin
     {
     public:
-        BFGSMin(BFGSMinParams const &p) : m_params(p) {}
-        BFGSMin() {}
-        virtual ~BFGSMin() {}
+        LBFGSMin(LBFGSMinParams const &p) : m_params(p) {}
+        LBFGSMin() {}
+        virtual ~LBFGSMin() {}
         
         // If you dont want to use the default parameters, set them before calling init()
-        void set_parameters(BFGSMinParams const &p) { m_params = p; }
+        void set_parameters(LBFGSMinParams const &p) { m_params = p; }
         
         // Initalize.
         // You can wrap external memory or pass in a freshly allocated vector
@@ -104,18 +113,16 @@ namespace im
         Vec<TT> m_vprevstate;
         Vec<TT> m_vgrad;
         Vec<TT> m_vprevgrad;
-        Vec<TT> m_vdelta_state;
-        Vec<TT> m_vdelta_grad;
-        Vec<TT> m_vHg;
-        Vec<TT> m_vgH;
-        Mtx<TT> m_mH;
+        Vec<TT> m_vprevdir;
         int m_iterations;
         bool m_startup;
-        bool m_hessianok;
-        BFGSMinParams m_params;
-        VectorLineMin<TT, BFGSMin<TT> > m_linemin;
+        LBFGSMinParams m_params;
+        VectorLineMin<TT, LBFGSMin<TT> > m_linemin;
+        int m_history_length;
+        std::vector<TT> m_alpha;
+        std::deque< LBFGSItem<TT> > m_queue;
     };
+    
 }
-
 
 #endif

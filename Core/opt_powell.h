@@ -36,54 +36,7 @@ namespace im
         int iterations_max;
         double line_min_eps;
     };
-    
-    template <typename TT> class PowellMin;
-    
-    // class used by minimizer
-    template <typename TT>
-    class PowellVectorLineMin : public FuncEval1D<TT>
-    {
-    public:
-        void init(PowellMin<TT> *p, int dims, TT eps)
-        {
-            m_p = p;
-            m_vx.resize(dims);
-            m_eps = eps;
-        }
-        
-        void linemin(Vec<TT> &vbase, Vec<TT> const &vdir, TT bracketmax)
-        {
-            m_vbase = vbase; // reference
-            m_vdir = vdir; // reference
-            
-            TT xa, xb, xc;
-            core_line_min_bracket(xa, xb, xc, this, (TT)0, bracketmax);
-            core_line_min(m_xmin, m_fxmin, this, xa, xc, m_eps);
-            
-            // copy back into vbase
-            core_block_blas_axpy(vbase.view(), m_vdir.view(), m_xmin);
-        }
-        
-        TT xmin() { return m_xmin; }
-        TT fxmin() { return m_fxmin; }
-        
-        TT eval_fx(TT x)
-        {
-            m_vx.copy_from(m_vbase);
-            core_block_blas_axpy(m_vx.view(), m_vdir.view(), x);
-            return m_p->eval_fx(m_vx);
-        }
-        
-    private:
-        PowellMin<TT> *m_p;
-        TT m_xmin;
-        TT m_fxmin;
-        Vec<TT> m_vbase;
-        Vec<TT> m_vdir;
-        Vec<TT> m_vx;
-        TT m_eps;
-    };
-    
+
     // the actual minimizer
     template <typename TT>
     class PowellMin
@@ -137,6 +90,9 @@ namespace im
         // Compute the function f(X), given vector X.
         virtual TT eval_fx(Vec<TT> const &vx) = 0;
         
+        // not used by powell
+        virtual void eval_dfx(Vec<TT> &vdfx, Vec<TT> const &vx) { vdfx = (TT)0; }
+        
         // Called at the end of each step. Return true if you need to early exit.
         virtual bool eval_end_step() { return false; }
         
@@ -151,7 +107,7 @@ namespace im
         Mtx<TT> m_mdirset;
         Vec<TT> m_vdir;
         PowellMinParams m_params;
-        PowellVectorLineMin<TT> m_linemin;
+        VectorLineMin<TT, PowellMin<TT> > m_linemin;
         int m_iterations;
     };
     

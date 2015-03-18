@@ -846,6 +846,10 @@ public:
         im::Rand rnd;
         ma.random_gaussian(rnd);
         m = ma.t() * ma;
+        v0.resize(d);
+        v0.random_gaussian(rnd);
+       // v0 = 0.0;
+        //v0(0) = 1.0;
         
         im::MatrixDecompEigenSymmetric<double> eig(m.view());
         m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
@@ -856,18 +860,21 @@ public:
         // printf("eval: ");
         // vx.print();
         
-        return vx.dot_product((m * vx));
+        im::Vec<double> vxx = vx - v0;
+        return vxx.dot_product((m * vxx));
     }
     
     void eval_dfx(im::Vec<double> &vdfx, im::Vec<double> const &vx)
     {
-        im::Vec<double> grad = 2.0 * (m*vx);
+        im::Vec<double> vxx = vx - v0;
+        im::Vec<double> grad = 2.0 * (m*vxx);
         printf("grad = ");
         grad.print();
         vdfx.copy_from(grad);
     }
     
     im::Mtx<double> m;
+    im::Vec<double> v0;
     double m_cond;
 };
 
@@ -1198,6 +1205,10 @@ public:
         im::Rand rnd;
         ma.random_gaussian(rnd);
         m = ma.t() * ma;
+        v0.resize(d);
+        v0.random_gaussian(rnd);
+        //v0 = 0.0;
+        //v0(0) = 0.0;
         
         im::MatrixDecompEigenSymmetric<double> eig(m.view());
         m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
@@ -1206,27 +1217,28 @@ public:
     
     double eval_fx(im::Vec<double> const &vx)
     {
-        // printf("eval: ");
-        // vx.print();
+        im::Vec<double> vxx = vx - v0;
+        return vxx.dot_product((m * vxx));
         
-        /*return vx.dot_product((m * vx));*/
-        return (1-vx(0))*(1-vx(0)) + 100*(vx(1)-vx(0)*vx(0))*(vx(1)-vx(0)*vx(0));
+        //return (1-vx(0))*(1-vx(0)) + 100*(vx(1)-vx(0)*vx(0))*(vx(1)-vx(0)*vx(0));
     }
     
     void eval_dfx(im::Vec<double> &vdfx, im::Vec<double> const &vx)
     {
-        /*im::Vec<double> grad = 2.0 * (m*vx);
+        im::Vec<double> vxx = vx - v0;
+        im::Vec<double> grad = 2.0 * (m*vxx);
         printf("grad = ");
         grad.print();
-        vdfx.copy_from(grad);*/
+        vdfx.copy_from(grad);
         
-        vdfx(0) = -2+2*vx(0)-400*vx(1)*vx(0)+400*vx(0)*vx(0)*vx(0);
+        /*vdfx(0) = -2+2*vx(0)-400*vx(1)*vx(0)+400*vx(0)*vx(0)*vx(0);
         vdfx(1) = 200*vx(1)-200*vx(0)*vx(0);
         printf("%d grad = ", count++);
-        vdfx.print();
+        vdfx.print();*/
     }
     
     im::Mtx<double> m;
+    im::Vec<double> v0;
     double m_cond;
     int count;
 };
@@ -1237,7 +1249,7 @@ void test19()
     im::BFGSMinParams params;
     params.line_min_eps = 1e-4;
     
-    int d = 2;
+    int d = 5;
     bfgs.set_parameters(params);
     bfgs.setup(d);
     
@@ -1258,9 +1270,87 @@ void test19()
     printf("condition number was %g\n", bfgs.m_cond);
 }
 
+class LBFGSFunc : public im::LBFGSMin<double>
+{
+public:
+    void setup(int d)
+    {
+        im::Mtx<double> ma(d,d);
+        im::Rand rnd;
+        ma.random_gaussian(rnd);
+        m = ma.t() * ma;
+        v0.resize(d);
+        v0.random_gaussian(rnd);
+        //v0 = 0.0;
+        //v0(0) = 1.0;
+        
+        im::MatrixDecompEigenSymmetric<double> eig(m.view());
+        m_cond = eig.eigenvalues()(0) / eig.eigenvalues()(d-1);
+        count = 0;
+    }
+    
+    double eval_fx(im::Vec<double> const &vx)
+    {
+        //im::Vec<double> vxx = vx - v0;
+         //printf("eval: ");
+         //vx.print();
+        //return vxx.dot_product((m * vxx));
+        
+        return (1-vx(0))*(1-vx(0)) + 100*(vx(1)-vx(0)*vx(0))*(vx(1)-vx(0)*vx(0));
+    }
+    
+    void eval_dfx(im::Vec<double> &vdfx, im::Vec<double> const &vx)
+    {
+       // im::Vec<double> vxx = vx - v0;
+      //  im::Vec<double> grad = 2.0 * (m*vxx);
+      //   printf("%d grad = ",count++);
+      //   grad.print();
+        // vdfx.copy_from(grad);
+        
+        vdfx(0) = -2+2*vx(0)-400*vx(1)*vx(0)+400*vx(0)*vx(0)*vx(0);
+        vdfx(1) = 200*vx(1)-200*vx(0)*vx(0);
+        printf("%d grad = ", count++);
+        vdfx.print();
+    }
+    
+    im::Mtx<double> m;
+    im::Vec<double> v0;
+    double m_cond;
+    int count;
+};
+
+void test20()
+{
+    LBFGSFunc lbfgs;
+    im::LBFGSMinParams params;
+    params.line_min_eps = 1e-4;
+    params.history_length = 2;
+    
+    int d = 2;
+    lbfgs.set_parameters(params);
+    lbfgs.setup(d);
+    
+    im::Rand rnd;
+    im::Vec<double> vx(d);
+    vx.random_gaussian(rnd);
+    vx *= 10.0;
+    vx.print();
+    lbfgs.init(vx);
+    
+    while(!lbfgs.step())
+    {
+        lbfgs.state().print();
+        printf("%d fx=%g dfx=%g dx=%g\n", lbfgs.iteration_count(), lbfgs.fx(), lbfgs.delta_fx(), lbfgs.delta_x());
+    }
+    
+    lbfgs.state().print();
+    printf("condition number was %g\n", lbfgs.m_cond);
+    printf("%d fx=%g dfx=%g dx=%g\n", lbfgs.iteration_count(), lbfgs.fx(), lbfgs.delta_fx(), lbfgs.delta_x());
+}
+
 int main()
 {
-    test19();
+    test20();
     return 0;
 }
 

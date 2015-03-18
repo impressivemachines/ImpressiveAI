@@ -19,6 +19,7 @@
 #include <memory>
 #include <cmath>
 #include <vector>
+#include <deque>
 #include <random>
 #include <complex>
 
@@ -296,6 +297,7 @@ namespace im
 #include "opt_powell.h"
 #include "opt_conjgrad.h"
 #include "opt_bfgs.h"
+#include "opt_lbfgs.h"
 #include "opt_stochastic.h"
 
 #endif

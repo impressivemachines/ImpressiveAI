@@ -64,6 +64,7 @@ bool im::StochasticMin<TT>::step()
             // compute the gradient at x
             eval_dfx(m_vgradient, m_vstate);
             core_block_blas_axpy(m_vstate.view(), m_vgradient.view(), -m_rate);
+            
             if(m_params.compute_delta_x)
                 m_delta_x = m_rate * m_vgradient.magnitude();
             break;

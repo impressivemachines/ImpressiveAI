@@ -145,22 +145,6 @@ TT im::Mtx<TT>::sample_bilinear(float row, float col) const
     return v00 + TT(ac) * (v01 - v00) + TT(ar) * (v10 - v00) + TT(arac) * (v00 - v01 - v10 + v11);
 }
 
-static void core_priv_clamp_ranges(int &a, int &b, int &c, int lower, int upper)
-{
-    if(a<lower)
-        a = lower;
-    else if(a>upper)
-        a = upper;
-    if(b<lower)
-        b = lower;
-    else if(b>upper)
-        b = upper;
-    if(c<lower)
-        c = lower;
-    else if(c>upper)
-        c = upper;
-}
-
 template <typename TT>
 TT im::Mtx<TT>::sample_bicubic(float row, float col) const
 {
@@ -180,9 +164,18 @@ TT im::Mtx<TT>::sample_bicubic(float row, float col) const
     int c3 = c1 + 2;
     
     if(r1<1 || r1>nrows-3)
-        core_priv_clamp_ranges(r0, r2, r3, 0, nrows-1);
+    {
+        r0 = core_range_limit(r0, 0, nrows-1);
+        r2 = core_range_limit(r2, 0, nrows-1);
+        r3 = core_range_limit(r3, 0, nrows-1);
+    }
+    
     if(c1<1 || c1>ncols-3)
-        core_priv_clamp_ranges(c0, c2, c3, 0, ncols-1);
+    {
+        c0 = core_range_limit(c0, 0, ncols-1);
+        c2 = core_range_limit(c2, 0, ncols-1);
+        c3 = core_range_limit(c3, 0, ncols-1);
+    }
     
     float ar = row - r1;
     float ac = col - c1;
@@ -211,8 +204,6 @@ TT im::Mtx<TT>::sample_bicubic(float row, float col) const
     
     return krow0 * v0 + krow1 * v1 + krow2 * v2 + krow3 * v3;
 }
-
-
 
 template <typename TT>
 im::Mtx<TT> im::Mtx<TT>::inverse() const

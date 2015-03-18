@@ -27,7 +27,7 @@ void im::ConjGradientMin<TT>::init(Vec<TT> vstate)
     m_vdir_g.resize(d);
     m_vdir_h.resize(d);
     
-    m_linemin.init(this, d, m_params.line_min_eps);
+    m_linemin.init(this, d, m_params.line_min_eps, true);
     
     m_startup = true;
     
@@ -60,7 +60,7 @@ bool im::ConjGradientMin<TT>::step()
     
     m_linemin.linemin(m_vstate, m_vdir_x, m_params.bracket_max);
     TT fxnew = m_linemin.fxmin();
-    m_delta_x = m_linemin.xmin() * m_vdir_x.magnitude();
+    m_delta_x = std::abs(m_linemin.xmin()) * m_vdir_x.magnitude();
     
     if((TT)2*(std::abs(fxnew - m_fx)) <= m_params.termination_ratio * (std::abs(fxnew) + std::abs(m_fx) + TypeProperties<TT>::epsilon()))
         complete = true;

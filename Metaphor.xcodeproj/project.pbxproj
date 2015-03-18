@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7266D891AB9294D00D283FE /* opt_lbfgs.h in Headers */ = {isa = PBXBuildFile; fileRef = C7266D881AB9294D00D283FE /* opt_lbfgs.h */; };
+		C7266D8D1AB9297900D283FE /* opt_lbfgs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C7266D8C1AB9297900D283FE /* opt_lbfgs.cpp */; };
 		C76747C51AB002DC00406116 /* opt_linemin.h in Headers */ = {isa = PBXBuildFile; fileRef = C76747C41AB002DC00406116 /* opt_linemin.h */; };
 		C76747C71AB002EE00406116 /* opt_linemin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C61AB002EE00406116 /* opt_linemin.cpp */; };
 		C76747C91AB2087300406116 /* opt_levmarq.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76747C81AB2087300406116 /* opt_levmarq.cpp */; };
@@ -116,6 +118,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C7266D881AB9294D00D283FE /* opt_lbfgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_lbfgs.h; path = Core/opt_lbfgs.h; sourceTree = "<group>"; };
+		C7266D8C1AB9297900D283FE /* opt_lbfgs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_lbfgs.cpp; path = Core/opt_lbfgs.cpp; sourceTree = "<group>"; };
 		C76747C41AB002DC00406116 /* opt_linemin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_linemin.h; path = Core/opt_linemin.h; sourceTree = "<group>"; };
 		C76747C61AB002EE00406116 /* opt_linemin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_linemin.cpp; path = Core/opt_linemin.cpp; sourceTree = "<group>"; };
 		C76747C81AB2087300406116 /* opt_levmarq.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_levmarq.cpp; path = Core/opt_levmarq.cpp; sourceTree = "<group>"; };
@@ -316,6 +320,8 @@
 				C76747D41AB2774400406116 /* opt_conjgrad.cpp */,
 				C76747D01AB2771200406116 /* opt_bfgs.h */,
 				C76747D61AB2775600406116 /* opt_bfgs.cpp */,
+				C7266D881AB9294D00D283FE /* opt_lbfgs.h */,
+				C7266D8C1AB9297900D283FE /* opt_lbfgs.cpp */,
 				C76747DA1AB277BF00406116 /* opt_stochastic.h */,
 				C76747D81AB277B000406116 /* opt_stochastic.cpp */,
 				C7D9A3A31AA913BF0046ADBB /* permute.cpp */,
@@ -415,6 +421,7 @@
 				C7D9A3E91AA913BF0046ADBB /* random.h in Headers */,
 				C76747CD1AB276DE00406116 /* opt_powell.h in Headers */,
 				C76747CF1AB276FC00406116 /* opt_conjgrad.h in Headers */,
+				C7266D891AB9294D00D283FE /* opt_lbfgs.h in Headers */,
 				C7D9A3C01AA913BF0046ADBB /* block_reduce.h in Headers */,
 				C7D9A3D71AA913BF0046ADBB /* decomp_tridiag.h in Headers */,
 				C7D9A3C41AA913BF0046ADBB /* block_tools.h in Headers */,
@@ -510,6 +517,7 @@
 				C7D9A3D81AA913BF0046ADBB /* fft.cpp in Sources */,
 				C7D9A3C71AA913BF0046ADBB /* convolve.cpp in Sources */,
 				C7D9A3E71AA913BF0046ADBB /* quaternion.cpp in Sources */,
+				C7266D8D1AB9297900D283FE /* opt_lbfgs.cpp in Sources */,
 				C7D9A3CC1AA913BF0046ADBB /* decomp_eigen.cpp in Sources */,
 				C7D9A3D21AA913BF0046ADBB /* decomp_svd.cpp in Sources */,
 				C7D9A3D41AA913BF0046ADBB /* decomp_tools.cpp in Sources */,
