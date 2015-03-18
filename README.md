@@ -1,5 +1,6 @@
 # Metaphor
-Impressive Machines's C++ Library for Machine Learning and Computer Vision
+C++ Library for Machine Learning and Computer Vision
+Impressive Machines LLC
 
 The eventual aim of this library is to create a self-contained set of tools for many applications in machine learning and computer vision. It is broken into a number of sections which are useful in isolation. The main part of the library is "core" which is a library for linear algebra and numerical computation. This part currently has a lot of functionality. Other parts are under development and will be added in the future.
 
@@ -33,12 +34,13 @@ Core provides many common tools for linear algebra and statistics and is built o
 * Geometric 2D and 3D rotations and transforms.
 * Quaternions with SLERP and rotation matrix / euler / axis-angle integration.
 * Numerical root finding for scalar functions.
-* Bracketing, line minimization, and line minimization with derivatives.
-* Levenberg Marquardt minimization.
-* Stochastic gradients with optional momentum or acceleration.
-* Powell minimization.
-* Conjugate gradients.
-* BFGS.
+* Optimization of functions:
+    * Bracketing, line minimization, and line minimization with derivatives.
+    * Levenberg Marquardt minimization.
+    * Stochastic gradients with optional momentum or acceleration.
+    * Powell minimization.
+    * Conjugate gradients.
+    * BFGS.
 
 Some features that are under development:
 * Limited memory BFGS.
