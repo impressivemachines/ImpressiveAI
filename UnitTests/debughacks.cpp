@@ -1166,6 +1166,7 @@ void test18()
                 //vg.copy_from(vgnew);
                 double rho = 0.9;
                 vg = rho*vg + (1-rho)*vgnew;
+                vg.normalize();
                 vx.copy_from(vxnew);
 
                 //h *= (1.1+2*(dot-0.9));

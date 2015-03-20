@@ -371,6 +371,7 @@ template <typename TT> int im::core_quadratic_minmax_1d(TT &xminmax, TT &fxminma
     
     xminmax = -coefs[1]/((TT)2*coefs[0]);
     fxminmax = core_quadratic_sample_1d(VecView<TT>(3, 1, coefs), xminmax);
+    
     return coefs[0] > (TT)0 ? -1 : 1;
 }
 

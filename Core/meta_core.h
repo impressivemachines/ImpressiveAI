@@ -275,7 +275,6 @@ namespace im
 #include "block_tools.h"
 #include "random.h"
 #include "vector.h"
-#include "svector.h"
 #include "matrix.h"
 #include "convolve.h"
 #include "utils.h"
@@ -300,5 +299,6 @@ namespace im
 #include "opt_bfgs.h"
 #include "opt_lbfgs.h"
 #include "opt_stochastic.h"
+#include "opt_vstepgrad.h"
 
 #endif
