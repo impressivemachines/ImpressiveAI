@@ -101,7 +101,7 @@ This library aims towards simplicity of code design. It does this without giving
 2. Create a build directory wherever you want to build the library
 3. From the command line, cd to your build directory
 4. Run cmake "path/to/the/metaphor/git/source/directory"
-5. If all is well, then run make, which should compile everything and generate a library file
+5. If all is well, run make, which should compile everything and generate a library file
 6. Write your code and refer to metaphor objects using namespace "im"
 6. Include the file meta_core.h for the core library at the start of your code
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.1.0)
 
 project(Metaphor C CXX)
 
@@ -28,6 +28,9 @@ add_library(
 #    ${META_VISION_SRC}
 )
 
+set_property(TARGET ${META_LIB_NAME} PROPERTY CXX_STANDARD 11)
+set_property(TARGET ${META_LIB_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
+
 target_include_directories(
     ${META_LIB_NAME} PUBLIC
     Core
@@ -38,6 +41,9 @@ target_include_directories(
 #    debughacks
 #    Test/Src/debughacks.cpp
 #)
+
+#set_property(TARGET debughacks PROPERTY CXX_STANDARD 11)
+#set_property(TARGET debughacks PROPERTY CXX_STANDARD_REQUIRED ON)
 
 #target_link_libraries(
 #    debughacks
