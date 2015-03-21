@@ -99,6 +99,9 @@ This library aims towards simplicity of code design. It does this without giving
     // and the copy_from() function is the only one that actually does any data copying.
     mA.block(10,0,5,5).diag().copy_from(svd.matrixU.col(0).head(5));
 
+    // Sum up the rows of A and find the max absolute row sum
+    double max_of_row_sums = mA.reduce_rows_add().max_abs();
+
     // Use a BLAS routine on pre-allocated objects
     Mtx<float> mB(100,100);
     Vec<float> v1(100), v2(100);
