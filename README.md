@@ -106,6 +106,10 @@ This library aims towards simplicity of code design. It does this without giving
     // Call matrix vector multiply - v2 is the destination vector
     core_block_blas_gemv(v2.view(), mB.view(), v1.view(), 1.0f, 0.0f, TransMode_N);
 
+    // This can also be done with
+    v1 = mB * v2;
+    // However the BLAS routine method allows you to pre-allocate v1, otherwise v1 will be allocated on demand
+
 ### Build Instructions
 1. Download and install CMAKE - you will need version 3.1 or above
 2. Create a build directory wherever you want to build the library
