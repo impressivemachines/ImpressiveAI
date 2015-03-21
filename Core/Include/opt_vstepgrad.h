@@ -12,6 +12,7 @@
 namespace im
 {
     // THIS PARTICULAR CODE IS NOT YET COMPLETE MARCH21/2015
+    // Simon
     
     // Variable stepsize gradient descent function minimizer
     
