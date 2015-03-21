@@ -3,7 +3,7 @@ C++ Library for Numerical Computation, Machine Learning, and Computer Vision
 
 *Impressive Machines LLC, 2015*
 
-The eventual goal of this library is to create a self-contained set of tools for iamge, video and audio recognition, using machine learning. 
+The eventual goal of this library is to create a self-contained set of tools for image, video and audio recognition, using machine learning. 
 
 For the moment you can ignore anything that is outside of Core. This central part of the library is quite stable and provides a set of tools for linear algebra, numerical computation, and nonlinear optimization. Other parts of the library are actively under development and may be eventually added to this repository.
 
