@@ -1,7 +1,7 @@
 # Metaphor
 C++ Library for Numerical Computation, Machine Learning, and Computer Vision
 
-Impressive Machines LLC
+*Impressive Machines LLC, 2015*
 
 The eventual goal of this library is to create a self-contained set of tools for iamge, video and audio recognition, using machine learning. 
 
