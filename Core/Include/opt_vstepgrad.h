@@ -11,6 +11,8 @@
 
 namespace im
 {
+    // THIS PARTICULAR CODE IS NOT YET COMPLETE MARCH21/2015
+    
     // Variable stepsize gradient descent function minimizer
     
     // Derive a class from this solver and implement the function to evaluate f(x) and df(x)/dx
