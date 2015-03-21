@@ -1,8 +1,11 @@
 # Metaphor
-C++ Library for Machine Learning and Computer Vision
+C++ Library for Numerical Computation, Machine Learning, and Computer Vision
+
 Impressive Machines LLC
 
-The eventual aim of this library is to create a self-contained set of tools for many applications in machine learning and computer vision. It is broken into a number of sections which are useful in isolation. The main part of the library is "core" which is a library for linear algebra and numerical computation. This part currently has a lot of functionality. Other parts are under development and will be added in the future.
+The eventual goal of this library is to create a self-contained set of tools for iamge, video and audio recognition, using machine learning. 
+
+The "Core" oart of the library is a set of tools for linear algebra, numerical computation, and nonlinear optimization. This is currently stable. Other parts of the library are actively under development and may be eventually added to this repository.
 
 ## Core
 Core provides many common tools for linear algebra and statistics and is built on very flexible matrix and vector objects. The features include:
@@ -104,6 +107,9 @@ This library aims towards simplicity of code design. It does this without giving
 5. If all is well, run make, which should compile everything and generate a library file
 6. Write your code and refer to metaphor objects using namespace "im"
 6. Include the file meta_core.h for the core library at the start of your code
+
+### Documentation
+Full documentation is under development.
 
 
 
