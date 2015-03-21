@@ -111,7 +111,7 @@ This library aims towards simplicity of code design. It does this without giving
 ### Documentation
 Full documentation is under development. 
 
-For the moment, I would recommend you look at matrix.h, vector.h, matrix_view.h, ad vector_view.h. The math and BLAS operations defined in block_*.h are intended for use with MtxView and VecView types. The files which are opt_*.h are all classes for non-linear minimization. Similarly all the decomp_*.h files are classes for linear algebra matrix decomposition.
+For the moment, I would recommend you look at matrix.h, vector.h, matrix_view.h, ad vector_view.h. The math and BLAS operations defined in block_\*.h are intended for use with MtxView and VecView types. The files which are opt_\*.h are all classes for non-linear minimization. Similarly all the decomp_\*.h files are classes for linear algebra matrix decomposition.
 
 
 
