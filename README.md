@@ -66,7 +66,7 @@ There are no external dependencies for the core library.
 ### Philosophy
 There are many linear algebra libraries available that are built using C++. Many of the popular ones make extensive use of template meta-programming to increase efficiency. This library takes a different approach. Not many developers really understand C++ templates well and so complex template code is hard to debug and maintain. 
 
-This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids unneccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand and still quite fast.
+This library aims towards simplicity of code design. It does this without giving up too much run time efficiency by making extensive use of light weight references to matrix memory. It avoids unneccesary data copies by using shared pointers where possible. The main goal was to make the code easy to understand, compact, and still quite fast, and to avoid dependencies as much as possible.
 
 ### Examples
     #include "meta_core.h"
