@@ -114,7 +114,7 @@ This library aims towards simplicity of code design. It does this without giving
     // However the BLAS routine method allows you to pre-allocate v1, otherwise v1 will be allocated on demand
 
 ### Build Instructions
-1. Download and install CMAKE - you will need version 3.1 or above
+1. Download and install CMAKE - you will need version 3.1 or above (this code uses some C++11 features)
 2. Create a build directory wherever you want to build the library
 3. From the command line, cd to your build directory
 4. Run cmake "path/to/the/metaphor/git/source/directory"
