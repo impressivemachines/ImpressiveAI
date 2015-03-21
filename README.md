@@ -5,7 +5,7 @@ Impressive Machines LLC
 
 The eventual goal of this library is to create a self-contained set of tools for iamge, video and audio recognition, using machine learning. 
 
-The "Core" oart of the library is a set of tools for linear algebra, numerical computation, and nonlinear optimization. This is currently stable. Other parts of the library are actively under development and may be eventually added to this repository.
+For the moment you can ignore anything that is outside of Core. This central part of the library is quite stable and provides a set of tools for linear algebra, numerical computation, and nonlinear optimization. Other parts of the library are actively under development and may be eventually added to this repository.
 
 ## Core
 Core provides many common tools for linear algebra and statistics and is built on very flexible matrix and vector objects. The features include:
