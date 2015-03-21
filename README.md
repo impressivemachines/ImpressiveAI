@@ -99,6 +99,13 @@ This library aims towards simplicity of code design. It does this without giving
     // and the copy_from() function is the only one that actually does any data copying.
     mA.block(10,0,5,5).diag().copy_from(svd.matrixU.col(0).head(5));
 
+    // Use a BLAS routine on pre-allocated objects
+    Mtx<float> mB(100,100);
+    Vec<float> v1(100), v2(100);
+    // Generate some content for mB, v1 here
+    // Call matrix vector multiply - v2 is the destination vector
+    core_block_blas_gemv(v2.view(), mB.view(), v1.view(), 1.0f, 0.0f, TransMode_N);
+
 ### Build Instructions
 1. Download and install CMAKE - you will need version 3.1 or above
 2. Create a build directory wherever you want to build the library
