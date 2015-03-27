@@ -16,16 +16,9 @@ file(GLOB META_CORE_SRC
 "Core/Src/*.cpp"
 )
 
-#file(GLOB META_VISION_SRC
-#"Vision/*.h"
-#"Vision/Include/*.h"
-#"Vision/Src/*.cpp"
-#)
-
 add_library(
     ${META_LIB_NAME} STATIC
     ${META_CORE_SRC}
-#    ${META_VISION_SRC}
 )
 
 set_property(TARGET ${META_LIB_NAME} PROPERTY CXX_STANDARD 11)
@@ -34,18 +27,4 @@ set_property(TARGET ${META_LIB_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 target_include_directories(
     ${META_LIB_NAME} PUBLIC
     Core
-#    Vision
 )
-
-#add_executable(
-#    debughacks
-#    Test/Src/debughacks.cpp
-#)
-
-#set_property(TARGET debughacks PROPERTY CXX_STANDARD 11)
-#set_property(TARGET debughacks PROPERTY CXX_STANDARD_REQUIRED ON)
-
-#target_link_libraries(
-#    debughacks
-#    ${META_LIB_NAME}
-#)

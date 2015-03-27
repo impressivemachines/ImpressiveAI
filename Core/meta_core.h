@@ -299,6 +299,6 @@ namespace im
 #include "Include/opt_bfgs.h"
 #include "Include/opt_lbfgs.h"
 #include "Include/opt_stochastic.h"
-#include "Include/opt_vstepgrad.h"
+
 
 #endif

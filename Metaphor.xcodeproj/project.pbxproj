@@ -40,7 +40,6 @@
 		C76DCFAA1ABCDE49008961BB /* opt_linemin.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DCF801ABCDE49008961BB /* opt_linemin.h */; };
 		C76DCFAB1ABCDE49008961BB /* opt_powell.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DCF811ABCDE49008961BB /* opt_powell.h */; };
 		C76DCFAC1ABCDE49008961BB /* opt_stochastic.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DCF821ABCDE49008961BB /* opt_stochastic.h */; };
-		C76DCFAD1ABCDE49008961BB /* opt_vstepgrad.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DCF831ABCDE49008961BB /* opt_vstepgrad.h */; };
 		C76DCFAE1ABCDE49008961BB /* permute.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DCF841ABCDE49008961BB /* permute.h */; };
 		C76DCFAF1ABCDE49008961BB /* quaternion.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DCF851ABCDE49008961BB /* quaternion.h */; };
 		C76DCFB01ABCDE49008961BB /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DCF861ABCDE49008961BB /* random.h */; };
@@ -79,7 +78,6 @@
 		C76DCFF61ABCDE5A008961BB /* opt_linemin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFD11ABCDE5A008961BB /* opt_linemin.cpp */; };
 		C76DCFF71ABCDE5A008961BB /* opt_powell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFD21ABCDE5A008961BB /* opt_powell.cpp */; };
 		C76DCFF81ABCDE5A008961BB /* opt_stochastic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFD31ABCDE5A008961BB /* opt_stochastic.cpp */; };
-		C76DCFF91ABCDE5A008961BB /* opt_vstepgrad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFD41ABCDE5A008961BB /* opt_vstepgrad.cpp */; };
 		C76DCFFA1ABCDE5A008961BB /* permute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFD51ABCDE5A008961BB /* permute.cpp */; };
 		C76DCFFB1ABCDE5A008961BB /* quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFD61ABCDE5A008961BB /* quaternion.cpp */; };
 		C76DCFFC1ABCDE5A008961BB /* solve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFD71ABCDE5A008961BB /* solve.cpp */; };
@@ -87,37 +85,7 @@
 		C76DCFFE1ABCDE5A008961BB /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFD91ABCDE5A008961BB /* time.cpp */; };
 		C76DCFFF1ABCDE5A008961BB /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFDA1ABCDE5A008961BB /* utils.cpp */; };
 		C76DD0001ABCDE5A008961BB /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DCFDB1ABCDE5A008961BB /* vector.cpp */; };
-		C76DD0021ABCDE9E008961BB /* meta_io.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DD0011ABCDE9E008961BB /* meta_io.h */; };
-		C76DD0041ABCDEA7008961BB /* meta_sound.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DD0031ABCDEA7008961BB /* meta_sound.h */; };
-		C76DD0061ABCDEB2008961BB /* meta_vision.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DD0051ABCDEB2008961BB /* meta_vision.h */; };
-		C76DD0091ABCDEC0008961BB /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DD0071ABCDEC0008961BB /* image.cpp */; };
-		C76DD00A1ABCDEC0008961BB /* vision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DD0081ABCDEC0008961BB /* vision.cpp */; };
-		C76DD00C1ABCDECA008961BB /* image.h in Headers */ = {isa = PBXBuildFile; fileRef = C76DD00B1ABCDECA008961BB /* image.h */; };
-		C76DD00E1ABCDED7008961BB /* debughacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DD00D1ABCDED7008961BB /* debughacks.cpp */; };
-		C7D9A4081AA91CAC0046ADBB /* libMetaphor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D9A3681AA913560046ADBB /* libMetaphor.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C7D9A4091AA91CB20046ADBB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C7D9A3601AA913560046ADBB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C7D9A3671AA913560046ADBB;
-			remoteInfo = Metaphor;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		C7D9A3FB1AA9155A0046ADBB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C726D1401ABBCB67008F0C00 /* CMakeLists.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
@@ -154,7 +122,6 @@
 		C76DCF801ABCDE49008961BB /* opt_linemin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_linemin.h; path = Core/Include/opt_linemin.h; sourceTree = "<group>"; };
 		C76DCF811ABCDE49008961BB /* opt_powell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_powell.h; path = Core/Include/opt_powell.h; sourceTree = "<group>"; };
 		C76DCF821ABCDE49008961BB /* opt_stochastic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_stochastic.h; path = Core/Include/opt_stochastic.h; sourceTree = "<group>"; };
-		C76DCF831ABCDE49008961BB /* opt_vstepgrad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = opt_vstepgrad.h; path = Core/Include/opt_vstepgrad.h; sourceTree = "<group>"; };
 		C76DCF841ABCDE49008961BB /* permute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = permute.h; path = Core/Include/permute.h; sourceTree = "<group>"; };
 		C76DCF851ABCDE49008961BB /* quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = quaternion.h; path = Core/Include/quaternion.h; sourceTree = "<group>"; };
 		C76DCF861ABCDE49008961BB /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = Core/Include/random.h; sourceTree = "<group>"; };
@@ -193,7 +160,6 @@
 		C76DCFD11ABCDE5A008961BB /* opt_linemin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_linemin.cpp; path = Core/Src/opt_linemin.cpp; sourceTree = "<group>"; };
 		C76DCFD21ABCDE5A008961BB /* opt_powell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_powell.cpp; path = Core/Src/opt_powell.cpp; sourceTree = "<group>"; };
 		C76DCFD31ABCDE5A008961BB /* opt_stochastic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_stochastic.cpp; path = Core/Src/opt_stochastic.cpp; sourceTree = "<group>"; };
-		C76DCFD41ABCDE5A008961BB /* opt_vstepgrad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = opt_vstepgrad.cpp; path = Core/Src/opt_vstepgrad.cpp; sourceTree = "<group>"; };
 		C76DCFD51ABCDE5A008961BB /* permute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = permute.cpp; path = Core/Src/permute.cpp; sourceTree = "<group>"; };
 		C76DCFD61ABCDE5A008961BB /* quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = quaternion.cpp; path = Core/Src/quaternion.cpp; sourceTree = "<group>"; };
 		C76DCFD71ABCDE5A008961BB /* solve.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = solve.cpp; path = Core/Src/solve.cpp; sourceTree = "<group>"; };
@@ -201,17 +167,9 @@
 		C76DCFD91ABCDE5A008961BB /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = time.cpp; path = Core/Src/time.cpp; sourceTree = "<group>"; };
 		C76DCFDA1ABCDE5A008961BB /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = Core/Src/utils.cpp; sourceTree = "<group>"; };
 		C76DCFDB1ABCDE5A008961BB /* vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vector.cpp; path = Core/Src/vector.cpp; sourceTree = "<group>"; };
-		C76DD0011ABCDE9E008961BB /* meta_io.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meta_io.h; path = IO/meta_io.h; sourceTree = "<group>"; };
-		C76DD0031ABCDEA7008961BB /* meta_sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meta_sound.h; path = Sound/meta_sound.h; sourceTree = "<group>"; };
-		C76DD0051ABCDEB2008961BB /* meta_vision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = meta_vision.h; path = Vision/meta_vision.h; sourceTree = "<group>"; };
-		C76DD0071ABCDEC0008961BB /* image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = image.cpp; path = Vision/Src/image.cpp; sourceTree = "<group>"; };
-		C76DD0081ABCDEC0008961BB /* vision.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vision.cpp; path = Vision/Src/vision.cpp; sourceTree = "<group>"; };
-		C76DD00B1ABCDECA008961BB /* image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image.h; path = Vision/Include/image.h; sourceTree = "<group>"; };
-		C76DD00D1ABCDED7008961BB /* debughacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = debughacks.cpp; path = Test/Src/debughacks.cpp; sourceTree = "<group>"; };
 		C7D9A3681AA913560046ADBB /* libMetaphor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMetaphor.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D9A3F51AA914180046ADBB /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C7D9A3F61AA914180046ADBB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C7D9A3FD1AA9155A0046ADBB /* DebugHacks */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DebugHacks; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,14 +177,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7D9A3FA1AA9155A0046ADBB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C7D9A4081AA91CAC0046ADBB /* libMetaphor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,8 +255,6 @@
 				C76DCFD21ABCDE5A008961BB /* opt_powell.cpp */,
 				C76DCF821ABCDE49008961BB /* opt_stochastic.h */,
 				C76DCFD31ABCDE5A008961BB /* opt_stochastic.cpp */,
-				C76DCF831ABCDE49008961BB /* opt_vstepgrad.h */,
-				C76DCFD41ABCDE5A008961BB /* opt_vstepgrad.cpp */,
 				C76DCF841ABCDE49008961BB /* permute.h */,
 				C76DCFD51ABCDE5A008961BB /* permute.cpp */,
 				C76DCF851ABCDE49008961BB /* quaternion.h */,
@@ -327,41 +275,6 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
-		C76DCF5D1ABCDE01008961BB /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				C76DD00D1ABCDED7008961BB /* debughacks.cpp */,
-			);
-			name = Test;
-			sourceTree = "<group>";
-		};
-		C76DCF5E1ABCDE06008961BB /* Vision */ = {
-			isa = PBXGroup;
-			children = (
-				C76DD0051ABCDEB2008961BB /* meta_vision.h */,
-				C76DD00B1ABCDECA008961BB /* image.h */,
-				C76DD0071ABCDEC0008961BB /* image.cpp */,
-				C76DD0081ABCDEC0008961BB /* vision.cpp */,
-			);
-			name = Vision;
-			sourceTree = "<group>";
-		};
-		C76DCF5F1ABCDE0A008961BB /* Sound */ = {
-			isa = PBXGroup;
-			children = (
-				C76DD0031ABCDEA7008961BB /* meta_sound.h */,
-			);
-			name = Sound;
-			sourceTree = "<group>";
-		};
-		C76DCF601ABCDE10008961BB /* IO */ = {
-			isa = PBXGroup;
-			children = (
-				C76DD0011ABCDE9E008961BB /* meta_io.h */,
-			);
-			name = IO;
-			sourceTree = "<group>";
-		};
 		C7D9A35F1AA913560046ADBB = {
 			isa = PBXGroup;
 			children = (
@@ -369,10 +282,6 @@
 				C7D9A3F51AA914180046ADBB /* LICENSE.txt */,
 				C7D9A3F61AA914180046ADBB /* README.md */,
 				C76DCF5C1ABCDDFA008961BB /* Core */,
-				C76DCF601ABCDE10008961BB /* IO */,
-				C76DCF5F1ABCDE0A008961BB /* Sound */,
-				C76DCF5E1ABCDE06008961BB /* Vision */,
-				C76DCF5D1ABCDE01008961BB /* Test */,
 				C726D13F1ABBC912008F0C00 /* Doc */,
 				C7D9A3691AA913560046ADBB /* Products */,
 			);
@@ -382,7 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				C7D9A3681AA913560046ADBB /* libMetaphor.a */,
-				C7D9A3FD1AA9155A0046ADBB /* DebugHacks */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -399,7 +307,6 @@
 				C76DCFAA1ABCDE49008961BB /* opt_linemin.h in Headers */,
 				C76DCFA41ABCDE49008961BB /* matrix.h in Headers */,
 				C76DCFA61ABCDE49008961BB /* opt_bfgs.h in Headers */,
-				C76DCFAD1ABCDE49008961BB /* opt_vstepgrad.h in Headers */,
 				C76DCF9A1ABCDE49008961BB /* decomp_eigen.h in Headers */,
 				C76DCFA91ABCDE49008961BB /* opt_levmarq.h in Headers */,
 				C76DCF9F1ABCDE49008961BB /* decomp_tridiag.h in Headers */,
@@ -411,13 +318,10 @@
 				C76DCF621ABCDE3A008961BB /* meta_core.h in Headers */,
 				C76DCF951ABCDE49008961BB /* block_sort.h in Headers */,
 				C76DCF9C1ABCDE49008961BB /* decomp_qr.h in Headers */,
-				C76DD0021ABCDE9E008961BB /* meta_io.h in Headers */,
 				C76DCFB01ABCDE49008961BB /* random.h in Headers */,
 				C76DCFB51ABCDE49008961BB /* vector_view.h in Headers */,
-				C76DD0041ABCDEA7008961BB /* meta_sound.h in Headers */,
 				C76DCF901ABCDE49008961BB /* block_blas3.h in Headers */,
 				C76DCFB31ABCDE49008961BB /* types.h in Headers */,
-				C76DD00C1ABCDECA008961BB /* image.h in Headers */,
 				C76DCFA11ABCDE49008961BB /* geometry.h in Headers */,
 				C76DCF941ABCDE49008961BB /* block_reduce.h in Headers */,
 				C76DCFA31ABCDE49008961BB /* matrix_view.h in Headers */,
@@ -436,7 +340,6 @@
 				C76DCFA21ABCDE49008961BB /* matrix_io.h in Headers */,
 				C76DCF971ABCDE49008961BB /* block_unary.h in Headers */,
 				C76DCF911ABCDE49008961BB /* block_convert.h in Headers */,
-				C76DD0061ABCDEB2008961BB /* meta_vision.h in Headers */,
 				C76DCF931ABCDE49008961BB /* block_loop.h in Headers */,
 				C76DCFB21ABCDE49008961BB /* stats.h in Headers */,
 				C76DCF981ABCDE49008961BB /* convolve.h in Headers */,
@@ -464,24 +367,6 @@
 			productReference = C7D9A3681AA913560046ADBB /* libMetaphor.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		C7D9A3FC1AA9155A0046ADBB /* DebugHacks */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C7D9A4031AA9155A0046ADBB /* Build configuration list for PBXNativeTarget "DebugHacks" */;
-			buildPhases = (
-				C7D9A3F91AA9155A0046ADBB /* Sources */,
-				C7D9A3FA1AA9155A0046ADBB /* Frameworks */,
-				C7D9A3FB1AA9155A0046ADBB /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C7D9A40A1AA91CB20046ADBB /* PBXTargetDependency */,
-			);
-			name = DebugHacks;
-			productName = DebugHacks;
-			productReference = C7D9A3FD1AA9155A0046ADBB /* DebugHacks */;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -492,9 +377,6 @@
 				ORGANIZATIONNAME = "Impressive Machines LLC";
 				TargetAttributes = {
 					C7D9A3671AA913560046ADBB = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
-					C7D9A3FC1AA9155A0046ADBB = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
@@ -512,7 +394,6 @@
 			projectRoot = "";
 			targets = (
 				C7D9A3671AA913560046ADBB /* Metaphor */,
-				C7D9A3FC1AA9155A0046ADBB /* DebugHacks */,
 			);
 		};
 /* End PBXProject section */
@@ -522,7 +403,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C76DCFF91ABCDE5A008961BB /* opt_vstepgrad.cpp in Sources */,
 				C76DCFF71ABCDE5A008961BB /* opt_powell.cpp in Sources */,
 				C76DCFF61ABCDE5A008961BB /* opt_linemin.cpp in Sources */,
 				C76DCFDE1ABCDE5A008961BB /* block_blas2.cpp in Sources */,
@@ -535,7 +415,6 @@
 				C76DCFF21ABCDE5A008961BB /* opt_bfgs.cpp in Sources */,
 				C76DCFEC1ABCDE5A008961BB /* decomp_tools.cpp in Sources */,
 				C76DCFE11ABCDE5A008961BB /* block_reduce.cpp in Sources */,
-				C76DD0091ABCDEC0008961BB /* image.cpp in Sources */,
 				C76DCFF01ABCDE5A008961BB /* matrix_io.cpp in Sources */,
 				C76DCFE91ABCDE5A008961BB /* decomp_lu.cpp in Sources */,
 				C76DCFFF1ABCDE5A008961BB /* utils.cpp in Sources */,
@@ -560,27 +439,10 @@
 				C76DCFE61ABCDE5A008961BB /* core.cpp in Sources */,
 				C76DCFE01ABCDE5A008961BB /* block_convert.cpp in Sources */,
 				C76DCFFD1ABCDE5A008961BB /* stats.cpp in Sources */,
-				C76DD00A1ABCDEC0008961BB /* vision.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C7D9A3F91AA9155A0046ADBB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C76DD00E1ABCDED7008961BB /* debughacks.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C7D9A40A1AA91CB20046ADBB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C7D9A3671AA913560046ADBB /* Metaphor */;
-			targetProxy = C7D9A4091AA91CB20046ADBB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C7D9A36A1AA913560046ADBB /* Debug */ = {
@@ -675,24 +537,6 @@
 			};
 			name = Release;
 		};
-		C7D9A4011AA9155A0046ADBB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		C7D9A4021AA9155A0046ADBB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -710,15 +554,6 @@
 			buildConfigurations = (
 				C7D9A36D1AA913560046ADBB /* Debug */,
 				C7D9A36E1AA913560046ADBB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C7D9A4031AA9155A0046ADBB /* Build configuration list for PBXNativeTarget "DebugHacks" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C7D9A4011AA9155A0046ADBB /* Debug */,
-				C7D9A4021AA9155A0046ADBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
